@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linierLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingTop="80dp"
+    android:paddingRight="30dp"
+   >
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="117dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/akronim"
+        android:text="EC"
+        android:textAlignment="center"
+        android:textColor="@color/button"
+        android:textSize="100sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MENU REGRISTRASI"
+        android:textAlignment="center"
+        android:textColor="@color/button"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/nama_user"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/textfield"
+            android:hint=" Nama"
+            android:layout_marginBottom="4dp"
+            android:inputType="textPersonName"
+            android:textAlignment="viewStart"
+            android:textColor="@color/design_default_color_secondary_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/email_user"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/textfield"
+            android:hint=" Email"
+            android:layout_marginBottom="4dp"
+
+            android:inputType="textEmailAddress"
+            android:textAlignment="textStart"
+            android:textColor="@color/design_default_color_secondary_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/textfield"
+            android:hint=" Password"
+            android:layout_marginBottom="4dp"
+
+            android:inputType="textPassword"
+            android:textAlignment="viewStart"
+            android:textColor="@color/design_default_color_secondary_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/c_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/textfield"
+            android:hint=" Konfirmasi Password "
+            android:layout_marginBottom="4dp"
+
+            android:inputType="textPassword"
+            android:textAlignment="viewStart"
+            android:textColor="@color/design_default_color_secondary_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/view"
+        android:backgroundTint="@color/button"
+        android:text="REGISTER"
+        android:textColor="#ffffff" />
+
+
+</LinearLayout>
