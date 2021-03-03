@@ -14,14 +14,13 @@ import com.p3lb.cafex.R;
 public class ProdukDAOView extends RecyclerView.ViewHolder {
     public TextView nama_produk, jumlah_produk, harga_produk;
     public ImageView foto_produk;
-
     public LinearLayout produk;
     public ProdukDAOView(@NonNull View itemView){
         super(itemView);
-        foto_produk = itemView.findViewById(R.id.fotoProduk);
-        nama_produk = itemView.findViewById(R.id.namaProduk);
-        jumlah_produk = itemView.findViewById(R.id.jumlahProduk);
-        harga_produk = itemView.findViewById(R.id.hargaProduk);
+       // foto_produk = itemView.findViewById(R.id.fotoProduk);
+        nama_produk = (TextView) itemView.findViewById(R.id.namaProduk);
+        jumlah_produk = (TextView) itemView.findViewById(R.id.jumlahProduk);
+        harga_produk = (TextView) itemView.findViewById(R.id.hargaProduk);
         produk = itemView.findViewById(R.id.produk);
     }
 }

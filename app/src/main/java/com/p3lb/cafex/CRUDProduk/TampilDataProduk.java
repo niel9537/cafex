@@ -34,12 +34,12 @@ public class TampilDataProduk extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycleView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        getData(recyclerView);
+        getData();
 
 
     }
 
-    public void getData(final RecyclerView recyclerView) {
+    public void getData() {
         ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<List<ProdukDAO>> call = apiInterface.getProdukDAO();
 
@@ -47,11 +47,11 @@ public class TampilDataProduk extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<ProdukDAO>> call, Response<List<ProdukDAO>> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(TampilDataProduk.this, response.body()., Toast.LENGTH_LONG).show();
-                    Toast.makeText(TampilDataProduk.this, "Semua data telah dimuat", Toast.LENGTH_SHORT).show();
+                    assert response.body() != null;
                     ProdukDAO.addAll(response.body());
                     produkAdapter = new ProdukAdapter(TampilDataProduk.this, ProdukDAO);
                     recyclerView.setAdapter(produkAdapter);
+                    Toast.makeText(TampilDataProduk.this, "Semua data telah dimuat", Toast.LENGTH_SHORT).show();
                 } else
                     Toast.makeText(TampilDataProduk.this, "Gagal memuat produk " + response.message(), Toast.LENGTH_SHORT).show();
             }

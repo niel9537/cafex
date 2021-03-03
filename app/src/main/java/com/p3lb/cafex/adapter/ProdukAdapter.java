@@ -29,11 +29,12 @@ public class ProdukAdapter extends RecyclerView.Adapter <ProdukDAOView>{
     @NonNull
     @Override
     public ProdukDAOView onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_row_dataproduk, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.row_data_produk, viewGroup, false);
         return new ProdukDAOView(view);
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ProdukDAOView produkDAOView, int i) {
         final ProdukDAO currentData = list.get(i);
@@ -49,7 +50,6 @@ public class ProdukAdapter extends RecyclerView.Adapter <ProdukDAOView>{
                 intent.putExtra("nama_produk", currentData.getNama_produk());
                 intent.putExtra("jumlah_produk", currentData.getJumlah_produk());
                 intent.putExtra("harga_produk", currentData.getHarga_produk());
-
                 context.startActivity(intent);
             }
         });
@@ -57,7 +57,7 @@ public class ProdukAdapter extends RecyclerView.Adapter <ProdukDAOView>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
 }
