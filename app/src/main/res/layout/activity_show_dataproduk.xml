@@ -18,20 +18,66 @@
         android:textColor="@color/button"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
-        android:layout_width="335dp"
-        android:layout_height="231dp"
+        android:layout_width="338dp"
+        android:layout_height="144dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.113" />
+        app:layout_constraintVertical_bias="0.077" />
 
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="175dp"
+        android:layout_height="239dp"
+        android:id="@+id/menuFltBtn"
+        app:fab_addButtonColorNormal="#F44336"
+        app:fab_expandDirection="up"
+        app:fab_labelStyle="@style/LabelStyle"
+        app:fab_labelsPosition="left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.581"
+        >
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnTambahProduk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            app:fab_colorNormal="@color/button"
+            app:fab_title="Tambah Produk"
+            app:fab_icon="@drawable/fooddrink24dp"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnKeranjangBelanja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            app:fab_colorNormal="@color/button"
+            app:fab_title="Keranjang"
+            app:fab_icon="@drawable/bucket24dp"/>
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="LogOut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

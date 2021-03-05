@@ -25,14 +25,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //noinspection GradleCompatible
+    //RecycleView
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-    // For control over item selection of both touch and mouse driven selection
+    //Float Button
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
 
     implementation 'com.github.bumptech.glide:glide:4.2.0'
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
