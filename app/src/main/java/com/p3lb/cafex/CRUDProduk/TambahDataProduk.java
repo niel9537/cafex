@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.p3lb.cafex.Config;
 import com.p3lb.cafex.R;
+import com.p3lb.cafex.model.ImageModel;
 import com.p3lb.cafex.model.ProdukDAO;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
@@ -41,9 +42,11 @@ import java.util.Locale;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Multipart;
 
 public class TambahDataProduk extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner kategori;
@@ -57,20 +60,22 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
     private String postPath;
     private static final int REQUEST_PICK_PHOTO = Config.REQUEST_PICK_PHOTO;
     private static final int REQUEST_WRITE_PERMISSION = Config.REQUEST_WRITE_PERMISSION;
-
+    ImageModel imageModel;
     //Akses izin ambil gambar dari storage
+    public Uri selectedImage;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == REQUEST_WRITE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED)
         {
-            saveImageUpload();
+            //saveImageUpload();
         }
     }
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        final ImageModel imageModel = new ImageModel(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_dataproduk);
         nama_produk = (EditText) findViewById(R.id.nama_produk);
@@ -95,7 +100,8 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestPermission();
+                //requestPermission();
+                createToko(imageModel);
             }
         });
 
@@ -109,7 +115,7 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
             if(requestCode == REQUEST_PICK_PHOTO){
                 if(data != null){
                     //Ambil Image dari gallery foto
-                    Uri selectedImage = data.getData();
+                    selectedImage = data.getData();
                     String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                     Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
@@ -124,8 +130,42 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
             }
         }
     }
+
+    void createToko(ImageModel imageModel){
+
+        RequestBody nama = imageModel.requestBody(nama_produk.getText().toString());
+        RequestBody kategori_produk = imageModel.requestBody(kategori.getSelectedItem().toString());
+        RequestBody jumlah = imageModel.requestBody(jumlah_produk.getText().toString());
+        RequestBody harga = imageModel.requestBody(harga_produk.getText().toString());
+        MultipartBody.Part file = imageModel.multipartBody(selectedImage);
+        ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<ResponseBody> call = apiInterface.addProdukDAO(
+                nama,
+                kategori_produk,
+                jumlah,
+                harga,
+                file
+        );
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Log.d("sam", String.valueOf(response.body()));
+
+                }
+                Log.d("sam", String.valueOf(response.body()));
+
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("sam", t.getMessage());
+                Toast.makeText(TambahDataProduk.this, "gagal : " + t.getMessage(),Toast.LENGTH_LONG).show();
+                call.cancel();
+            }
+        });
+    }
     //Simpan gambar
-    private void saveImageUpload(){
+    /*private void saveImageUpload(){
         final String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if(mediaPath == null){
             Toast.makeText(getApplicationContext(), "Pilih gambar terlebih dahulu ", Toast.LENGTH_LONG).show();
@@ -133,15 +173,15 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
         }else{
             File imagefile = new File(mediaPath);
             RequestBody reqBody = RequestBody.create(MediaType.parse("multipart/form-file"), imagefile);
-            MultipartBody.Part partImage = MultipartBody.Part.createFormData("", imagefile.getName(), reqBody);
+            MultipartBody.Part partImage = MultipartBody.Part.createFormData("foto_produk", imagefile.getName(), reqBody);
             ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
 
-            Call<ProdukDAO> produkDAOCall = apiInterface.addProdukDAO(
+           *//* Call<ProdukDAO> produkDAOCall = apiInterface.addProdukDAO(
                     RequestBody.create(MediaType.parse("text/plain"), nama_produk.getText().toString()),
                     RequestBody.create(MediaType.parse("text/plain"), kategori.getSelectedItem().toString()),
                     RequestBody.create(MediaType.parse("text/plain"), jumlah_produk.getText().toString()),
                     RequestBody.create(MediaType.parse("text/plain"), harga_produk.getText().toString()),
-                    partImage);
+                    partImage);*//*
             produkDAOCall.enqueue(new Callback<ProdukDAO>() {
                 @Override
                 public void onResponse(Call<ProdukDAO> call, Response<ProdukDAO> response) {
@@ -158,7 +198,7 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
                 }
             });
         }
-    }
+    }*/
 
     //Cek meminta izin
     private void requestPermission(){
@@ -167,7 +207,7 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
         }else{
             Toast.makeText(TambahDataProduk.this,"REQ BERHASIL",Toast.LENGTH_SHORT).show();
-            saveImageUpload();
+            //saveImageUpload();
         }
     }
 

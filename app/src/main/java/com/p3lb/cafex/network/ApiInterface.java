@@ -6,6 +6,7 @@ import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -21,11 +22,11 @@ public interface ApiInterface {
     @Multipart
     @POST("api/produk")
 
-    Call<ProdukDAO> addProdukDAO(@Part("nama_produk") RequestBody nama_produk,
-                                       @Part("kategori_produk") RequestBody kategori_produk,
-                                       @Part("jumlah_produk") RequestBody jumlah_produk,
-                                       @Part("harga_produk") RequestBody harga_produk,
-                                       @Part MultipartBody.Part foto_produk);
+    Call<ResponseBody> addProdukDAO(@Part("nama_produk") RequestBody nama_produk,
+                                    @Part("id_kategori") RequestBody kategori_produk,
+                                    @Part("jumlah_produk") RequestBody jumlah_produk,
+                                    @Part("harga_produk") RequestBody harga_produk,
+                                    @Part MultipartBody.Part foto_produk);
 
 
 }
