@@ -133,7 +133,7 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
         }else{
             File imagefile = new File(mediaPath);
             RequestBody reqBody = RequestBody.create(MediaType.parse("multipart/form-file"), imagefile);
-            MultipartBody.Part partImage = MultipartBody.Part.createFormData("image", imagefile.getName(), reqBody);
+            MultipartBody.Part partImage = MultipartBody.Part.createFormData("", imagefile.getName(), reqBody);
             ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
 
             Call<ProdukDAO> produkDAOCall = apiInterface.addProdukDAO(
@@ -145,8 +145,9 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
             produkDAOCall.enqueue(new Callback<ProdukDAO>() {
                 @Override
                 public void onResponse(Call<ProdukDAO> call, Response<ProdukDAO> response) {
-                    Log.d("sam", "fail");
-                    Toast.makeText(TambahDataProduk.this,"Data Produk Telah Didaftarkan",Toast.LENGTH_SHORT).show();
+                    Log.d("sam", String.valueOf(response.body()));
+                    Toast.makeText(TambahDataProduk.this,"Berhasil " + response.message(),Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
                 @Override
@@ -164,7 +165,6 @@ public class TambahDataProduk extends AppCompatActivity implements AdapterView.O
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
-
         }else{
             Toast.makeText(TambahDataProduk.this,"REQ BERHASIL",Toast.LENGTH_SHORT).show();
             saveImageUpload();

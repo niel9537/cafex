@@ -2,6 +2,7 @@ package com.p3lb.cafex.CRUDProduk;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.p3lb.cafex.InvoiceActivity;
+import com.p3lb.cafex.MainActivity;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.adapter.ProdukAdapter;
 import com.p3lb.cafex.model.ProdukDAO;
@@ -29,6 +31,7 @@ public class TampilDataProduk extends AppCompatActivity {
     private RecyclerView recyclerView;
     ProdukAdapter produkAdapter;
     List<ProdukDAO> ProdukDAO;
+    public static TampilDataProduk ma;
     public FloatingActionButton fltTambahProduk, fltKeranjangBelanja;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class TampilDataProduk extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ma=this;
 
 
 
