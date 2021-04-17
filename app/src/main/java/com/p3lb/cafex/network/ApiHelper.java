@@ -4,7 +4,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiHelper {
-    public static final String BASE_URL="http://192.168.0.3:81/cafe/api/";
+
+    public static final String BASE_URL="http://192.168.0.2:81/cafex/";
     public static Retrofit retrofit = null;
     public static Retrofit getClient(){
         if(retrofit==null){

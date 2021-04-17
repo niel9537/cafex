@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.p3lb.cafex.InvoiceActivity;
 import com.p3lb.cafex.R;
-import com.p3lb.cafex.TambahProdukActivity;
 import com.p3lb.cafex.adapter.ProdukAdapter;
 import com.p3lb.cafex.model.ProdukDAO;
 import com.p3lb.cafex.network.ApiHelper;
@@ -45,7 +44,7 @@ public class TampilDataProduk extends AppCompatActivity {
         fltTambahProduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TampilDataProduk.this, TambahProdukActivity.class);
+                Intent intent = new Intent(TampilDataProduk.this, TambahDataProduk.class);
                 startActivity(intent);
             }
         });

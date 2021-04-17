@@ -10,12 +10,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+//`import com.bumptech.glide.request.RequestOptions;
+import com.p3lb.cafex.Config;
 import com.p3lb.cafex.MainActivity;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.holder.ProdukDAOView;
 import com.p3lb.cafex.model.ProdukDAO;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class ProdukAdapter extends RecyclerView.Adapter <ProdukDAOView>{
     private Context context;
@@ -29,7 +34,7 @@ public class ProdukAdapter extends RecyclerView.Adapter <ProdukDAOView>{
     @NonNull
     @Override
     public ProdukDAOView onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.row_data_produk, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_row_data_produk, viewGroup, false);
         return new ProdukDAOView(view);
     }
 
@@ -38,9 +43,11 @@ public class ProdukAdapter extends RecyclerView.Adapter <ProdukDAOView>{
     @Override
     public void onBindViewHolder(@NonNull ProdukDAOView produkDAOView, int i) {
         final ProdukDAO currentData = list.get(i);
-        produkDAOView.nama_produk.setText("Nama Produk  : " + currentData.getNama_produk());
-        produkDAOView.jumlah_produk.setText("Tersedia  : " + currentData.getJumlah_produk());
-        produkDAOView.harga_produk.setText("Harga Produk : " + currentData.getHarga_produk());
+        produkDAOView.nama_produk.setText(currentData.getNama_produk());
+        produkDAOView.harga_produk.setText("Rp " + currentData.getHarga_produk());
+       // RequestOptions requestOptions = new RequestOptions();
+      //  requestOptions=requestOptions.placeholder(R.drawable.bucket24dp);
+        Picasso.with(context).load(Config.IMAGES_URL +currentData.getFoto_produk()).transform(new CropCircleTransformation()).centerCrop().placeholder(R.drawable.bucket24dp).resize(100,100).into(produkDAOView.foto_produk);
 
         produkDAOView.produk.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,18 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TambahDataProduk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@color/background">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Jumlah Produk"
+            android:textColor="@color/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/harga_produk" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Kategori Produk"
+            android:textColor="@color/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nama_produk" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginTop="100dp"
+            android:text="Harga Produk"
+            android:textColor="@color/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinKategoriProduk" />
+
+        <EditText
+            android:id="@+id/harga_produk"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/button"
+            android:ems="10"
+            android:hint="Masukan harga produk"
+            android:inputType="numberDecimal"
+            android:textColor="@color/button"
+            android:textColorHint="@color/font"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <EditText
+            android:id="@+id/jumlah_produk"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="1dp"
+            android:backgroundTint="@color/button"
+            android:ems="10"
+            android:hint="Masukan jumlah produk"
+            android:inputType="numberDecimal"
+            android:textColor="@color/button"
+            android:textColorHint="@color/font"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <ImageView
+            android:id="@+id/foto_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="119dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:srcCompat="@mipmap/imgproduk_foreground" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+
+            android:layout_height="27dp"
+            android:layout_marginTop="44dp"
+            android:text="Tambah Produk"
+            android:textColor="@color/button"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="164dp"
+            android:background="@drawable/bg_label"
+            android:text="SIMPAN"
+            android:textColor="@color/font"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jumlah_produk"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <EditText
+            android:id="@+id/nama_produk"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/button"
+            android:ems="10"
+            android:foregroundTint="@color/button"
+            android:hint="Masukan nama produk"
+            android:inputType="textPersonName"
+            android:textColor="@color/button"
+            android:textColorHint="@color/font"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <Spinner
+            android:id="@+id/spinKategoriProduk"
+            android:layout_width="363dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/button"
+            android:foregroundTint="@color/button"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="40dp"
+            android:text="Nama Produk"
+            android:textColor="@color/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnUploadImage" />
+
+        <Button
+            android:id="@+id/btnUploadImage"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="21dp"
+            android:background="@drawable/bg_label"
+            android:padding="10dp"
+            android:text="Upload Image"
+            android:textColor="@color/font"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foto_produk" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

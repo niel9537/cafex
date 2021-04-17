@@ -19,7 +19,7 @@ public class ProdukDAOView extends RecyclerView.ViewHolder {
         super(itemView);
        // foto_produk = itemView.findViewById(R.id.fotoProduk);
         nama_produk = (TextView) itemView.findViewById(R.id.namaProduk);
-        jumlah_produk = (TextView) itemView.findViewById(R.id.jumlahProduk);
+        foto_produk = (ImageView) itemView.findViewById(R.id.imgProduk);
         harga_produk = (TextView) itemView.findViewById(R.id.hargaProduk);
         produk = itemView.findViewById(R.id.produk);
     }
