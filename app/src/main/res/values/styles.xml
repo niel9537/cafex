@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/background</item>
         <item name="colorPrimaryDark">@color/button</item>
@@ -10,6 +10,9 @@
     <style name="LabelStyle">
         <item name="android:background">@drawable/bg_label</item>
         <item name="android:textColor">#FFF</item>
-
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>

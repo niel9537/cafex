@@ -17,8 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".InvoiceActivity"/>
-        <activity android:name=".CRUDProduk.TambahDataProduk"/>
-        <activity android:name=".CRUDProduk.TampilDataProduk">
+        <activity android:name=".MenuProduk.TampilDataProduk"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuProduk.TambahDataProduk"/>
+        <activity android:name=".MenuProduk.EditDataProduk"/>
+        <activity android:name=".MenuAuth.LoginKasir"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

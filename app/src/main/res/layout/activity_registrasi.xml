@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MENU REGRISTRASI"
+        android:text="MENU REGISTRASI"
         android:textAlignment="center"
         android:textColor="@color/button"
         android:textSize="30sp"
@@ -40,9 +40,9 @@
             android:id="@+id/nama_user"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/textfield"
-            android:hint=" Nama"
             android:layout_marginBottom="4dp"
+            android:background="@drawable/textfield"
+            android:hint="Username"
             android:inputType="textPersonName"
             android:textAlignment="viewStart"
             android:textColor="@color/design_default_color_secondary_variant" />
@@ -71,12 +71,12 @@
         app:passwordToggleEnabled="true">
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/password_user"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/textfield"
-            android:hint=" Password"
             android:layout_marginBottom="4dp"
+            android:background="@drawable/textfield"
+            android:hint="  Password"
 
             android:inputType="textPassword"
             android:textAlignment="viewStart"
@@ -89,7 +89,7 @@
         app:passwordToggleEnabled="true">
 
         <EditText
-            android:id="@+id/c_password"
+            android:id="@+id/c_password_user"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/textfield"
@@ -101,12 +101,52 @@
             android:textColor="@color/design_default_color_secondary_variant" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ProgressBar
-        android:id="@+id/loading"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:visibility="gone" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/nohp_user"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/textfield"
+            android:hint=" Nomor Handphone "
+            android:layout_marginBottom="4dp"
+
+            android:inputType="number"
+            android:textAlignment="viewStart"
+            android:textColor="@color/design_default_color_secondary_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/noktp_user"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/textfield"
+            android:hint=" Nomor KTP  "
+            android:layout_marginBottom="4dp"
+
+            android:inputType="number"
+            android:textAlignment="viewStart"
+            android:textColor="@color/design_default_color_secondary_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:id="@+id/spinnerJabatanUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/btnRegister"

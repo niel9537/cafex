@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">CafeX</string>
+    <string name="app_name">Cafe X</string>
     <string-array name="kategori">
-        <item>1</item>
-        <item>2</item>
+        <item>Ice</item>
+        <item>Hot</item>
     </string-array>
 </resources>

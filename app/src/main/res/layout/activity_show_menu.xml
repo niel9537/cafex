@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:fontFamily="@font/bungee_shade"
+        android:fontFamily="@font/open_sans_bold"
         android:text="Menu"
         android:textColor="@color/button"
         android:textSize="18sp"
@@ -24,7 +24,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_produk"
+        android:id="@+id/recycleView"
         android:layout_width="367dp"
         android:layout_height="612dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,16 +48,6 @@
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.698">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnTambahProduk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_label"
-            app:fabSize="mini"
-            app:fab_colorNormal="@color/button"
-            app:fab_icon="@drawable/fooddrink24dp"
-            app:fab_title="Tambah Produk" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnKeranjangBelanja"

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F1EFEF"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".MenuProduk.TambahDataProduk">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bungee_shade"
+                android:gravity="center"
+                android:lineSpacingExtra="12sp"
+                android:maxLines="1"
+                android:text="Edit Menu"
+                android:textColor="@color/button"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <!--            android:inputType="textCapSentences"-->
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_placeholder"
+            android:textColorHint="@color/background"
+            app:boxBackgroundMode="none">
+
+            <EditText
+                android:id="@+id/namaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_label"
+                android:gravity="center"
+                android:hint="Masukan nama produk baru"
+                android:maxLines="1"
+                android:textColor="@color/background"
+                android:textColorHighlight="@color/button"
+                android:textColorHint="@color/background"
+                android:textColorLink="@color/background" />
+            <!--            android:inputType="textCapSentences"-->
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_placeholder"
+            android:textColorHint="@color/background"
+            app:boxStrokeColor="@color/background"
+            app:endIconTint="@color/background"
+            app:startIconTint="@color/background">
+
+            <EditText
+                android:id="@+id/hargaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_placeholder"
+                android:gravity="center"
+                android:hint="Masukan harga produk baru"
+                android:maxLines="1"
+                android:textColor="@color/background"
+                android:textColorHighlight="@color/button"
+                android:textColorHint="@color/background"
+                android:textColorLink="@color/background" />
+
+
+            <!--            android:inputType="textCapSentences"-->
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_placeholder"
+            android:textColorHint="@color/background">
+
+            <Spinner
+
+                android:id="@+id/spinnerKategoriProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:popupBackground="@color/background"
+                android:spinnerMode="dropdown" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/fotoProduk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@mipmap/imgproduk_foreground"
+                android:scaleType="centerInside" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnGallery"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_placeholder"
+            android:text="Pilih gambar"
+            android:textColor="@color/background"
+            android:textColorHighlight="@color/background"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSimpan"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="180dp"
+            android:background="@drawable/bg_placeholder"
+            android:text="Simpan"
+            android:textColor="@color/background"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

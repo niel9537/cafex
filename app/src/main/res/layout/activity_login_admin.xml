@@ -10,7 +10,7 @@
     android:paddingLeft="30dp"
     android:paddingTop="80dp"
     android:paddingRight="30dp"
-    tools:context=".LoginAdminActivity">
+    tools:context=".MenuAuth.LoginAdmin">
 
 
     <Button
@@ -62,11 +62,11 @@
         android:textColorHint="#DADDDC"
         android:textColorLink="#3F9875"
         android:textCursorDrawable="@color/button"
-        app:layout_constraintStart_toStartOf="@+id/email_login"
-        app:layout_constraintTop_toBottomOf="@+id/email_login" />
+        app:layout_constraintStart_toStartOf="@+id/username_login"
+        app:layout_constraintTop_toBottomOf="@+id/username_login" />
 
     <EditText
-        android:id="@+id/email_login"
+        android:id="@+id/username_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
