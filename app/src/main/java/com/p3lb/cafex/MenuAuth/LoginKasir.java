@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -43,6 +44,7 @@ import retrofit2.Response;
 
 public class LoginKasir extends AppCompatActivity {
     EditText username_login, password_login, cabang_login, jabatan_login;
+    TextView klikRegisterKasir;
     Button btnLogin;
 
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
@@ -56,15 +58,24 @@ public class LoginKasir extends AppCompatActivity {
         password_login = (EditText) findViewById(R.id.password_login);
         cabang_login = (EditText) findViewById(R.id.cabang_login);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        klikRegisterKasir = (TextView) findViewById(R.id.klikRegisterKasir);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // if (username_login.getText().toString().isEmpty() || password_login.getText().toString().isEmpty() || cabang_login.getText().toString().isEmpty()) {
-                //    Toast.makeText(LoginKasir.this, "Lengkapi data untuk login", Toast.LENGTH_SHORT).show();
-                  //  return;
-               // }else{
+                if (username_login.getText().toString().isEmpty() || password_login.getText().toString().isEmpty() || cabang_login.getText().toString().isEmpty()) {
+                    Toast.makeText(LoginKasir.this, "Lengkapi data untuk login", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
                     LoginKasir();
-              //  }
+                }
+            }
+        });
+
+        klikRegisterKasir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginKasir.this, RegistrasiUser.class);
+                startActivity(intent);
             }
         });
     }

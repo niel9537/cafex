@@ -52,5 +52,14 @@ public interface ApiInterface {
                                        @Field("nama_user") String nama_user,
                                        @Field("password_user") String password_user,
                                        @Field("jabatan_user") int jabatan_user);
+    @POST("users/register")
+    @FormUrlEncoded
+    Call<LoginRegisterUsers> regisUser(@Field("id_cabang") String id_cabang,
+                                        @Field("nama_user") String nama_user,
+                                        @Field("nohp_user") String nohp_user,
+                                        @Field("noktp_user") String noktp_user,
+                                        @Field("email_user") String email_user,
+                                        @Field("password_user") String password_user,
+                                        @Field("jabatan_user") int jabatan_user);
 
 }

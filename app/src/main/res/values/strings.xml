@@ -4,4 +4,8 @@
         <item>Ice</item>
         <item>Hot</item>
     </string-array>
+    <string-array name="jabatan">
+        <item>Kasir</item>
+        <item>Admin</item>
+    </string-array>
 </resources>
