@@ -89,7 +89,6 @@ public class RegistrasiUser extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Registrasi Kasir Berhasil", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistrasiUser.this, LoginKasir.class);
                     startActivity(intent);
-
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());

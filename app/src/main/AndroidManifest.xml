@@ -16,8 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InvoiceActivity"/>
         <!--Menu Produk-->
+<!--        <activity android:name=".MenuTransaksi.TampilDataMenu"-->
+<!--            android:theme="@style/AppTheme.NoActionBar"/>-->
+        <activity android:name=".MenuTransaksi.TampilSelectMenu"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.TampilDataProduk"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.TambahDataProduk"/>
@@ -25,7 +28,17 @@
         <!--Authentication Login dan Register-->
         <activity android:name=".MenuAuth.RegistrasiUser"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MenuAuth.LoginKasir"
+        <activity android:name=".MenuAuth.LoginAdmin"
+            android:theme="@style/AppTheme.NoActionBar"/>
+<!--        <activity android:name=".MenuAuth.LoginKasir"-->
+<!--            android:theme="@style/AppTheme.NoActionBar">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+        <activity android:name=".MenuTransaksi.TampilDataMenu"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

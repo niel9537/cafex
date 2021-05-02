@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.p3lb.cafex.InvoiceActivity;
+import com.p3lb.cafex.MenuTransaksi.TampilChekoutMenu;
 import com.p3lb.cafex.R;
+import com.p3lb.cafex.adapter.MenusAdapter;
 import com.p3lb.cafex.adapter.ProductsAdapter;
 import com.p3lb.cafex.model.produk.GetProducts;
 import com.p3lb.cafex.model.produk.Products;
@@ -60,7 +61,7 @@ public class TampilDataProduk extends AppCompatActivity {
         fltKeranjangBelanja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TampilDataProduk.this, InvoiceActivity.class);
+                Intent intent = new Intent(TampilDataProduk.this, TampilChekoutMenu.class);
                 startActivity(intent);
             }
         });
@@ -75,7 +76,7 @@ public class TampilDataProduk extends AppCompatActivity {
             public void onResponse(Call<GetProducts> call, Response<GetProducts>
                     response) {
                         List<Products> productsList = response.body().getListDataProducts();
-                        Log.d("Retrofit Get", "Jumlah data Heros: " +
+                        Log.d("Retrofit Get", "Jumlah data Produk: " +
                                 String.valueOf(productsList.size()));
                         mAdapter = new ProductsAdapter(productsList);
                         mRecyclerView.setAdapter(mAdapter);

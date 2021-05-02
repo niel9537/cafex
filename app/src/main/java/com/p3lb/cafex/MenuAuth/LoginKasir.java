@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.p3lb.cafex.Config;
 import com.p3lb.cafex.MenuProduk.TambahDataProduk;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
+import com.p3lb.cafex.MenuTransaksi.TampilDataMenu;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
 import com.p3lb.cafex.model.produk.PostPutDelProducts;
@@ -44,7 +45,7 @@ import retrofit2.Response;
 
 public class LoginKasir extends AppCompatActivity {
     EditText username_login, password_login, cabang_login, jabatan_login;
-    TextView klikRegisterKasir;
+    TextView klikRegisterKasir, klikAdmin;
     Button btnLogin;
 
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
@@ -59,6 +60,7 @@ public class LoginKasir extends AppCompatActivity {
         cabang_login = (EditText) findViewById(R.id.cabang_login);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         klikRegisterKasir = (TextView) findViewById(R.id.klikRegisterKasir);
+        klikAdmin = (TextView) findViewById(R.id.klikAdmin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +73,14 @@ public class LoginKasir extends AppCompatActivity {
             }
         });
 
+        klikAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginKasir.this, LoginAdmin.class);
+                startActivity(intent);
+            }
+        });
+
         klikRegisterKasir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +90,7 @@ public class LoginKasir extends AppCompatActivity {
         });
     }
 
-    //Simpan gambar
+
     private void LoginKasir(){
 
             Call<LoginRegisterUsers> postUsersCall = apiInterface.loginUsers(cabang_login.getText().toString(), username_login.getText().toString(), password_login.getText().toString(),3);
@@ -91,7 +101,7 @@ public class LoginKasir extends AppCompatActivity {
                     if(response.isSuccessful()) {
                         Log.d("RETRO", "ON SUCCESS : " + response.message());
                         Toast.makeText(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginKasir.this, TampilDataProduk.class);
+                        Intent intent = new Intent(LoginKasir.this, TampilDataMenu.class);
                         startActivity(intent);
 
                     }

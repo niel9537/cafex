@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F1EFEF"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".MenuTransaksi.TampilSelectMenu">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/namaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_bold"
+                android:gravity="center"
+                android:lineSpacingExtra="24sp"
+                android:maxLines="1"
+                android:text="Nama Menu"
+                android:textColor="@color/button"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+            <!--            android:inputType="textCapSentences"-->
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/fotoProduk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@mipmap/imgproduk_foreground"
+                android:scaleType="centerInside" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/background"
+            app:boxStrokeColor="@color/background"
+            app:endIconTint="@color/background"
+            app:startIconTint="@color/background">
+
+            <TextView
+                android:id="@+id/hargaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Harga Produk"
+                android:textColor="@color/button"
+                android:textColorHighlight="@color/button"
+                android:textColorHint="@color/background"
+                android:textColorLink="@color/background"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+
+            <!--            android:inputType="textCapSentences"-->
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/background"
+            app:boxStrokeColor="@color/background"
+            app:endIconTint="@color/background"
+            app:startIconTint="@color/background">
+
+            <TextView
+                android:id="@+id/kategoriProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Kategori Produk"
+                android:textColor="@color/button"
+                android:textColorHighlight="@color/button"
+                android:textColorHint="@color/background"
+                android:textColorLink="@color/background"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+          >
+
+            <TextView
+                android:id="@id/hargaProduk"
+                android:layout_gravity="center_vertical|bottom|right|top"
+                android:textColor="@color/button"
+                android:text="Masukkan ke keranjang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+             />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <ImageButton
+            app:srcCompat="@drawable/addcart"
+            android:backgroundTint="@color/background"
+            android:layout_marginRight="0dp"
+            android:id="@+id/btnSimpan"
+            android:layout_gravity="center_vertical|bottom|right|top"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_placeholder"
+            android:textColor="@color/background"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

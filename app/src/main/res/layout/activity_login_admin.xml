@@ -17,29 +17,42 @@
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/view"
         android:backgroundTint="@color/button"
         android:fontFamily="@font/open_sans_bold"
         android:text="L O G I N"
         android:textAlignment="center"
-        android:textColor="@color/background"
+        android:textColor="#ffffff"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/password_login"
+        app:layout_constraintEnd_toEndOf="@+id/cabang_login"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/password_login"
-        app:layout_constraintTop_toBottomOf="@+id/password_login" />
-
-
+        app:layout_constraintStart_toStartOf="@+id/cabang_login"
+        app:layout_constraintTop_toBottomOf="@+id/cabang_login" />
 
     <TextView
-        android:id="@+id/klikCustomer"
+        android:id="@+id/klikUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_bold"
+        android:gravity="center"
+        android:text="Anda kasir? Klik disini"
+        android:textColor="@color/button"
+        android:textColorHighlight="@color/button"
+        android:textColorHint="@color/button"
+        android:textColorLink="#E33030"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <TextView
+        android:id="@+id/klikRegisterKasir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_semibold"
         android:gravity="center"
         android:paddingBottom="20dp"
-        android:text="Login sebagai pelanggan? Klik disini"
+        android:text="Belum punya akun? Klik disini"
         android:textColor="@color/button"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,13 +70,31 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:textAlignment="center"
-        android:textColor="#3F9875"
-        android:textColorHighlight="#3F9875"
+        android:textColor="@color/button"
+        android:textColorHighlight="@color/button"
         android:textColorHint="#DADDDC"
-        android:textColorLink="#3F9875"
+        android:textColorLink="@color/button"
         android:textCursorDrawable="@color/button"
         app:layout_constraintStart_toStartOf="@+id/username_login"
         app:layout_constraintTop_toBottomOf="@+id/username_login" />
+
+    <EditText
+        android:id="@+id/cabang_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/textfield"
+        android:hint="Cabang"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/button"
+        android:textColorHighlight="@color/button"
+        android:textColorHint="#DADDDC"
+        android:textColorLink="@color/button"
+        android:textCursorDrawable="@color/button"
+        app:layout_constraintEnd_toEndOf="@+id/password_login"
+        app:layout_constraintStart_toStartOf="@+id/password_login"
+        app:layout_constraintTop_toBottomOf="@+id/password_login" />
 
     <EditText
         android:id="@+id/username_login"
@@ -71,7 +102,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/textfield"
-        android:hint="Email"
+        android:hint="Username"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
         android:textColor="@color/button"
@@ -83,28 +114,16 @@
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-    <ProgressBar
-        android:id="@+id/loading_login"
-        style="?android:attr/progressBarStyle"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/password_login"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/password_login"
-        app:layout_constraintTop_toBottomOf="@+id/password_login" />
-
     <TextView
         android:id="@+id/textView11"
         android:layout_width="214dp"
         android:layout_height="135dp"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/akronim"
+        android:fontFamily="@font/bungee_shade"
         android:text="EC"
         android:textAlignment="center"
         android:textColor="@color/button"
-        android:textSize="100sp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
