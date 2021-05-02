@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.p3lb.cafex.Config;
-import com.p3lb.cafex.MenuTransaksi.TampilSelectMenu;
+import com.p3lb.cafex.MenuTransaksi.TambahSelectMenu;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.produk.Products;
 
@@ -47,7 +47,7 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.MyViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mIntent = new Intent(view.getContext(), TampilSelectMenu.class);
+                Intent mIntent = new Intent(view.getContext(), TambahSelectMenu.class);
                 mIntent.putExtra("id_produk", mmenuslist.get(position).getId_produk());
                 mIntent.putExtra("nama_produk", mmenuslist.get(position).getNama_produk());
                 mIntent.putExtra("kategori_produk", mmenuslist.get(position).getKategori_produk());

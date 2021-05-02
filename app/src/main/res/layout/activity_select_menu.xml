@@ -12,7 +12,7 @@
         android:background="#F1EFEF"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".MenuTransaksi.TampilSelectMenu">
+        tools:context=".MenuTransaksi.TambahSelectMenu">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -48,8 +48,6 @@
                 android:scaleType="centerInside" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,7 +74,6 @@
 
             <!--            android:inputType="textCapSentences"-->
         </com.google.android.material.textfield.TextInputLayout>
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,15 +100,115 @@
 
 
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:textColorHint="@color/background"
+            app:boxStrokeColor="@color/background"
+            app:endIconTint="@color/background"
+            app:startIconTint="@color/background">
+
+            <TextView
+                android:id="@+id/subtotalProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Total harga "
+                android:textColor="@color/button"
+                android:textColorHighlight="@color/button"
+                android:textColorHint="@color/background"
+                android:textColorLink="@color/background"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="@color/background"
+            app:boxStrokeColor="@color/background"
+            app:endIconTint="@color/background"
+            app:startIconTint="@color/background"
+            android:gravity="center">
+          <LinearLayout
+              android:gravity="center"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:layout_marginTop="0dp">
+              <Button
+                  android:id="@+id/minusBtn"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="-"
+                  android:textColor="@color/button"
+                  android:textSize="40dp"
+                  android:background="@color/background"
+                />
+              <TextView
+                  android:id="@+id/jumlahItem"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="0"
+                  android:textSize="40dp"
+                  android:gravity="center"
+                  android:textColor="@color/button"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginLeft="20dp">
 
+              </TextView>
+              <Button
+                  android:id="@+id/plusBtn"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="+"
+                  android:textColor="@color/button"
+                  android:textSize="40dp"
+                  android:background="@color/background"/>
+
+          </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-          >
+            android:layout_marginBottom="0dp"
+            android:hint="Nama Customer"
+            android:textColorHint="@color/button"
+            app:boxStrokeColor="@color/background"
+            app:endIconTint="@color/background"
+            app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:prefixTextColor="@color/button"
+            app:startIconTint="@color/button">
+
+            <EditText
+                android:id="@+id/namaCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:backgroundTint="@color/button"
+                android:scrollbarThumbHorizontal="@drawable/bg_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/button"
+                android:textColorHighlight="@color/button"
+                android:textColorHint="@color/button"
+                android:textColorLink="@color/button"
+                android:textCursorDrawable="@drawable/bg_label"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
 
             <TextView
                 android:id="@id/hargaProduk"
@@ -123,7 +220,6 @@
                 android:layout_weight="1"
              />
 
-        </com.google.android.material.textfield.TextInputLayout>
         <ImageButton
             app:srcCompat="@drawable/addcart"
             android:backgroundTint="@color/background"
@@ -137,6 +233,7 @@
             android:background="@drawable/bg_placeholder"
             android:textColor="@color/background"
             android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 </ScrollView>

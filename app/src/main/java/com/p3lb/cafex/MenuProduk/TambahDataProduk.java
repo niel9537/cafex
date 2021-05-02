@@ -125,7 +125,7 @@ public class TambahDataProduk extends AppCompatActivity {
         }
     }
 
-    //Simpan gambar
+    //Simpan data
     private void saveImageUpload(){
         final String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if (mediaPath== null)

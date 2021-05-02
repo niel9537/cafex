@@ -39,7 +39,6 @@ public class RegistrasiUser extends AppCompatActivity {
         nohp_user = (EditText) findViewById(R.id.nohp_user);
         noktp_user = (EditText) findViewById(R.id.noktp_user);
         password_user = (EditText) findViewById(R.id.password_user);
-
         id_cabang = (EditText) findViewById(R.id.id_cabang);
         spinnerJabatanUser = (Spinner) findViewById(R.id.spinnerJabatanUser);
         btnRegister = (Button) findViewById(R.id.btnRegister);

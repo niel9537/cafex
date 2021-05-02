@@ -19,7 +19,7 @@
         <!--Menu Produk-->
 <!--        <activity android:name=".MenuTransaksi.TampilDataMenu"-->
 <!--            android:theme="@style/AppTheme.NoActionBar"/>-->
-        <activity android:name=".MenuTransaksi.TampilSelectMenu"
+        <activity android:name=".MenuTransaksi.TambahSelectMenu"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.TampilDataProduk"
             android:theme="@style/AppTheme.NoActionBar"/>

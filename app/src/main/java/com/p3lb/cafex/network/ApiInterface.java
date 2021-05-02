@@ -4,6 +4,7 @@ import com.p3lb.cafex.model.auth.GetUsers;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
 import com.p3lb.cafex.model.produk.GetProducts;
 import com.p3lb.cafex.model.produk.PostPutDelProducts;
+import com.p3lb.cafex.model.transaksi.PostPutDelTransaksi;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -49,17 +50,28 @@ public interface ApiInterface {
     @POST("users/login")
     @FormUrlEncoded
     Call<LoginRegisterUsers> loginUsers(@Field("id_cabang") String id_cabang,
-                                       @Field("nama_user") String nama_user,
-                                       @Field("password_user") String password_user,
-                                       @Field("jabatan_user") int jabatan_user);
+                                        @Field("nama_user") String nama_user,
+                                        @Field("password_user") String password_user,
+                                        @Field("jabatan_user") int jabatan_user);
     @POST("users/register")
     @FormUrlEncoded
     Call<LoginRegisterUsers> regisUser(@Field("id_cabang") String id_cabang,
-                                        @Field("nama_user") String nama_user,
-                                        @Field("nohp_user") String nohp_user,
-                                        @Field("noktp_user") String noktp_user,
-                                        @Field("email_user") String email_user,
-                                        @Field("password_user") String password_user,
-                                        @Field("jabatan_user") int jabatan_user);
+                                       @Field("nama_user") String nama_user,
+                                       @Field("nohp_user") String nohp_user,
+                                       @Field("noktp_user") String noktp_user,
+                                       @Field("email_user") String email_user,
+                                       @Field("password_user") String password_user,
+                                       @Field("jabatan_user") int jabatan_user);
+    //===========================Transaksi==================================//
+
+    @POST("detailtransaksi/addcart")
+    @FormUrlEncoded
+    Call<PostPutDelTransaksi> addcart(@Field("id_produk") String id_produk,
+                                      @Field("id_cabang") String id_cabang,
+                                      @Field("nama_user") String nama_user,
+                                      @Field("jumlah_item") String jumlah_item,
+                                      @Field("harga_subtotal") String harga_subtotal,
+                                      @Field("nama_pembeli") String nama_pembeli);
+
 
 }
