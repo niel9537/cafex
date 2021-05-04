@@ -4,7 +4,9 @@ import com.p3lb.cafex.model.auth.GetUsers;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
 import com.p3lb.cafex.model.produk.GetProducts;
 import com.p3lb.cafex.model.produk.PostPutDelProducts;
+import com.p3lb.cafex.model.transaksi.PostPutDelCart;
 import com.p3lb.cafex.model.transaksi.PostPutDelTransaksi;
+import com.p3lb.cafex.model.transaksi.PostTransaksi;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -72,6 +74,17 @@ public interface ApiInterface {
                                       @Field("jumlah_item") String jumlah_item,
                                       @Field("harga_subtotal") String harga_subtotal,
                                       @Field("nama_pembeli") String nama_pembeli);
+
+    @POST("detailtransaksi")
+    @FormUrlEncoded
+    Call<PostPutDelCart> getCart(@Field("id_cabang") String id_cabang);
+
+    @POST("transaksi/bayar")
+    @FormUrlEncoded
+    Call<PostTransaksi> addTransaksi( @Field("id_cabang") String id_cabang,
+                                      @Field("nama_pembeli") String nama_pembeli,
+                                      @Field("nama_user") String nama_user,
+                                      @Field("total_bayar") String total_bayar);
 
 
 }

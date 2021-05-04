@@ -1,6 +1,7 @@
 package com.p3lb.cafex.MenuAuth;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,8 +28,11 @@ public class LoginAdmin extends AppCompatActivity {
     EditText username_login, password_login, cabang_login, jabatan_login;
     TextView klikRegisterKasir, klikUser;
     Button btnLogin;
-
+    SharedPreferences sharedPreferences;
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
+    private static final String SHARED_PREF_NAME = "mypref";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_ID = "id";
     private static final String Kasir = Config.KASIR;
 
     @Override
@@ -40,6 +44,7 @@ public class LoginAdmin extends AppCompatActivity {
         cabang_login = (EditText) findViewById(R.id.cabang_login);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         klikRegisterKasir = (TextView) findViewById(R.id.klikRegisterKasir);
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         klikUser = (TextView) findViewById(R.id.klikUser);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +84,10 @@ public class LoginAdmin extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
                 if(response.isSuccessful()) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(KEY_USERNAME,username_login.getText().toString());
+                    editor.putString(KEY_ID,cabang_login.getText().toString());
+                    editor.apply();
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toast.makeText(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginAdmin.this, TampilDataProduk.class);

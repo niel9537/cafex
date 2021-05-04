@@ -17,4 +17,7 @@ public class Config {
     public static final String UPDATE_FLAG = "UPDATE";
     public static final String KASIR = "3";
     public static final String ADMIN = "2";
+
+
+
 }

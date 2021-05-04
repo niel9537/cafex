@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.p3lb.cafex.MenuTransaksi.TampilChekoutMenu;
+import com.p3lb.cafex.MenuTransaksi.TampilCheckoutMenu;
 import com.p3lb.cafex.R;
-import com.p3lb.cafex.adapter.MenusAdapter;
 import com.p3lb.cafex.adapter.ProductsAdapter;
 import com.p3lb.cafex.model.produk.GetProducts;
 import com.p3lb.cafex.model.produk.Products;
@@ -61,7 +60,7 @@ public class TampilDataProduk extends AppCompatActivity {
         fltKeranjangBelanja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TampilDataProduk.this, TampilChekoutMenu.class);
+                Intent intent = new Intent(TampilDataProduk.this, TampilCheckoutMenu.class);
                 startActivity(intent);
             }
         });

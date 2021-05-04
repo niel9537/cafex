@@ -1,6 +1,7 @@
 package com.p3lb.cafex.MenuTransaksi;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,10 +38,17 @@ public class TambahSelectMenu extends AppCompatActivity {
     Button btnMinus, btnPlus;
     ImageButton btnSimpan;
     ImageView fotoProduk;
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME = "mypref";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_ID = "id";
+
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
     int subtotal = 0, subtotalnaik = 0, hargas = 0;
     String harga = "";
     String price = "";
+    String nama_user = "";
+    String kode_cabang = "";
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -66,6 +74,9 @@ public class TambahSelectMenu extends AppCompatActivity {
         subTotalProduk = (TextView) findViewById(R.id.subtotalProduk);
         namaCustomer = (EditText) findViewById(R.id.namaCustomer);
         jumlahItem = (TextView) findViewById(R.id.jumlahItem);
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        nama_user = sharedPreferences.getString(KEY_USERNAME,null);
+        kode_cabang = sharedPreferences.getString(KEY_ID,null);
         btnMinus = (Button) findViewById(R.id.minusBtn);
         btnPlus = (Button) findViewById(R.id.plusBtn);
         btnSimpan = (ImageButton) findViewById(R.id.btnSimpan);
@@ -122,8 +133,8 @@ public class TambahSelectMenu extends AppCompatActivity {
     private void addcart(){
         Call<PostPutDelTransaksi> postAddcart = apiInterface.addcart(
                 idProduk,
-                "2",
-                "andi",
+                kode_cabang,
+                nama_user,
                 jumlahItem.getText().toString(),
                 price,
                 namaCustomer.getText().toString()
