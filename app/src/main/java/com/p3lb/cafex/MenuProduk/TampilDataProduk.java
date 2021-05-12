@@ -22,6 +22,7 @@ import com.p3lb.cafex.network.ApiInterface;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,7 +33,7 @@ public class TampilDataProduk extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     public static TampilDataProduk ma;
-    private FloatingActionButton fltTambahProduk, fltKeranjangBelanja;
+    private FloatingActionButton fltTambahProduk;
     List<Products> productsList;
 
 
@@ -41,7 +42,6 @@ public class TampilDataProduk extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_dataproduk);
         fltTambahProduk = findViewById(R.id.btnTambahProduk);
-        fltKeranjangBelanja = findViewById(R.id.btnKeranjangBelanja);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_produk);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -57,13 +57,7 @@ public class TampilDataProduk extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        fltKeranjangBelanja.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TampilDataProduk.this, TampilCheckoutMenu.class);
-                startActivity(intent);
-            }
-        });
+
 
     }
 
@@ -86,7 +80,7 @@ public class TampilDataProduk extends AppCompatActivity {
             @Override
             public void onFailure(Call<GetProducts> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toast.makeText(TampilDataProduk.this, "Gagal memuat produk  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(TampilDataProduk.this, "Gagal memuat produk  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

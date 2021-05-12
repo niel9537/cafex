@@ -48,6 +48,13 @@ public interface ApiInterface {
     @GET("users")
     Call<GetUsers> getUsers();
 
+    @POST("users/tampilregistrasi")
+    @FormUrlEncoded
+    Call<LoginRegisterUsers> tampilregistrasiuser(@Field("id_cabang") String id_cabang);
+
+    @POST("users/getidcabang")
+    @FormUrlEncoded
+    Call<LoginRegisterUsers> cekidcabang(@Field("id_cabang") String id_cabang);
 
     @POST("users/login")
     @FormUrlEncoded
@@ -74,6 +81,11 @@ public interface ApiInterface {
                                       @Field("jumlah_item") String jumlah_item,
                                       @Field("harga_subtotal") String harga_subtotal,
                                       @Field("nama_pembeli") String nama_pembeli);
+    @POST("detailtransaksi/deletecart")
+    @FormUrlEncoded
+    Call<PostPutDelTransaksi> deletecart(@Field("id_detailtransaksi") String id_detailtransaksi,
+                                        @Field("id_cabang") String id_cabang,
+                                        @Field("nama_user") String nama_user);
 
     @POST("detailtransaksi")
     @FormUrlEncoded
@@ -81,10 +93,16 @@ public interface ApiInterface {
 
     @POST("transaksi/bayar")
     @FormUrlEncoded
-    Call<PostTransaksi> addTransaksi( @Field("id_cabang") String id_cabang,
+    Call<PostTransaksi> addTransaksi(@Field("id_cabang") String id_cabang,
                                       @Field("nama_pembeli") String nama_pembeli,
                                       @Field("nama_user") String nama_user,
                                       @Field("total_bayar") String total_bayar);
+
+    @POST("transaksi/updatecart")
+    @FormUrlEncoded
+    Call<PostTransaksi> updatecart(@Field("id_cabang") String id_cabang,
+                                      @Field("nama_pembeli") String nama_pembeli,
+                                      @Field("nama_user") String nama_user);
 
 
 }

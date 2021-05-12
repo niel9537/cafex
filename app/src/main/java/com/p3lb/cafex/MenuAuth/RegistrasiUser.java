@@ -20,6 +20,7 @@ import com.p3lb.cafex.model.auth.LoginRegisterUsers;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,20 +57,75 @@ public class RegistrasiUser extends AppCompatActivity {
                         noktp_user.getText().toString().isEmpty() ||
                         spinnerJabatanUser.getSelectedItem().toString().isEmpty())
                 {
-                        Toast.makeText(RegistrasiUser.this, "Lengkapi data untuk registrasi", Toast.LENGTH_SHORT).show();
+                        Toasty.error(RegistrasiUser.this, "Lengkapi data untuk registrasi", Toast.LENGTH_SHORT).show();
                         return;
                 }else{
                     if(spinnerJabatanUser.getSelectedItem().toString().equals("Kasir")) {
-                        RegistrasiUserKasir();
+                       // RegistrasiUserKasir();
+                        ambilidcabangkasir();
                     }else if(spinnerJabatanUser.getSelectedItem().toString().equals("Admin")){
-                        RegistrasiUserAdmin();
+                       // RegistrasiUserAdmin();
+                        ambilidcabangadmin();
                     }
                 }
             }
         });
 
     }
+    void ambilidcabangkasir(){
+        Call<LoginRegisterUsers> postUsersCall = apiInterface.cekidcabang(
+                id_cabang.getText().toString());
 
+        postUsersCall.enqueue(new Callback<LoginRegisterUsers>() {
+            @Override
+            public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
+                if(response.isSuccessful()) {
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    Toasty.success(getApplicationContext(), "ID ditemukan", Toast.LENGTH_SHORT).show();
+                    RegistrasiUserKasir();
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "ID tidak ditemukan", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegistrasiUser.this, RegistrasiUser.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    void ambilidcabangadmin(){
+        Call<LoginRegisterUsers> postUsersCall = apiInterface.cekidcabang(
+                id_cabang.getText().toString());
+
+        postUsersCall.enqueue(new Callback<LoginRegisterUsers>() {
+            @Override
+            public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
+                if(response.isSuccessful()) {
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    Toasty.success(getApplicationContext(), "ID ditemukan", Toast.LENGTH_SHORT).show();
+                    RegistrasiUserAdmin();
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "ID tidak ditemukan", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegistrasiUser.this, RegistrasiUser.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     void RegistrasiUserKasir(){
         Call<LoginRegisterUsers> postUsersCall = apiInterface.regisUser(
                 id_cabang.getText().toString(),
@@ -85,13 +141,13 @@ public class RegistrasiUser extends AppCompatActivity {
             public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Registrasi Kasir Berhasil", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getApplicationContext(), "Registrasi Kasir Berhasil", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistrasiUser.this, LoginKasir.class);
                     startActivity(intent);
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Registrasi Gagal : Pastikan mengisi data diri dengan benar", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Registrasi Gagal : Pastikan mengisi data diri dengan benar", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegistrasiUser.this, RegistrasiUser.class);
                     startActivity(intent);
                 }
@@ -100,7 +156,7 @@ public class RegistrasiUser extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
                 Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -119,14 +175,14 @@ public class RegistrasiUser extends AppCompatActivity {
             public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Registrasi Admin Berhasil", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getApplicationContext(), "Registrasi Admin Berhasil", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistrasiUser.this, LoginKasir.class);
                     startActivity(intent);
 
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Registrasi Gagal : Pastikan mengisi data diri dengan benar", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Registrasi Gagal : Pastikan mengisi data diri dengan benar", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegistrasiUser.this, RegistrasiUser.class);
                     startActivity(intent);
                 }
@@ -135,7 +191,7 @@ public class RegistrasiUser extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
                 Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             }
         });
     }

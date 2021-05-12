@@ -37,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -146,7 +147,7 @@ public class EditDataProduk extends AppCompatActivity {
         final String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if (mediaPath== null)
         {
-            Toast.makeText(getApplicationContext(), "Pilih gambar dulu, baru simpan ...!", Toast.LENGTH_LONG).show();
+            Toasty.error(getApplicationContext(), "Pilih gambar dulu, baru simpan ...!", Toast.LENGTH_LONG).show();
         }
         else {
             File imagefile = new File(mediaPath);
@@ -157,8 +158,7 @@ public class EditDataProduk extends AppCompatActivity {
             postHerosCall.enqueue(new Callback<PostPutDelProducts>() {
                 @Override
                 public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
-
-                    Log.d("RETRO", "ON FAILURE : " + response.message());
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
                     TampilDataProduk.ma.refresh();
                     finish();
                 }
@@ -167,7 +167,7 @@ public class EditDataProduk extends AppCompatActivity {
                 public void onFailure(Call<PostPutDelProducts> call, Throwable t) {
                     Log.d("RETRO", "ON FAILURE : " + t.getMessage());
                     //Log.d("RETRO", "ON FAILURE : " + t.getCause());
-                    Toast.makeText(getApplicationContext(), "Error, image", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Error, image", Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -238,11 +238,11 @@ public class EditDataProduk extends AppCompatActivity {
 
                                     @Override
                                     public void onFailure(Call<PostPutDelProducts> call, Throwable t) {
-                                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                                        Toasty.success(getApplicationContext(), "Sukses", Toast.LENGTH_LONG).show();
                                     }
                                 });
                             }else{
-                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
                             }
                         }
                     }

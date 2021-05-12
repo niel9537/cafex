@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:fontFamily="@font/bungee_shade"
+        android:fontFamily="@font/open_sans_bold"
         android:text="Menu"
         android:textColor="@color/button"
         android:textSize="18sp"
@@ -60,14 +60,6 @@
             app:fab_icon="@drawable/fooddrink24dp"
             app:fab_title="Tambah Produk" />
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnKeranjangBelanja"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fabSize="mini"
-            app:fab_colorNormal="@color/button"
-            app:fab_icon="@drawable/bucket24dp"
-            app:fab_title="Keranjang" />
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     <TextView

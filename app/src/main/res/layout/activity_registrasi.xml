@@ -21,7 +21,6 @@
     <TextView
         android:id="@+id/textView15"
         android:layout_width="match_parent"
-
         android:layout_height="117dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/bungee_shade"
@@ -41,8 +40,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_height="wrap_content">
 
         <EditText
             android:gravity="center"
@@ -53,7 +51,6 @@
             android:background="@drawable/textfield"
             android:hint="  Username"
             android:inputType="textPersonName"
-            android:textAlignment="viewStart"
             android:textColor="@color/button"
             android:textColorHighlight="@color/button"
             android:textColorHint="@color/button"

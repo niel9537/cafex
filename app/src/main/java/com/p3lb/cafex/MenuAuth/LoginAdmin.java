@@ -20,6 +20,7 @@ import com.p3lb.cafex.model.auth.LoginRegisterUsers;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,7 +51,7 @@ public class LoginAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (username_login.getText().toString().isEmpty() || password_login.getText().toString().isEmpty() || cabang_login.getText().toString().isEmpty()) {
-                    Toast.makeText(LoginAdmin.this, "Lengkapi data untuk login", Toast.LENGTH_SHORT).show();
+                    Toasty.error(LoginAdmin.this, "Lengkapi data untuk login", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
                     LoginAdmin();
@@ -89,14 +90,14 @@ public class LoginAdmin extends AppCompatActivity {
                     editor.putString(KEY_ID,cabang_login.getText().toString());
                     editor.apply();
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginAdmin.this, TampilDataProduk.class);
+                    Toasty.success(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginAdmin.this, Dashboard.class);
                     startActivity(intent);
 
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Login Gagal : Pastikan admin telah terdaftar dan sudah dikonfirmasi", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Login Gagal : Pastikan admin telah terdaftar dan sudah dikonfirmasi", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginAdmin.this, LoginAdmin.class);
                     startActivity(intent);
                 }
@@ -105,7 +106,7 @@ public class LoginAdmin extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
                 Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }

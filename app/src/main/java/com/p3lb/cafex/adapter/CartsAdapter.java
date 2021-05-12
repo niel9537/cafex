@@ -2,6 +2,7 @@ package com.p3lb.cafex.adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.p3lb.cafex.Config;
+import com.p3lb.cafex.MenuProduk.EditDataProduk;
 import com.p3lb.cafex.MenuTransaksi.TambahSelectMenu;
+import com.p3lb.cafex.MenuTransaksi.TampilCheckoutMenu;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.produk.Products;
 import com.p3lb.cafex.model.transaksi.Cart;
@@ -22,7 +25,7 @@ import java.util.List;
 
 public class CartsAdapter extends RecyclerView.Adapter<CartsAdapter.MyViewHolder> {
     List<Cart> cartList;
-
+    public static String idkuu = "";
     public CartsAdapter(List<Cart> carts) {
         cartList = carts;
     }
@@ -38,6 +41,7 @@ public class CartsAdapter extends RecyclerView.Adapter<CartsAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder (CartsAdapter.MyViewHolder holder, final int position){
+        holder.id_item.setText(cartList.get(position).getId_detailtransaksi());
         holder.harga_item.setText(cartList.get(position).getHarga_subtotal());
         holder.jumlah_item.setText(cartList.get(position).getJumlah_item());
         holder.kategori_item.setText(cartList.get(position).getKategori_produk());
@@ -47,6 +51,8 @@ public class CartsAdapter extends RecyclerView.Adapter<CartsAdapter.MyViewHolder
                 .apply(new RequestOptions().override(350, 550))
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.foto_produk);
+        idkuu = cartList.get(position).getId_detailtransaksi();
+
     }
 
     @Override
@@ -54,12 +60,17 @@ public class CartsAdapter extends RecyclerView.Adapter<CartsAdapter.MyViewHolder
         return cartList.size();
     }
 
+    public String getIddelete(int position){
+        return cartList.get(position).getId_detailtransaksi();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView nama_item, harga_item, kategori_item, jumlah_item;
+        public TextView nama_item, harga_item, kategori_item, jumlah_item, id_item;
         public ImageView foto_produk;
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            id_item = (TextView) itemView.findViewById(R.id.idDetailtransaksi);
             nama_item = (TextView) itemView.findViewById(R.id.namaItem);
             harga_item = (TextView) itemView.findViewById(R.id.hargaItem);
             kategori_item = (TextView) itemView.findViewById(R.id.kategoriItem);

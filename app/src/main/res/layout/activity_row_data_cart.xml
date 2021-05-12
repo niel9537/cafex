@@ -26,7 +26,7 @@
 
             <ImageView
                 android:id="@+id/foto_produk"
-                android:layout_width="70dp"
+                android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
                 android:src="@color/background" />
@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:textColor="@color/background"
-                    android:textSize="10dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/namaItem"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:textColor="@color/background"
-                    android:textSize="10dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:textColor="@color/background"
-                    android:textSize="10dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/hargaItem"
@@ -68,7 +68,14 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:textColor="@color/background"
-                    android:textSize="10dp" />
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/idDetailtransaksi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:textColor="@color/button"
+                    android:textSize="1dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

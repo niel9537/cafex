@@ -26,6 +26,7 @@ import com.p3lb.cafex.model.transaksi.PostPutDelTransaksi;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,7 +73,6 @@ public class TambahSelectMenu extends AppCompatActivity {
         kategoriProduk = (TextView) findViewById(R.id.kategoriProduk);
         fotoProduk = (ImageView) findViewById(R.id.fotoProduk);
         subTotalProduk = (TextView) findViewById(R.id.subtotalProduk);
-        namaCustomer = (EditText) findViewById(R.id.namaCustomer);
         jumlahItem = (TextView) findViewById(R.id.jumlahItem);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         nama_user = sharedPreferences.getString(KEY_USERNAME,null);
@@ -137,7 +137,7 @@ public class TambahSelectMenu extends AppCompatActivity {
                 nama_user,
                 jumlahItem.getText().toString(),
                 price,
-                namaCustomer.getText().toString()
+                ""
         );
 
         postAddcart.enqueue(new Callback<PostPutDelTransaksi>() {
@@ -145,13 +145,13 @@ public class TambahSelectMenu extends AppCompatActivity {
             public void onResponse(Call<PostPutDelTransaksi> call, Response<PostPutDelTransaksi> response) {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Sukses ditambahkan ke keranjang", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getApplicationContext(), "Sukses ditambahkan ke keranjang", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(TambahSelectMenu.this, TampilDataMenu.class);
                     startActivity(intent);
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Gagal ditambahkan ke keranjang", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Gagal ditambahkan ke keranjang", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(TambahSelectMenu.this, TampilDataMenu.class);
                     startActivity(intent);
                 }
@@ -160,7 +160,7 @@ public class TambahSelectMenu extends AppCompatActivity {
             @Override
             public void onFailure(Call<PostPutDelTransaksi> call, Throwable t) {
                 Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             }
         });
     }

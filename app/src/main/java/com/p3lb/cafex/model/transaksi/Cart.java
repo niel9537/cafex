@@ -3,6 +3,8 @@ package com.p3lb.cafex.model.transaksi;
 import com.google.gson.annotations.SerializedName;
 
 public class Cart {
+    @SerializedName("id_detailtransaksi")
+    private String id_detailtransaksi;
     @SerializedName("foto_produk")
     private String foto_produk;
     @SerializedName("kategori_produk")
@@ -14,12 +16,21 @@ public class Cart {
     @SerializedName("harga_subtotal")
     private String harga_subtotal;
 
-    public Cart(String foto_produk, String kategori_produk, String nama_produk, String jumlah_item, String harga_subtotal) {
+    public Cart(String id_detailtransaksi, String foto_produk, String kategori_produk, String nama_produk, String jumlah_item, String harga_subtotal) {
+        this.id_detailtransaksi = id_detailtransaksi;
         this.foto_produk = foto_produk;
         this.kategori_produk = kategori_produk;
         this.nama_produk = nama_produk;
         this.jumlah_item = jumlah_item;
         this.harga_subtotal = harga_subtotal;
+    }
+
+    public String getId_detailtransaksi() {
+        return id_detailtransaksi;
+    }
+
+    public void setId_detailtransaksi(String id_detailtransaksi) {
+        this.id_detailtransaksi = id_detailtransaksi;
     }
 
     public String getFoto_produk() {

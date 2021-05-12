@@ -37,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -70,7 +71,7 @@ public class LoginKasir extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (username_login.getText().toString().isEmpty() || password_login.getText().toString().isEmpty() || cabang_login.getText().toString().isEmpty()) {
-                    Toast.makeText(LoginKasir.this, "Lengkapi data untuk login", Toast.LENGTH_SHORT).show();
+                    Toasty.error(LoginKasir.this, "Lengkapi data untuk login", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
                     LoginKasir();
@@ -109,14 +110,14 @@ public class LoginKasir extends AppCompatActivity {
                         editor.putString(KEY_ID,cabang_login.getText().toString());
                         editor.apply();
                         Log.d("RETRO", "ON SUCCESS : " + response.message());
-                        Toast.makeText(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
+                        Toasty.success(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginKasir.this, TampilDataMenu.class);
                         startActivity(intent);
 
                     }
                     else {
                         Log.d("RETRO", "ON FAIL : " + response.message());
-                        Toast.makeText(getApplicationContext(), "Login Gagal : Pastikan user telah terdaftar dan sudah dikonfirmasi", Toast.LENGTH_LONG).show();
+                        Toasty.error(getApplicationContext(), "Login Gagal : Pastikan user telah terdaftar dan sudah dikonfirmasi", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginKasir.this, LoginKasir.class);
                         startActivity(intent);
                     }
@@ -125,7 +126,7 @@ public class LoginKasir extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
                     Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
             });
         }

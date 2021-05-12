@@ -22,6 +22,7 @@ import com.p3lb.cafex.network.ApiInterface;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -79,6 +80,7 @@ public class TampilDataMenu extends AppCompatActivity {
                 List<Products> menuList = response.body().getListDataProducts();
                 Log.d("Retrofit Get", "Jumlah data Menu: " +
                         String.valueOf(menuList.size()));
+                Toasty.success(TampilDataMenu.this, "Jumlah menu " + (menuList.size()), Toast.LENGTH_SHORT).show();
                 mAdapter = new MenusAdapter(menuList);
                 mRecyclerView.setAdapter(mAdapter);
 
@@ -87,7 +89,7 @@ public class TampilDataMenu extends AppCompatActivity {
             @Override
             public void onFailure(Call<GetProducts> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toast.makeText(TampilDataMenu.this, "Gagal memuat menu  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(TampilDataMenu.this, "Gagal memuat menu  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

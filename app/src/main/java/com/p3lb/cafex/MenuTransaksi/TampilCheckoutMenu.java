@@ -26,6 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +34,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.p3lb.cafex.Config;
+import com.p3lb.cafex.MenuAuth.LoginAdmin;
 import com.p3lb.cafex.MenuAuth.LoginKasir;
 import com.p3lb.cafex.MenuAuth.RegistrasiUser;
 import com.p3lb.cafex.MenuProduk.EditDataProduk;
@@ -58,6 +60,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -79,9 +82,12 @@ public class TampilCheckoutMenu extends AppCompatActivity{
     private static final String KEY_ID = "id";
     String idcabang = "";
     String username = "";
+    String id_detail = "";
     private int totalbyr = 0;
     public static TampilCheckoutMenu mi;
-    List<Cart> cartList;
+    List<Cart> cartList ;
+
+
 
 
     @Override
@@ -97,6 +103,8 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         mRecyclerView = (RecyclerView) findViewById(R.id.recycleView);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        Intent mIntent = getIntent();
+        id_detail = mIntent.getStringExtra("id_detailtransaksi");
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         mi=this;
 
@@ -104,11 +112,38 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bayar();
+                if(totalBayar.getText().toString().equals("Rp 0")){
+                    Toasty.error(TampilCheckoutMenu.this, "Keranjang masih kosong", Toast.LENGTH_LONG).show();
+                    return;
+                }else{
+                    if (namaPembeli.getText().toString().isEmpty()) {
+                        Toasty.error(TampilCheckoutMenu.this, "Masukkan nama pembeli", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else{
+                        Toasty.normal(TampilCheckoutMenu.this, "Sukses", Toast.LENGTH_SHORT).show();
+                        bayar();
+                    }
+                }
+
             }
         });
 
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            //Toasty.success(TampilCheckoutMenu.this, ""+ CartsAdapter.idkuu, Toast.LENGTH_SHORT).show();
+            id_detail = CartsAdapter.idkuu;
+            deletecart(id_detail);
+            mAdapter.notifyDataSetChanged();
+        }
+    };
 
     private int totalbayar(List<Cart> cartList) {
 
@@ -128,11 +163,13 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             public void onResponse(Call<PostPutDelCart> call, Response<PostPutDelCart>
                     response) {
                 List<Cart> cartList = response.body().getListDataCart();
+
                 Log.d("Retrofit Get", "Jumlah item keranjang: " +
                         String.valueOf(cartList.size()));
                 totalbyr = totalbayar(cartList);
                 totalBayar.setText(String.valueOf("Rp "+totalbyr));
                 mAdapter = new CartsAdapter(cartList);
+                new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
                 mRecyclerView.setAdapter(mAdapter);
 
             }
@@ -140,7 +177,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             @Override
             public void onFailure(Call<PostPutDelCart> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toast.makeText(TampilCheckoutMenu.this, "Gagal memuat keranjang  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(TampilCheckoutMenu.this, "Gagal memuat keranjang  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -158,14 +195,13 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             public void onResponse(Call<PostTransaksi> call, Response<PostTransaksi> response) {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Transaksi berhasil di proses", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
-                    startActivity(intent);
+                    Toasty.success(getApplicationContext(), "Transaksi berhasil di proses", Toast.LENGTH_SHORT).show();
+                    updatecart();
 
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toast.makeText(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
                     startActivity(intent);
                 }
@@ -174,8 +210,75 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             @Override
             public void onFailure(Call<PostTransaksi> call, Throwable t) {
                 Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             }
         });
     }
+
+    void updatecart(){
+        Call<PostTransaksi> postTransaksiCall = mApiInterface.updatecart(
+                idcabang,
+                namaPembeli.getText().toString(),
+                username);
+        postTransaksiCall.enqueue(new Callback<PostTransaksi>() {
+            @Override
+            public void onResponse(Call<PostTransaksi> call, Response<PostTransaksi> response) {
+                if(response.isSuccessful()) {
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    Toasty.success(getApplicationContext(), "Update berhasil", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
+                    startActivity(intent);
+
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "Update gagal", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostTransaksi> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.success(getApplicationContext(), "Sukses di update", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    void deletecart(String iddelete){
+        Call<PostPutDelTransaksi> postPutDelTransaksiCall = mApiInterface.deletecart(
+                iddelete,
+                idcabang,
+                username);
+
+        postPutDelTransaksiCall.enqueue(new Callback<PostPutDelTransaksi>() {
+            @Override
+            public void onResponse(Call<PostPutDelTransaksi> call, Response<PostPutDelTransaksi> response) {
+                if(response.isSuccessful()) {
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    Toasty.success(getApplicationContext(), "Sukses hapus", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilCheckoutMenu.class);
+                    startActivity(intent);
+
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "Gagal hapus", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilCheckoutMenu.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostPutDelTransaksi> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
 }
