@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.p3lb.cafex.Config;
+import com.p3lb.cafex.MenuAuth.DetailRegistrasi;
 import com.p3lb.cafex.MenuProduk.EditDataProduk;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.auth.Users;
@@ -43,10 +44,13 @@ public class UsersRegistrasiAdapter extends RecyclerView.Adapter<UsersRegistrasi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mIntent = new Intent(view.getContext(), EditDataProduk.class);
+                Intent mIntent = new Intent(view.getContext(), DetailRegistrasi.class);
+                mIntent.putExtra("id_user", muserslist.get(position).getId_user());
                 mIntent.putExtra("nama_user", muserslist.get(position).getNama_user());
                 mIntent.putExtra("noktp_user", muserslist.get(position).getNoktp_user());
                 mIntent.putExtra("jabatan_user", muserslist.get(position).getJabatan_user());
+                mIntent.putExtra("nohp_user", muserslist.get(position).getNohp_user());
+                mIntent.putExtra("email_user", muserslist.get(position).getEmail_user());
                 view.getContext().startActivity(mIntent);
             }
         });

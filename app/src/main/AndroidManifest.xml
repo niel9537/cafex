@@ -25,6 +25,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.TampilDataProduk"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuAuth.DetailRegistrasi"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.TambahDataProduk"/>
         <activity android:name=".MenuProduk.EditDataProduk"/>
         <!--Authentication Login dan Register-->

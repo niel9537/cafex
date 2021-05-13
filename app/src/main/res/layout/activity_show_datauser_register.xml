@@ -27,7 +27,7 @@
         android:id="@+id/rv_userregister"
         android:layout_width="match_parent"
         android:layout_height="612dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"

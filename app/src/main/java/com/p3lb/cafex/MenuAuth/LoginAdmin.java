@@ -34,6 +34,7 @@ public class LoginAdmin extends AppCompatActivity {
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
+    private static final String KEY_JABATAN = "jabatan";
     private static final String Kasir = Config.KASIR;
 
     @Override
@@ -54,7 +55,11 @@ public class LoginAdmin extends AppCompatActivity {
                     Toasty.error(LoginAdmin.this, "Lengkapi data untuk login", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-                    LoginAdmin();
+                    if(username_login.getText().toString().equals("owner")) {
+                        LoginOwner();
+                    }else{
+                        LoginAdmin();
+                    }
                 }
             }
         });
@@ -78,8 +83,38 @@ public class LoginAdmin extends AppCompatActivity {
 
 
     private void LoginAdmin(){
-
         Call<LoginRegisterUsers> postUsersCall = apiInterface.loginUsers(cabang_login.getText().toString(), username_login.getText().toString(), password_login.getText().toString(),2);
+        postUsersCall.enqueue(new Callback<LoginRegisterUsers>() {
+            @Override
+            public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
+                if(response.isSuccessful()) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(KEY_USERNAME,username_login.getText().toString());
+                    editor.putString(KEY_ID,cabang_login.getText().toString());
+                    editor.putString(KEY_JABATAN,"2");
+                    editor.apply();
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    Toasty.success(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginAdmin.this, Dashboard.class);
+                    startActivity(intent);
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "Login Gagal : Pastikan admin telah terdaftar dan sudah dikonfirmasi", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void LoginOwner(){
+        Call<LoginRegisterUsers> postUsersCall = apiInterface.loginUsers(cabang_login.getText().toString(), username_login.getText().toString(), password_login.getText().toString(),1);
+
 
         postUsersCall.enqueue(new Callback<LoginRegisterUsers>() {
             @Override
@@ -88,6 +123,7 @@ public class LoginAdmin extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(KEY_USERNAME,username_login.getText().toString());
                     editor.putString(KEY_ID,cabang_login.getText().toString());
+                    editor.putString(KEY_JABATAN,"1");
                     editor.apply();
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
@@ -97,9 +133,8 @@ public class LoginAdmin extends AppCompatActivity {
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "Login Gagal : Pastikan admin telah terdaftar dan sudah dikonfirmasi", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginAdmin.this, LoginAdmin.class);
-                    startActivity(intent);
+                    Toasty.error(getApplicationContext(), "Login Gagal : Pastikan owner telah terdaftar dan sudah dikonfirmasi", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
