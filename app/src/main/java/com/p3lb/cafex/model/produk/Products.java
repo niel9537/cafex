@@ -9,6 +9,8 @@ public class Products {
     private String nama_produk;
     @SerializedName("harga_produk")
     private String harga_produk;
+    @SerializedName("biaya_produk")
+    private String biaya_produk;
     @SerializedName("jumlah_produk")
     private String jumlah_produk;
     @SerializedName("tanggal_produk")
@@ -18,10 +20,11 @@ public class Products {
     @SerializedName("foto_produk")
     private String foto_produk;
 
-    public Products(String id_produk, String nama_produk, String harga_produk, String jumlah_produk, String tanggal_produk, String kategori_produk, String foto_produk) {
+    public Products(String id_produk, String nama_produk, String harga_produk, String biaya_produk, String jumlah_produk, String tanggal_produk, String kategori_produk, String foto_produk) {
         this.id_produk = id_produk;
         this.nama_produk = nama_produk;
         this.harga_produk = harga_produk;
+        this.biaya_produk = biaya_produk;
         this.jumlah_produk = jumlah_produk;
         this.tanggal_produk = tanggal_produk;
         this.kategori_produk = kategori_produk;
@@ -50,6 +53,14 @@ public class Products {
 
     public void setHarga_produk(String harga_produk) {
         this.harga_produk = harga_produk;
+    }
+
+    public String getBiaya_produk() {
+        return biaya_produk;
+    }
+
+    public void setBiaya_produk(String biaya_produk) {
+        this.biaya_produk = biaya_produk;
     }
 
     public String getJumlah_produk() {

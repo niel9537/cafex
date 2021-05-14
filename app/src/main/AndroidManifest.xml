@@ -21,13 +21,14 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuTransaksi.TambahSelectMenu"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MenuTransaksi.TampilCheckoutMenu"
-            android:theme="@style/AppTheme.NoActionBar"/>
+<!--        <activity android:name=".MenuTransaksi.TampilCheckoutMenu"-->
+<!--            android:theme="@style/AppTheme.NoActionBar"/>-->
         <activity android:name=".MenuProduk.TampilDataProduk"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.DetailRegistrasi"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MenuProduk.TambahDataProduk"/>
+        <activity android:name=".MenuProduk.TambahDataProduk"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.EditDataProduk"/>
         <!--Authentication Login dan Register-->
         <activity android:name=".MenuAuth.Dashboard"
@@ -38,7 +39,15 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LoginAdmin"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MenuAuth.LoginKasir"
+<!--        <activity android:name=".MenuAuth.LoginKasir"-->
+<!--            android:theme="@style/AppTheme.NoActionBar">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+        <activity android:name=".MenuTransaksi.TampilCheckoutMenu"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

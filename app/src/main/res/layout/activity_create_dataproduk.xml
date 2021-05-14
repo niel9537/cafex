@@ -82,6 +82,32 @@
 
             <!--            android:inputType="textCapSentences"-->
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_placeholder"
+            android:textColorHint="@color/background"
+            app:boxStrokeColor="@color/background"
+            app:endIconTint="@color/background"
+            app:startIconTint="@color/background">
+
+            <EditText
+                android:id="@+id/biayaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_placeholder"
+                android:gravity="center"
+                android:hint="Masukan biaya produk baru"
+                android:maxLines="1"
+                android:textColor="@color/background"
+                android:textColorHighlight="@color/button"
+                android:textColorHint="@color/background"
+                android:textColorLink="@color/background" />
+
+
+            <!--            android:inputType="textCapSentences"-->
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -91,7 +117,6 @@
             android:textColorHint="@color/background">
 
             <Spinner
-
                 android:id="@+id/spinnerKategoriProduk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

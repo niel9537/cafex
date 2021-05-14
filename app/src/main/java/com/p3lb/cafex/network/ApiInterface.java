@@ -3,11 +3,15 @@ package com.p3lb.cafex.network;
 import com.p3lb.cafex.model.auth.ConfirmDeleteUsers;
 import com.p3lb.cafex.model.auth.GetUsers;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
+import com.p3lb.cafex.model.diskon.Diskon;
+import com.p3lb.cafex.model.diskon.PostDiskon;
 import com.p3lb.cafex.model.produk.GetProducts;
 import com.p3lb.cafex.model.produk.PostPutDelProducts;
 import com.p3lb.cafex.model.transaksi.PostPutDelCart;
 import com.p3lb.cafex.model.transaksi.PostPutDelTransaksi;
 import com.p3lb.cafex.model.transaksi.PostTransaksi;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -29,6 +33,7 @@ public interface ApiInterface {
     Call<PostPutDelProducts> postProducts(@Part MultipartBody.Part foto_produk,
                                           @Part("nama_produk") RequestBody nama_produk,
                                           @Part("harga_produk") RequestBody harga_produk,
+                                          @Part("biaya_produk") RequestBody biaya_produk,
                                           @Part("kategori_produk") RequestBody kategori_produk,
                                           @Part("tanggal_produk") RequestBody tanggal_produk,
                                           @Part("flag") RequestBody flag);
@@ -38,6 +43,7 @@ public interface ApiInterface {
                                                 @Part("id_produk") RequestBody id_produk,
                                                 @Part("nama_produk") RequestBody nama_produk,
                                                 @Part("harga_produk") RequestBody harga_produk,
+                                                @Part("biaya_produk") RequestBody biaya_produk,
                                                 @Part("kategori_produk") RequestBody kategori_produk,
                                                 @Part("tanggal_produk") RequestBody tanggal_produk,
                                                 @Part("flag") RequestBody flag);
@@ -78,6 +84,12 @@ public interface ApiInterface {
     Call<ConfirmDeleteUsers> konfirmasiuser(@Field("id_user") String id_user,
                                             @Field("id_cabang") String id_cabang,
                                             @Field("nama_user") String nama_user);
+
+    @POST("users/deleteregistrasi")
+    @FormUrlEncoded
+    Call<ConfirmDeleteUsers> deletekonfirmasiuser(@Field("id_user") String id_user,
+                                            @Field("id_cabang") String id_cabang,
+                                            @Field("nama_user") String nama_user);
     //===========================Transaksi==================================//
 
     @POST("detailtransaksi/addcart")
@@ -110,6 +122,10 @@ public interface ApiInterface {
     Call<PostTransaksi> updatecart(@Field("id_cabang") String id_cabang,
                                       @Field("nama_pembeli") String nama_pembeli,
                                       @Field("nama_user") String nama_user);
+
+    @POST("transaksi/getdiskonpersen")
+    @FormUrlEncoded
+    Call<Diskon> getdiskonpersen(@Field("nama_diskon") String nama_diskon);
 
 
 }

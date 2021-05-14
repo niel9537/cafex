@@ -43,6 +43,8 @@ import com.p3lb.cafex.R;
 import com.p3lb.cafex.adapter.CartsAdapter;
 import com.p3lb.cafex.adapter.MenusAdapter;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
+import com.p3lb.cafex.model.diskon.Diskon;
+import com.p3lb.cafex.model.diskon.PostDiskon;
 import com.p3lb.cafex.model.produk.GetProducts;
 import com.p3lb.cafex.model.produk.PostPutDelProducts;
 import com.p3lb.cafex.model.produk.Products;
@@ -69,7 +71,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TampilCheckoutMenu extends AppCompatActivity{
-    TextView totalBayar;
+    TextView totalBayar, diskon;
     EditText namaPembeli;
     Button btnBayar;
     ApiInterface mApiInterface;
@@ -83,6 +85,8 @@ public class TampilCheckoutMenu extends AppCompatActivity{
     String idcabang = "";
     String username = "";
     String id_detail = "";
+    String persendiskon = "";
+    String iddiskon = "";
     private int totalbyr = 0;
     public static TampilCheckoutMenu mi;
     List<Cart> cartList ;
@@ -97,6 +101,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         totalBayar = (TextView) findViewById(R.id.totalBayar);
         namaPembeli = (EditText) findViewById(R.id.namaPembeli);
         btnBayar = (Button) findViewById(R.id.btnBayar);
+        diskon = (TextView) findViewById(R.id.diskon);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         username = sharedPreferences.getString(KEY_USERNAME,null);
@@ -107,7 +112,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         id_detail = mIntent.getStringExtra("id_detailtransaksi");
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         mi=this;
-
+        getdiskonpersen();
         refresh();
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +158,34 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             totalPrice += harga ;
         }
         return totalPrice;
+    }
+    public void getdiskonpersen(){
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<Diskon> call = mApiInterface.getdiskonpersen("lebaransale");
+        call.enqueue(new Callback<Diskon>() {
+            @Override
+            public void onResponse(Call<Diskon> call, Response<Diskon> response) {
+                if(response.isSuccessful()) {
+                    Log.d("xx",""+response.body().getId_diskon());
+                    //String id = diskonList.get(0).getId_diskon();
+                    //diskon.setText("" + id);
+                    //iddiskon = diskonList.get(0).getId_diskon();
+                    // persendiskon = diskonList.get(0).getPersen_diskon();
+
+                }
+                else {
+                    Log.d("diskon", "ON FAIL : " + response.message());
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Diskon> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(TampilCheckoutMenu.this, "Gagal memuat keranjang  " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void refresh() {

@@ -54,6 +54,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
                 Intent mIntent = new Intent(view.getContext(), EditDataProduk.class);
                 mIntent.putExtra("id_produk", mproductsList.get(position).getId_produk());
                 mIntent.putExtra("nama_produk", mproductsList.get(position).getNama_produk());
+                mIntent.putExtra("biaya_produk", mproductsList.get(position).getBiaya_produk());
                 mIntent.putExtra("kategori_produk", mproductsList.get(position).getKategori_produk());
                 mIntent.putExtra("tanggal_produk", mproductsList.get(position).getTanggal_produk());
                 mIntent.putExtra("foto_produk", mproductsList.get(position).getFoto_produk());

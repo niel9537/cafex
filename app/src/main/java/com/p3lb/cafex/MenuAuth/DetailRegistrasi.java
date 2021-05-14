@@ -82,13 +82,17 @@ public class DetailRegistrasi extends AppCompatActivity {
                 konfirmasiuser();
             }
         });
-        Log.d("xx", ""+iduser+""+idcabang+""+txtNamauser.getText().toString());
+        btnHapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                batalkankonfirmasi();
+            }
+        });
     }
 
     void konfirmasiuser(){
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        //Call<LoginRegisterUsers> postkonfirmuser = mApiInterface.konfirmasiuser(iduser,idcabang,txtNamauser.getText().toString());
-        Call<ConfirmDeleteUsers> postkonfirmuser = mApiInterface.konfirmasiuser("18","1","Ada");
+        Call<ConfirmDeleteUsers> postkonfirmuser = mApiInterface.konfirmasiuser(iduser,idcabang,txtNamauser.getText().toString());
         postkonfirmuser.enqueue(new Callback<ConfirmDeleteUsers>() {
             @Override
             public void onResponse(Call<ConfirmDeleteUsers> call, Response<ConfirmDeleteUsers> response) {
@@ -101,6 +105,32 @@ public class DetailRegistrasi extends AppCompatActivity {
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
                     Toasty.error(getApplicationContext(), "Gagal dikonfirmasi", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ConfirmDeleteUsers> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    void batalkankonfirmasi(){
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<ConfirmDeleteUsers> postkonfirmuser = mApiInterface.deletekonfirmasiuser(iduser,idcabang,txtNamauser.getText().toString());
+        postkonfirmuser.enqueue(new Callback<ConfirmDeleteUsers>() {
+            @Override
+            public void onResponse(Call<ConfirmDeleteUsers> call, Response<ConfirmDeleteUsers> response) {
+                if(response.isSuccessful()) {
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    Toasty.success(getApplicationContext(), "Sukses batalkan", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DetailRegistrasi.this, TampilRegistrasi.class);
+                    startActivity(intent);
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "Gagal batalkan", Toast.LENGTH_LONG).show();
                 }
             }
 

@@ -47,7 +47,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TambahDataProduk extends AppCompatActivity {
-    EditText nama_produk, harga_produk;
+    EditText nama_produk, harga_produk, biaya_produk;
     Spinner kategori_produk;
     Button btnSimpan, btnGallery;
     ImageView foto_produk;
@@ -73,6 +73,7 @@ public class TambahDataProduk extends AppCompatActivity {
         setContentView(R.layout.activity_create_dataproduk);
         nama_produk = (EditText) findViewById(R.id.namaProduk);
         harga_produk = (EditText) findViewById(R.id.hargaProduk);
+        biaya_produk = (EditText) findViewById(R.id.biayaProduk);
         kategori_produk = (Spinner) findViewById(R.id.spinnerKategoriProduk);
         foto_produk = (ImageView) findViewById(R.id.fotoProduk);
         btnGallery = (Button) findViewById(R.id.btnGallery);
@@ -137,7 +138,7 @@ public class TambahDataProduk extends AppCompatActivity {
             RequestBody reqBody = RequestBody.create(MediaType.parse("multipart/form-file"), imagefile);
             MultipartBody.Part partImage = MultipartBody.Part.createFormData("foto_produk", imagefile.getName(), reqBody);
 
-            Call<PostPutDelProducts> postHerosCall = mApiInterface.postProducts(partImage, RequestBody.create(MediaType.parse("text/plain"), nama_produk.getText().toString()), RequestBody.create(MediaType.parse("text/plain"), harga_produk.getText().toString()), RequestBody.create(MediaType.parse("text/plain"), kategori_produk.getSelectedItem().toString()), RequestBody.create(MediaType.parse("text/plain"), date), RequestBody.create(MediaType.parse("text/plain"), INSERT_FLAG));
+            Call<PostPutDelProducts> postHerosCall = mApiInterface.postProducts(partImage, RequestBody.create(MediaType.parse("text/plain"), nama_produk.getText().toString()), RequestBody.create(MediaType.parse("text/plain"), harga_produk.getText().toString()), RequestBody.create(MediaType.parse("text/plain"), biaya_produk.getText().toString()), RequestBody.create(MediaType.parse("text/plain"), kategori_produk.getSelectedItem().toString()), RequestBody.create(MediaType.parse("text/plain"), date), RequestBody.create(MediaType.parse("text/plain"), INSERT_FLAG));
             postHerosCall.enqueue(new Callback<PostPutDelProducts>() {
                 @Override
                 public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
