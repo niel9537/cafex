@@ -37,6 +37,7 @@ public class TampilDataMenu extends AppCompatActivity {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
     String nama_user = "";
+    String id_username = "";
     TextView placeholderUsername;
     public static TampilDataMenu me;
     private FloatingActionButton  fltKeranjangBelanja;
@@ -52,8 +53,9 @@ public class TampilDataMenu extends AppCompatActivity {
        // mLayoutManager = new LinearLayoutManager(this);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         nama_user = sharedPreferences.getString(KEY_USERNAME,null);
+        id_username = sharedPreferences.getString(KEY_ID,null);
         placeholderUsername = (TextView) findViewById(R.id.placeholderUsername);
-        placeholderUsername.setText("Selamat datang "+nama_user);
+        placeholderUsername.setText("Selamat datang "+nama_user+"-"+id_username);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         me=this;

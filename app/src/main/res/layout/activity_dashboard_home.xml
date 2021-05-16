@@ -160,7 +160,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardTransaksi"
+            android:id="@+id/cardDiskon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
@@ -184,7 +184,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Transaksi"
+                    android:text="Diskon"
                     android:textColor="@color/button"
                     android:textSize="20sp"/>
 

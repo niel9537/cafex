@@ -9,15 +9,18 @@ public class Diskon {
     private String min_bayar;
     @SerializedName("persen_diskon")
     private String persen_diskon;
+    @SerializedName("harga_diskon")
+    private String harga_diskon;
     @SerializedName("max_diskon")
     private String max_diskon;
     @SerializedName("exp_diskon")
     private String exp_diskon;
 
-    public Diskon(String id_diskon, String min_bayar, String persen_diskon, String max_diskon, String exp_diskon) {
+    public Diskon(String id_diskon, String min_bayar, String persen_diskon, String harga_diskon, String max_diskon, String exp_diskon) {
         this.id_diskon = id_diskon;
         this.min_bayar = min_bayar;
         this.persen_diskon = persen_diskon;
+        this.harga_diskon = harga_diskon;
         this.max_diskon = max_diskon;
         this.exp_diskon = exp_diskon;
     }
@@ -44,6 +47,14 @@ public class Diskon {
 
     public void setPersen_diskon(String persen_diskon) {
         this.persen_diskon = persen_diskon;
+    }
+
+    public String getHarga_diskon() {
+        return harga_diskon;
+    }
+
+    public void setHarga_diskon(String harga_diskon) {
+        this.harga_diskon = harga_diskon;
     }
 
     public String getMax_diskon() {

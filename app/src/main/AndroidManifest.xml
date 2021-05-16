@@ -21,11 +21,13 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuTransaksi.TambahSelectMenu"
             android:theme="@style/AppTheme.NoActionBar"/>
-<!--        <activity android:name=".MenuTransaksi.TampilCheckoutMenu"-->
-<!--            android:theme="@style/AppTheme.NoActionBar"/>-->
+        <activity android:name=".MenuTransaksi.TampilCheckoutMenu"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.TampilDataProduk"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.DetailRegistrasi"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuDiskon.TambahDiskon"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.TambahDataProduk"
             android:theme="@style/AppTheme.NoActionBar"/>
@@ -39,15 +41,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LoginAdmin"
             android:theme="@style/AppTheme.NoActionBar"/>
-<!--        <activity android:name=".MenuAuth.LoginKasir"-->
-<!--            android:theme="@style/AppTheme.NoActionBar">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-        <activity android:name=".MenuTransaksi.TampilCheckoutMenu"
+        <activity android:name=".MenuAuth.LoginKasir"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,6 +49,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

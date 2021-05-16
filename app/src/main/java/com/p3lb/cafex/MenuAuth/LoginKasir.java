@@ -118,8 +118,6 @@ public class LoginKasir extends AppCompatActivity {
                     else {
                         Log.d("RETRO", "ON FAIL : " + response.message());
                         Toasty.error(getApplicationContext(), "Login Gagal : Pastikan user telah terdaftar dan sudah dikonfirmasi", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginKasir.this, LoginKasir.class);
-                        startActivity(intent);
                     }
                 }
 

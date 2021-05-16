@@ -117,15 +117,30 @@ public interface ApiInterface {
                                       @Field("nama_user") String nama_user,
                                       @Field("total_bayar") String total_bayar);
 
+    @POST("transaksi/diskonbayar")
+    @FormUrlEncoded
+    Call<PostTransaksi> addTransaksiDiskon(@Field("id_cabang") String id_cabang,
+                                           @Field("id_diskon") String id_diskon,
+                                           @Field("nama_pembeli") String nama_pembeli,
+                                           @Field("nama_user") String nama_user,
+                                           @Field("total_bayar") String total_bayar);
+
     @POST("transaksi/updatecart")
     @FormUrlEncoded
     Call<PostTransaksi> updatecart(@Field("id_cabang") String id_cabang,
                                       @Field("nama_pembeli") String nama_pembeli,
                                       @Field("nama_user") String nama_user);
-
-    @POST("transaksi/getdiskonpersen")
+    //===========================Diskon==================================//
+    @POST("diskon/getdiskonpersen")
     @FormUrlEncoded
     Call<Diskon> getdiskonpersen(@Field("nama_diskon") String nama_diskon);
 
-
+    @POST("diskon/adddiskon")
+    @FormUrlEncoded
+    Call<Diskon> adddiskon(@Field("nama_diskon") String nama_diskon,
+                           @Field("min_bayar") String min_bayar,
+                           @Field("persen_diskon") String persen_diskon,
+                           @Field("harga_diskon") String harga_diskon,
+                           @Field("max_diskon") String max_diskon,
+                           @Field("exp_diskon") String exp_diskon);
 }

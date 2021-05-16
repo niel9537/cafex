@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.p3lb.cafex.MenuDiskon.TambahDiskon;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
 import com.p3lb.cafex.MenuTransaksi.TampilCheckoutMenu;
 import com.p3lb.cafex.MenuTransaksi.TampilDataMenu;
@@ -24,7 +25,7 @@ import com.p3lb.cafex.network.ApiInterface;
 import es.dmoral.toasty.Toasty;
 
 public class Dashboard extends AppCompatActivity {
-    CardView cardUser, cardProduk, cardKasir, cardTransaksi, cardLaporan, cardInventori;
+    CardView cardUser, cardProduk, cardKasir, cardDiskon, cardLaporan, cardInventori;
     SharedPreferences sharedPreferences;
     String jabatan = "";
     private static final String SHARED_PREF_NAME = "mypref";
@@ -36,7 +37,7 @@ public class Dashboard extends AppCompatActivity {
         cardUser = (CardView) findViewById(R.id.cardUser);
         cardProduk = (CardView) findViewById(R.id.cardProduk);
         cardKasir = (CardView) findViewById(R.id.cardKasir);
-        cardTransaksi = (CardView) findViewById(R.id.cardTransaksi);
+        cardDiskon = (CardView) findViewById(R.id.cardDiskon);
         cardLaporan = (CardView) findViewById(R.id.cardLaporan);
         cardInventori = (CardView) findViewById(R.id.cardInventori);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
@@ -68,5 +69,13 @@ public class Dashboard extends AppCompatActivity {
                     }
                 }
             });
+
+        cardDiskon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, TambahDiskon.class);
+                startActivity(intent);
+            }
+        });
     }
 }

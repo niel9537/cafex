@@ -7,6 +7,8 @@ public class Transaksi {
     private String id_transaksi;
     @SerializedName("id_cabang")
     private String id_cabang;
+    @SerializedName("id_diskon")
+    private String id_diskon;
     @SerializedName("nama_pembeli")
     private String nama_pembeli;
     @SerializedName("total_bayar")
@@ -18,14 +20,23 @@ public class Transaksi {
     @SerializedName("status")
     private String status;
 
-    public Transaksi(String id_transaksi, String id_cabang, String nama_pembeli, String total_bayar, String nama_user, String tanggal, String status) {
+    public Transaksi(String id_transaksi, String id_cabang, String id_diskon, String nama_pembeli, String total_bayar, String nama_user, String tanggal, String status) {
         this.id_transaksi = id_transaksi;
         this.id_cabang = id_cabang;
+        this.id_diskon = id_diskon;
         this.nama_pembeli = nama_pembeli;
         this.total_bayar = total_bayar;
         this.nama_user = nama_user;
         this.tanggal = tanggal;
         this.status = status;
+    }
+
+    public String getId_diskon() {
+        return id_diskon;
+    }
+
+    public void setId_diskon(String id_diskon) {
+        this.id_diskon = id_diskon;
     }
 
     public String getId_transaksi() {

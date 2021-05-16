@@ -71,9 +71,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TampilCheckoutMenu extends AppCompatActivity{
-    TextView totalBayar, diskon;
-    EditText namaPembeli;
-    Button btnBayar;
+    TextView totalBayar, grandTotal;
+    EditText namaPembeli, diskon;
+    Button btnBayar, btnDiskon;
     ApiInterface mApiInterface;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -82,13 +82,20 @@ public class TampilCheckoutMenu extends AppCompatActivity{
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
+    private static final String KEY_TOTALBAYAR = "totalbayardiskon";
+    private static final String KEY_BAYAR = "totalbayar";
     String idcabang = "";
     String username = "";
     String id_detail = "";
     String persendiskon = "";
+    String minbayar = "";
+    String maxdiskon = "";
     String iddiskon = "";
+    String hargadiskon="";
     private int totalbyr = 0;
+    private int bayarwithdiskon = 0;
     public static TampilCheckoutMenu mi;
+
     List<Cart> cartList ;
 
 
@@ -101,7 +108,9 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         totalBayar = (TextView) findViewById(R.id.totalBayar);
         namaPembeli = (EditText) findViewById(R.id.namaPembeli);
         btnBayar = (Button) findViewById(R.id.btnBayar);
-        diskon = (TextView) findViewById(R.id.diskon);
+        diskon = (EditText) findViewById(R.id.diskon);
+        btnDiskon = (Button) findViewById(R.id.btnDiskon);
+        grandTotal = (TextView) findViewById(R.id.grandTotal);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         username = sharedPreferences.getString(KEY_USERNAME,null);
@@ -112,8 +121,8 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         id_detail = mIntent.getStringExtra("id_detailtransaksi");
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         mi=this;
-        getdiskonpersen();
         refresh();
+
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,11 +134,24 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                         Toasty.error(TampilCheckoutMenu.this, "Masukkan nama pembeli", Toast.LENGTH_SHORT).show();
                         return;
                     }else{
-                        Toasty.normal(TampilCheckoutMenu.this, "Sukses", Toast.LENGTH_SHORT).show();
-                        bayar();
+                        //Toasty.normal(TampilCheckoutMenu.this, "Sukses", Toast.LENGTH_SHORT).show();
+//                        if(diskon.getText().toString().isEmpty()){
+                        if(diskon.getText().toString().isEmpty() || grandTotal.getText().toString().equals("0")){
+                            bayar();
+                        }else{
+                            diskonbayar();
+                        }
+
                     }
                 }
 
+            }
+        });
+
+        btnDiskon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getdiskonpersen();
             }
         });
 
@@ -159,31 +181,61 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         }
         return totalPrice;
     }
+
+//    private int diskon(int totalbayar, String minbayar, String persendiskon, String maxdiskon) {
+//        int grandtotal = 0;
+
+//    }
+
     public void getdiskonpersen(){
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        Call<Diskon> call = mApiInterface.getdiskonpersen("lebaransale");
+        Call<Diskon> call = mApiInterface.getdiskonpersen(diskon.getText().toString());
         call.enqueue(new Callback<Diskon>() {
             @Override
             public void onResponse(Call<Diskon> call, Response<Diskon> response) {
                 if(response.isSuccessful()) {
-                    Log.d("xx",""+response.body().getId_diskon());
-                    //String id = diskonList.get(0).getId_diskon();
-                    //diskon.setText("" + id);
-                    //iddiskon = diskonList.get(0).getId_diskon();
-                    // persendiskon = diskonList.get(0).getPersen_diskon();
-
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    iddiskon = response.body().getId_diskon();
+                    minbayar = response.body().getMin_bayar();
+                    maxdiskon = response.body().getMax_diskon();
+                    persendiskon = response.body().getPersen_diskon();
+                    hargadiskon = response.body().getHarga_diskon();
+                    String ttl = sharedPreferences.getString(KEY_BAYAR,null);
+                    int ttlbayar = Integer.parseInt(ttl);
+                    int mnbayar = Integer.parseInt(minbayar);
+                    double prsndiskon = Double.parseDouble(persendiskon);
+                    int mxdiskon = Integer.parseInt(maxdiskon);
+                    int hrgdiskon = Integer.parseInt(hargadiskon);
+                    int hasil = 0;
+                    if(hrgdiskon == 0){
+                        if(ttlbayar > mnbayar){
+                            int dskn = (int) (ttlbayar*prsndiskon);
+                            if(dskn > mxdiskon){
+                                hasil = ttlbayar - mxdiskon;
+                            }else{
+                                hasil = ttlbayar - dskn;
+                            }
+                        }else{
+                            hasil = ttlbayar;
+                        }
+                    }else{
+                        hasil = ttlbayar - hrgdiskon;
+                    }
+                    grandTotal.setText("Rp "+hasil);
+                    editor.putString(KEY_TOTALBAYAR,String.valueOf(hasil));
+                    editor.apply();
+                   // bayarwithdiskon = diskon(totalbyr,minbayar,maxdiskon,persendiskon);
+                    //grandTotal.setText(String.valueOf("Rp "+bayarwithdiskon));
                 }
                 else {
-                    Log.d("diskon", "ON FAIL : " + response.message());
+                    Toasty.error(TampilCheckoutMenu.this, "Diskon tidak tersedia  ").show();
                 }
-
-
             }
 
             @Override
             public void onFailure(Call<Diskon> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(TampilCheckoutMenu.this, "Gagal memuat keranjang  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(TampilCheckoutMenu.this, "Gagal memuat diskon  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -195,12 +247,15 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             @Override
             public void onResponse(Call<PostPutDelCart> call, Response<PostPutDelCart>
                     response) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
                 List<Cart> cartList = response.body().getListDataCart();
 
                 Log.d("Retrofit Get", "Jumlah item keranjang: " +
                         String.valueOf(cartList.size()));
                 totalbyr = totalbayar(cartList);
                 totalBayar.setText(String.valueOf("Rp "+totalbyr));
+                editor.putString(KEY_BAYAR,String.valueOf(totalbyr));
+                editor.apply();
                 mAdapter = new CartsAdapter(cartList);
                 new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
                 mRecyclerView.setAdapter(mAdapter);
@@ -222,6 +277,40 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 namaPembeli.getText().toString(),
                 username,
                 bayartotal);
+
+        postTransaksiCall.enqueue(new Callback<PostTransaksi>() {
+            @Override
+            public void onResponse(Call<PostTransaksi> call, Response<PostTransaksi> response) {
+                if(response.isSuccessful()) {
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    Toasty.success(getApplicationContext(), "Transaksi berhasil di proses", Toast.LENGTH_SHORT).show();
+                    updatecart();
+
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostTransaksi> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    void diskonbayar(){
+        String bayarttl = sharedPreferences.getString(KEY_TOTALBAYAR,null);
+        Call<PostTransaksi> postTransaksiCall = mApiInterface.addTransaksiDiskon(
+                idcabang,
+                iddiskon,
+                namaPembeli.getText().toString(),
+                username,
+                bayarttl);
 
         postTransaksiCall.enqueue(new Callback<PostTransaksi>() {
             @Override
