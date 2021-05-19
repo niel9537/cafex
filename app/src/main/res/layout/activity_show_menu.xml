@@ -81,14 +81,25 @@
             app:fab_icon="@drawable/cart24"
             app:fab_title="Keranjang"
             />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnRefund"
+            android:layout_width="wrap_content"
+            app:fab_colorPressed="@color/cardview_shadow_start_color"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            android:background="@color/background"
+            app:fab_colorNormal="@color/background"
+            app:fab_icon="@drawable/ic_refund"
+            app:fab_title="Refund"
+            />
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
-    <TextView
+    <ImageView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="40dp"
         android:layout_marginTop="36dp"
-        android:text="LogOut"
+        app:srcCompat="@drawable/ic_logout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +113,6 @@
         android:text="Username"
         android:textStyle="bold"
         android:textColor="@color/button"
-
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"

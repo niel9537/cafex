@@ -3,6 +3,7 @@
     <string-array name="kategori">
         <item>Ice</item>
         <item>Hot</item>
+        <item>Snack</item>
     </string-array>
     <string-array name="jabatan">
         <item>Kasir</item>

@@ -3,10 +3,15 @@ package com.p3lb.cafex.network;
 import com.p3lb.cafex.model.auth.ConfirmDeleteUsers;
 import com.p3lb.cafex.model.auth.GetUsers;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
+import com.p3lb.cafex.model.auth.Users;
+import com.p3lb.cafex.model.cabang.Cabang;
+import com.p3lb.cafex.model.cabang.PostCabang;
 import com.p3lb.cafex.model.diskon.Diskon;
 import com.p3lb.cafex.model.diskon.PostDiskon;
 import com.p3lb.cafex.model.produk.GetProducts;
 import com.p3lb.cafex.model.produk.PostPutDelProducts;
+import com.p3lb.cafex.model.refund.PostRefund;
+import com.p3lb.cafex.model.refund.Refund;
 import com.p3lb.cafex.model.transaksi.PostPutDelCart;
 import com.p3lb.cafex.model.transaksi.PostPutDelTransaksi;
 import com.p3lb.cafex.model.transaksi.PostTransaksi;
@@ -91,7 +96,14 @@ public interface ApiInterface {
                                             @Field("id_cabang") String id_cabang,
                                             @Field("nama_user") String nama_user);
     //===========================Transaksi==================================//
-
+    @POST("transaksi/carirefund")
+    @FormUrlEncoded
+    Call<PostRefund> getrefund(@Field("id_cabang") String id_cabang,
+                               @Field("id_transaksi") String id_transaksi);
+    @POST("transaksi/updaterefund")
+    @FormUrlEncoded
+    Call<PostRefund> updaterefund(@Field("id_cabang") String id_cabang,
+                               @Field("id_transaksi") String id_transaksi);
     @POST("detailtransaksi/addcart")
     @FormUrlEncoded
     Call<PostPutDelTransaksi> addcart(@Field("id_produk") String id_produk,
@@ -143,4 +155,48 @@ public interface ApiInterface {
                            @Field("harga_diskon") String harga_diskon,
                            @Field("max_diskon") String max_diskon,
                            @Field("exp_diskon") String exp_diskon);
+
+    @GET("diskon")
+    Call<PostDiskon> getdiskon();
+
+    @POST("diskon/updatediskon")
+    @FormUrlEncoded
+    Call<Diskon> updatediskon(@Field("id_diskon") String id_diskon,
+                                  @Field("nama_diskon") String nama_diskon,
+                                  @Field("min_bayar") String min_bayar,
+                                  @Field("persen_diskon") String persen_diskon,
+                                  @Field("harga_diskon") String harga_diskon,
+                                  @Field("max_diskon") String max_diskon,
+                                  @Field("exp_diskon") String exp_diskon);
+
+    @POST("diskon/deletediskon")
+    @FormUrlEncoded
+    Call<Diskon> deletediskon(@Field("id_diskon") String id_diskon);
+
+    //==========================Cabang======================================//
+    @POST("cabang/addcabang")
+    @FormUrlEncoded
+    Call<Cabang> addcabang(@Field("nama_cabang") String nama_cabang,
+                           @Field("notelp_cabang") String notelp_cabang,
+                           @Field("alamat_cabang") String alamat_cabang);
+
+    @GET("cabang")
+    Call<PostCabang> getcabang();
+
+    @POST("cabang/updatecabang")
+    @FormUrlEncoded
+    Call<Cabang> updatecabang(@Field("id_cabang") String id_cabang,
+                              @Field("nama_cabang") String nama_cabang,
+                              @Field("notelp_cabang") String notelp_cabang,
+                              @Field("alamat_cabang") String alamat_cabang);
+
+    @POST("cabang/deletecabang")
+    @FormUrlEncoded
+    Call<Cabang> deletecabang(@Field("id_cabang") String id_cabang);
+
+    @POST("cabang/registerowner")
+    @FormUrlEncoded
+    Call<Users> registerownercabang(@Field("nama_user") String nama_user);
+
+
 }

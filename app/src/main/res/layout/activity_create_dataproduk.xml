@@ -17,7 +17,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -33,88 +33,78 @@
             <!--            android:inputType="textCapSentences"-->
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
+        <EditText
+            android:id="@+id/namaProduk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_input"
+            android:hint="Nama Produk"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/button"
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+            <!--            android:inputType="textCapSentences"-->
+
+
+        <EditText
+            android:id="@+id/hargaProduk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_input"
+            android:hint="Harga Produk"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/button"
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!--            android:inputType="textCapSentences"-->
+
+        <EditText
+            android:id="@+id/biayaProduk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_input"
+            android:hint="Biaya Produk"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/button"
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@drawable/bg_placeholder"
             android:textColorHint="@color/background"
-            app:boxBackgroundMode="none">
-
-            <EditText
-                android:id="@+id/namaProduk"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_label"
-                android:gravity="center"
-                android:hint="Masukan nama produk baru"
-                android:maxLines="1"
-                android:textColor="@color/background"
-                android:textColorHighlight="@color/button"
-                android:textColorHint="@color/background"
-                android:textColorLink="@color/background" />
-            <!--            android:inputType="textCapSentences"-->
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_placeholder"
-            android:textColorHint="@color/background"
-            app:boxStrokeColor="@color/background"
-            app:endIconTint="@color/background"
-            app:startIconTint="@color/background">
-
-            <EditText
-                android:id="@+id/hargaProduk"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_placeholder"
-                android:gravity="center"
-                android:hint="Masukan harga produk baru"
-                android:maxLines="1"
-                android:textColor="@color/background"
-                android:textColorHighlight="@color/button"
-                android:textColorHint="@color/background"
-                android:textColorLink="@color/background" />
-
-
-            <!--            android:inputType="textCapSentences"-->
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_placeholder"
-            android:textColorHint="@color/background"
-            app:boxStrokeColor="@color/background"
-            app:endIconTint="@color/background"
-            app:startIconTint="@color/background">
-
-            <EditText
-                android:id="@+id/biayaProduk"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_placeholder"
-                android:gravity="center"
-                android:hint="Masukan biaya produk baru"
-                android:maxLines="1"
-                android:textColor="@color/background"
-                android:textColorHighlight="@color/button"
-                android:textColorHint="@color/background"
-                android:textColorLink="@color/background" />
-
-
-            <!--            android:inputType="textCapSentences"-->
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_placeholder"
-            android:textColorHint="@color/background">
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="40dp">
 
             <Spinner
                 android:id="@+id/spinnerKategoriProduk"
@@ -147,6 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="40dp"
             android:background="@drawable/bg_placeholder"
             android:text="Pilih gambar"
             android:textColor="@color/background"
@@ -158,6 +149,7 @@
             style="@style/Base.Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginBottom="180dp"
             android:background="@drawable/bg_placeholder"
             android:text="Simpan"

@@ -27,6 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.p3lb.cafex.Config;
+import com.p3lb.cafex.MenuAuth.Dashboard;
+import com.p3lb.cafex.MenuDiskon.EditDiskon;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.produk.PostPutDelProducts;
 import com.p3lb.cafex.network.ApiHelper;
@@ -92,7 +94,7 @@ public class EditDataProduk extends AppCompatActivity {
         ID = mIntent.getStringExtra("id_produk");
         nama_produk.setText(mIntent.getStringExtra("nama_produk"));
         harga_produk.setText(mIntent.getStringExtra("harga_produk"));
-
+        biaya_produk.setText(mIntent.getStringExtra("biaya_produk"));
         //Input gambar ke imgview
         Glide.with(EditDataProduk.this)
                 .load(Config.IMAGES_URL + mIntent.getStringExtra("foto_produk"))
@@ -233,13 +235,14 @@ public class EditDataProduk extends AppCompatActivity {
                                 deleteProducts.enqueue(new Callback<PostPutDelProducts>() {
                                     @Override
                                     public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
-                                        TampilDataProduk.ma.refresh();
-                                        finish();
+                                        Toasty.success(getApplicationContext(), "Sukses", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(EditDataProduk.this, TampilDataProduk.class);
+                                        startActivity(intent);
                                     }
 
                                     @Override
                                     public void onFailure(Call<PostPutDelProducts> call, Throwable t) {
-                                        Toasty.success(getApplicationContext(), "Sukses", Toast.LENGTH_LONG).show();
+                                        Toasty.error(getApplicationContext(), "gagal", Toast.LENGTH_LONG).show();
                                     }
                                 });
                             }else{

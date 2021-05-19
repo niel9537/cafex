@@ -29,9 +29,19 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuDiskon.TambahDiskon"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuDiskon.TampilDiskon"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuDiskon.EditDiskon"/>
         <activity android:name=".MenuProduk.TambahDataProduk"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuCabang.TambahCabang"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuCabang.TampilCabang"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuCabang.EditCabang"/>
         <activity android:name=".MenuProduk.EditDataProduk"/>
+        <activity android:name=".MenuRefund.TampilRefund"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--Authentication Login dan Register-->
         <activity android:name=".MenuAuth.Dashboard"
             android:theme="@style/AppTheme.NoActionBar"/>

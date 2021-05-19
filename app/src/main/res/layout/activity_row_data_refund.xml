@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MenuProduk.TampilDataProduk">
+    tools:context=".MenuRefund.TampilRefund">
 
     <androidx.cardview.widget.CardView
         android:layout_margin="10dp"
@@ -23,12 +23,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imgProduk"
-                android:layout_width="70dp"
-                android:layout_height="100dp"
-                android:layout_marginRight="20dp"
-                android:src="@color/button" />
 
             <LinearLayout
                 android:layout_weight="1"
@@ -36,33 +30,42 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
-                <TextView
-                    android:gravity="center"
-                    android:id="@+id/kategoriProduk"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:textColor="@color/button"
-                    android:textSize="18dp" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/namaproduk"
+                        android:gravity="left"
+                        android:text="Nama Item "
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="12dp" />
+                    <TextView
+                        android:id="@+id/jumlahitem"
+                        android:gravity="center"
+                        android:layout_weight="3"
+                        android:text="Jumlah Item"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="12dp" />
 
+                </LinearLayout>
                 <TextView
                     android:gravity="center"
-                    android:id="@+id/namaProduk"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:textColor="@color/button"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textColor="@android:color/black"
+                    android:width="1dp"
+                    android:height="1dp"/>
 
-                <TextView
-                    android:gravity="center"
-                    android:id="@+id/hargaProduk"
-                    android:layout_width="211dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:textColor="@color/button"
-                    android:textSize="18dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

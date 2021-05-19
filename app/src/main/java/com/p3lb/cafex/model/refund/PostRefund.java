@@ -1,21 +1,21 @@
-package com.p3lb.cafex.model.diskon;
+package com.p3lb.cafex.model.refund;
 
 import com.google.gson.annotations.SerializedName;
-import com.p3lb.cafex.model.produk.Products;
+import com.p3lb.cafex.model.diskon.Diskon;
 
 import java.util.List;
 
-public class PostDiskon {
+public class PostRefund {
     @SerializedName("status")
     String status;
-    @SerializedName("diskon")
-    List<Diskon> diskonList;
+    @SerializedName("result")
+    List<Refund> refundList;
     @SerializedName("message")
     String message;
 
-    public PostDiskon(String status, List<Diskon> diskonList, String message) {
+    public PostRefund(String status, List<Refund> refundList, String message) {
         this.status = status;
-        this.diskonList = diskonList;
+        this.refundList = refundList;
         this.message = message;
     }
 
@@ -27,12 +27,12 @@ public class PostDiskon {
         this.status = status;
     }
 
-    public List<Diskon> getDiskonList() {
-        return diskonList;
+    public List<Refund> getRefundList() {
+        return refundList;
     }
 
-    public void setDiskonList(List<Diskon> diskonList) {
-        this.diskonList = diskonList;
+    public void setRefundList(List<Refund> refundList) {
+        this.refundList = refundList;
     }
 
     public String getMessage() {

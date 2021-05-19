@@ -38,6 +38,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -142,17 +143,16 @@ public class TambahDataProduk extends AppCompatActivity {
             postHerosCall.enqueue(new Callback<PostPutDelProducts>() {
                 @Override
                 public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
-
-                    Log.d("RETRO", "ON FAILURE : " + response.message());
-                    TampilDataProduk.ma.refresh();
-                    finish();
+                    Log.d("RETRO", "LOG : " + response.message());
+                    Intent intent = new Intent(TambahDataProduk.this, TampilDataProduk.class);
+                    startActivity(intent);
                 }
 
                 @Override
                 public void onFailure(Call<PostPutDelProducts> call, Throwable t) {
                     Log.d("RETRO", "ON FAILURE : " + t.getMessage());
                     //Log.d("RETRO", "ON FAILURE : " + t.getCause());
-                    Toast.makeText(getApplicationContext(), "Error, image", Toast.LENGTH_LONG).show();
+                    Toasty.normal(getApplicationContext(), "Error, image", Toast.LENGTH_LONG).show();
                 }
             });
         }

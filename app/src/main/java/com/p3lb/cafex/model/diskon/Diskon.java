@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 public class Diskon {
     @SerializedName("id_diskon")
     private String id_diskon;
+    @SerializedName("nama_diskon")
+    private String nama_diskon;
     @SerializedName("min_bayar")
     private String min_bayar;
     @SerializedName("persen_diskon")
@@ -16,8 +18,9 @@ public class Diskon {
     @SerializedName("exp_diskon")
     private String exp_diskon;
 
-    public Diskon(String id_diskon, String min_bayar, String persen_diskon, String harga_diskon, String max_diskon, String exp_diskon) {
+    public Diskon(String id_diskon, String nama_diskon, String min_bayar, String persen_diskon, String harga_diskon, String max_diskon, String exp_diskon) {
         this.id_diskon = id_diskon;
+        this.nama_diskon = nama_diskon;
         this.min_bayar = min_bayar;
         this.persen_diskon = persen_diskon;
         this.harga_diskon = harga_diskon;
@@ -31,6 +34,14 @@ public class Diskon {
 
     public void setId_diskon(String id_diskon) {
         this.id_diskon = id_diskon;
+    }
+
+    public String getNama_diskon() {
+        return nama_diskon;
+    }
+
+    public void setNama_diskon(String nama_diskon) {
+        this.nama_diskon = nama_diskon;
     }
 
     public String getMin_bayar() {
