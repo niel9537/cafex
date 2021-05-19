@@ -42,6 +42,9 @@
         <activity android:name=".MenuProduk.EditDataProduk"/>
         <activity android:name=".MenuRefund.TampilRefund"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuUser.TampilUser"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuUser.EditUser"/>
         <!--Authentication Login dan Register-->
         <activity android:name=".MenuAuth.Dashboard"
             android:theme="@style/AppTheme.NoActionBar"/>

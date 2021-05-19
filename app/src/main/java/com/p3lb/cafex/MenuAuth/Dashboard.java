@@ -24,6 +24,7 @@ import com.p3lb.cafex.MenuProduk.TampilDataProduk;
 import com.p3lb.cafex.MenuRefund.TampilRefund;
 import com.p3lb.cafex.MenuTransaksi.TampilCheckoutMenu;
 import com.p3lb.cafex.MenuTransaksi.TampilDataMenu;
+import com.p3lb.cafex.MenuUser.TampilUser;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
@@ -92,7 +93,7 @@ public class Dashboard extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if(jabatan.equals("1")) {
-                        Intent intent = new Intent(Dashboard.this, TampilRegistrasi.class);
+                        Intent intent = new Intent(Dashboard.this, TampilUser.class);
                         startActivity(intent);
                     }else{
                         Toasty.normal(Dashboard.this, "Akses menu hanya untuk owner", Toast.LENGTH_SHORT).show();

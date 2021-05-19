@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linierLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:layout_marginTop="70dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    tools:context=".MenuUser.EditUser"
+   >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EDIT USER"
+        android:textAlignment="center"
+        android:textColor="@color/button"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal" />
+
+
+
+        <EditText
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:id="@+id/namaUser"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_input"
+            android:hint="  Nama "
+            android:inputType="textPersonName"
+            android:textColor="@color/button"
+            android:textColorHint="@color/background" />
+
+        <EditText
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:id="@+id/nohpUser"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_input"
+            android:hint="  Nomor Handphone "
+            android:inputType="textPersonName"
+            android:textColor="@color/button"
+            android:textColorHint="@color/background" />
+
+        <EditText
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:id="@+id/noktpUser"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_input"
+            android:hint="  Nomor KTP "
+            android:inputType="textPersonName"
+            android:textColor="@color/button"
+            android:textColorHint="@color/background" />
+
+        <EditText
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:id="@+id/emailUser"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_input"
+            android:hint=" Email "
+            android:inputType="textPersonName"
+            android:textColor="@color/button"
+            android:textColorHint="@color/background" />
+
+
+        <Button
+            android:layout_margin="20dp"
+            android:id="@+id/btnEditUser"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/view"
+            android:backgroundTint="@color/button"
+            android:text="UPDATE"
+            android:textColor="#ffffff" />
+
+
+</LinearLayout>
+</ScrollView>

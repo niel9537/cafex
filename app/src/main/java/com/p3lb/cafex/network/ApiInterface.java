@@ -1,5 +1,6 @@
 package com.p3lb.cafex.network;
 
+import com.p3lb.cafex.model.User.PostUser;
 import com.p3lb.cafex.model.auth.ConfirmDeleteUsers;
 import com.p3lb.cafex.model.auth.GetUsers;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
@@ -95,6 +96,24 @@ public interface ApiInterface {
     Call<ConfirmDeleteUsers> deletekonfirmasiuser(@Field("id_user") String id_user,
                                             @Field("id_cabang") String id_cabang,
                                             @Field("nama_user") String nama_user);
+
+    @POST("users/tampiluser")
+    @FormUrlEncoded
+    Call<PostUser> showuser(@Field("id_cabang") String id_cabang);
+
+    @POST("users/updateuser")
+    @FormUrlEncoded
+    Call<PostUser> updateuser(@Field("id_user") String id_user,
+                              @Field("nama_user") String nama_user,
+                              @Field("nohp_user") String nohp_user,
+                              @Field("noktp_user") String noktp_user,
+                              @Field("email_user") String email_user);
+
+    @POST("users/deleteuser")
+    @FormUrlEncoded
+    Call<PostUser> deleteuser(@Field("id_user") String id_user,
+                              @Field("nama_user") String nama_user);
+
     //===========================Transaksi==================================//
     @POST("transaksi/carirefund")
     @FormUrlEncoded
