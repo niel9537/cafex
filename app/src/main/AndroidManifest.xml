@@ -45,6 +45,14 @@
         <activity android:name=".MenuUser.TampilUser"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuUser.EditUser"/>
+        <activity android:name=".MenuInventori.TampilInventori"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuInventori.TampilDetailInventori"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuInventori.TambahBahanbaku"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuInventori.KeluarkanBahanbaku"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--Authentication Login dan Register-->
         <activity android:name=".MenuAuth.Dashboard"
             android:theme="@style/AppTheme.NoActionBar"/>

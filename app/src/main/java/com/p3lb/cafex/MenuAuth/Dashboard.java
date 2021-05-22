@@ -20,6 +20,7 @@ import com.p3lb.cafex.MenuCabang.TambahCabang;
 import com.p3lb.cafex.MenuCabang.TampilCabang;
 import com.p3lb.cafex.MenuDiskon.TambahDiskon;
 import com.p3lb.cafex.MenuDiskon.TampilDiskon;
+import com.p3lb.cafex.MenuInventori.TampilInventori;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
 import com.p3lb.cafex.MenuRefund.TampilRefund;
 import com.p3lb.cafex.MenuTransaksi.TampilCheckoutMenu;
@@ -76,7 +77,7 @@ public class Dashboard extends AppCompatActivity {
         cardLaporan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this, TampilRefund.class);
+                Intent intent = new Intent(Dashboard.this, TampilInventori.class);
                 startActivity(intent);
             }
         });

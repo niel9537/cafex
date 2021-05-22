@@ -23,15 +23,15 @@
             android:layout_margin="12dp"/>
         <ImageView
             android:id="@+id/logout"
-            android:background="@drawable/bg_label"
             android:layout_width="80dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/ic_logout"
+            app:srcCompat="@drawable/ic_logout2"
             android:layout_weight="1"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:layout_margin="10dp">
     </ImageView>
+
     </LinearLayout>
 
     <GridLayout
@@ -67,7 +67,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_addproduk" />
+                    app:srcCompat="@drawable/ic_menuproduk" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -231,15 +231,17 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_laporan"/>
+                    app:srcCompat="@drawable/ic_invetori"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Laporan"
+                    android:text="Inventori"
                     android:textColor="@color/button"
                     android:textSize="20sp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
     </GridLayout>
+
 </RelativeLayout>

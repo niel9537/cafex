@@ -17,11 +17,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.p3lb.cafex.Config;
-import com.p3lb.cafex.MenuAuth.Dashboard;
-import com.p3lb.cafex.MenuCabang.EditCabang;
 import com.p3lb.cafex.R;
-import com.p3lb.cafex.model.User.PostUser;
-import com.p3lb.cafex.model.cabang.Cabang;
+import com.p3lb.cafex.model.user.PostUser;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 

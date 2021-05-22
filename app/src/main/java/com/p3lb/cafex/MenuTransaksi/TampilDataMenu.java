@@ -4,8 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +35,7 @@ import com.p3lb.cafex.model.refund.Refund;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
@@ -39,6 +45,9 @@ import retrofit2.Response;
 
 public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
     ApiInterface mApiInterface;
+    EditText searchmenu;
+    ImageButton btnsearhcmenu;
+    MenusAdapter menusAdapter;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     ImageView textView;
@@ -70,12 +79,21 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
         nama_user = sharedPreferences.getString(KEY_USERNAME,null);
         id_username = sharedPreferences.getString(KEY_ID,null);
         placeholderUsername = (TextView) findViewById(R.id.placeholderUsername);
-        placeholderUsername.setText("Selamat datang "+nama_user+"- Cabang "+id_username);
+        searchmenu = (EditText) findViewById(R.id.edtsearchmenu);
+        btnsearhcmenu = (ImageButton) findViewById(R.id.btnsearchmenu);
+        placeholderUsername.setText(""+nama_user+" | "+id_username);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        me=this;
+        //me=this;
 
-        refresh();
+        productsList =  new ArrayList<>();
+        Log.d("Produk1", ""+productsList);
+        btnsearhcmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchmenu();
+            }
+        });
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,8 +127,11 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
                 startActivity(intent);
             }
         });
-
+        refresh();
     }
+
+
+
     public void openDialog(){
         ExampleDialog exampleDialog = new ExampleDialog();
         exampleDialog.show(getSupportFragmentManager(), "Example Dialog");
@@ -132,6 +153,30 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     public void refresh() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<GetProducts> call = mApiInterface.getProducts();
+        call.enqueue(new Callback<GetProducts>() {
+            @Override
+            public void onResponse(Call<GetProducts> call, Response<GetProducts>
+                    response) {
+                List<Products> menuList = response.body().getListDataProducts();
+                Log.d("Retrofit Get", "Jumlah data Menu: " +
+                        String.valueOf(menuList.size()));
+                Toasty.success(TampilDataMenu.this, "Jumlah menu " + (menuList.size()), Toast.LENGTH_SHORT).show();
+                mAdapter = new MenusAdapter(menuList);
+                mRecyclerView.setAdapter(mAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<GetProducts> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(TampilDataMenu.this, "Gagal memuat menu  " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void searchmenu() {
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<GetProducts> call = mApiInterface.searchproduk(searchmenu.getText().toString());
         call.enqueue(new Callback<GetProducts>() {
             @Override
             public void onResponse(Call<GetProducts> call, Response<GetProducts>

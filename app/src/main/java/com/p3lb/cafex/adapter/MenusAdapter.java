@@ -1,6 +1,9 @@
 package com.p3lb.cafex.adapter;
 
+import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import com.p3lb.cafex.MenuTransaksi.TambahSelectMenu;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.produk.Products;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.MyViewHolder> {
@@ -62,6 +66,11 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.MyViewHolder
     @Override
     public int getItemCount() {
         return mmenuslist.size();
+    }
+
+    public final void filtermenu(ArrayList<Products> filteredList){
+        mmenuslist  = filteredList;
+        notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -1,6 +1,8 @@
 package com.p3lb.cafex.network;
 
-import com.p3lb.cafex.model.User.PostUser;
+import com.p3lb.cafex.model.bahanbaku.PostBahanbaku;
+import com.p3lb.cafex.model.inventori.PostInventori;
+import com.p3lb.cafex.model.user.PostUser;
 import com.p3lb.cafex.model.auth.ConfirmDeleteUsers;
 import com.p3lb.cafex.model.auth.GetUsers;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
@@ -12,12 +14,9 @@ import com.p3lb.cafex.model.diskon.PostDiskon;
 import com.p3lb.cafex.model.produk.GetProducts;
 import com.p3lb.cafex.model.produk.PostPutDelProducts;
 import com.p3lb.cafex.model.refund.PostRefund;
-import com.p3lb.cafex.model.refund.Refund;
 import com.p3lb.cafex.model.transaksi.PostPutDelCart;
 import com.p3lb.cafex.model.transaksi.PostPutDelTransaksi;
 import com.p3lb.cafex.model.transaksi.PostTransaksi;
-
-import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -34,6 +33,11 @@ public interface ApiInterface {
     //===========================Produk==================================//
     @GET("products")
     Call<GetProducts> getProducts();
+
+    @POST("products/searchproduk")
+    @FormUrlEncoded
+    Call<GetProducts> searchproduk(@Field("nama_produk") String nama_produk);
+
     @Multipart
     @POST("products")
     Call<PostPutDelProducts> postProducts(@Part MultipartBody.Part foto_produk,
@@ -60,6 +64,11 @@ public interface ApiInterface {
     //===========================Users==================================//
     @GET("users")
     Call<GetUsers> getUsers();
+
+    @POST("users/searchuser")
+    @FormUrlEncoded
+    Call<PostUser> searchuser(@Field("nama_user") String nama_user,
+                                @Field("id_cabang") String id_cabang);
 
     @POST("users/tampilregistrasi")
     @FormUrlEncoded
@@ -166,6 +175,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Diskon> getdiskonpersen(@Field("nama_diskon") String nama_diskon);
 
+    @POST("diskon/searchdiskon")
+    @FormUrlEncoded
+    Call<PostDiskon> searchdiskon(@Field("nama_diskon") String nama_diskon);
+
     @POST("diskon/adddiskon")
     @FormUrlEncoded
     Call<Diskon> adddiskon(@Field("nama_diskon") String nama_diskon,
@@ -202,6 +215,10 @@ public interface ApiInterface {
     @GET("cabang")
     Call<PostCabang> getcabang();
 
+    @POST("cabang/searchcabang")
+    @FormUrlEncoded
+    Call<PostCabang> searchcabang(@Field("nama_cabang") String nama_cabang);
+
     @POST("cabang/updatecabang")
     @FormUrlEncoded
     Call<Cabang> updatecabang(@Field("id_cabang") String id_cabang,
@@ -216,6 +233,41 @@ public interface ApiInterface {
     @POST("cabang/registerowner")
     @FormUrlEncoded
     Call<Users> registerownercabang(@Field("nama_user") String nama_user);
+
+    //==========================Cabang======================================//
+    @POST("inventori/tampilinventori")
+    @FormUrlEncoded
+    Call<PostInventori> getInventori(@Field("id_cabang") String id_cabang);
+
+    @POST("inventori/tambahinventori")
+    @FormUrlEncoded
+    Call<PostInventori> addbahanbaku(@Field("id_cabang") String id_cabang,
+                                     @Field("nama_bahanbaku") String nama_bahanbaku);
+    @POST("inventori/tampilbahanbaku")
+    @FormUrlEncoded
+    Call<PostBahanbaku> getbahanbaku(@Field("id_inventori") String id_inventori,
+                                     @Field("id_cabang") String id_cabang,
+                                     @Field("nama_bahanbaku") String nama_bahanbaku);
+    @POST("inventori/tambahbahanbaku")
+    @FormUrlEncoded
+    Call<PostBahanbaku> tambahbahanbaku(@Field("id_inventori") String id_inventori,
+                                        @Field("id_cabang") String id_cabang,
+                                        @Field("nama_bahanbaku") String nama_bahanbaku,
+                                        @Field("jumlah_bahanbaku") String jumlah_bahanbaku,
+                                        @Field("harga_bahanbaku") String harga_bahanbaku,
+                                        @Field("exp_bahanbaku") String exp_bahanbaku,
+                                        @Field("tanggal_keluar") String tanggal_keluar);
+    @POST("inventori/getbahanbaku")
+    @FormUrlEncoded
+    Call<PostBahanbaku> ambilbahanbaku(@Field("id_inventori") String id_inventori,
+                                        @Field("id_cabang") String id_cabang,
+                                        @Field("nama_bahanbaku") String nama_bahanbaku);
+    @POST("inventori/updatebahanbaku")
+    @FormUrlEncoded
+    Call<PostBahanbaku> updatebahanbaku(@Field("id_detailinventori") String id_detailinventori,
+                                        @Field("id_cabang") String id_cabang,
+                                        @Field("jumlah_bahanbaku") String jumlah_bahanbaku,
+                                        @Field("status") String status);
 
 
 }

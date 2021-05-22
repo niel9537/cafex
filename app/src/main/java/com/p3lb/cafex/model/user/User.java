@@ -1,4 +1,4 @@
-package com.p3lb.cafex.model.User;
+package com.p3lb.cafex.model.user;
 
 import com.google.gson.annotations.SerializedName;
 

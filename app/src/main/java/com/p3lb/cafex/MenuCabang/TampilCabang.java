@@ -2,9 +2,12 @@ package com.p3lb.cafex.MenuCabang;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +36,8 @@ import retrofit2.Response;
 
 public class TampilCabang extends AppCompatActivity {
     ApiInterface mApiInterface;
+    EditText edtsearchcabang;
+    ImageButton btnsearchcabang;
     private FloatingActionButton fltTambahCabang;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -52,6 +57,8 @@ public class TampilCabang extends AppCompatActivity {
         setContentView(R.layout.activity_show_datacabang);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_cabang);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        edtsearchcabang = (EditText) findViewById(R.id.edtsearchcabang);
+        btnsearchcabang = (ImageButton) findViewById(R.id.btnsearchcabang);
         fltTambahCabang = (FloatingActionButton) findViewById(R.id.btnTambahCabang);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
@@ -59,7 +66,12 @@ public class TampilCabang extends AppCompatActivity {
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         ik=this;
         refresh();
-
+        btnsearchcabang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchcabang();
+            }
+        });
         fltTambahCabang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +95,26 @@ public class TampilCabang extends AppCompatActivity {
                 mRecyclerView.setAdapter(mAdapter);
 
 
+            }
+
+            @Override
+            public void onFailure(Call<PostCabang> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(TampilCabang.this, "Gagal memuat cabang  " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void searchcabang() {
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<PostCabang> call = mApiInterface.searchcabang(edtsearchcabang.getText().toString());
+        call.enqueue(new Callback<PostCabang>() {
+            @Override
+            public void onResponse(Call<PostCabang> call, Response<PostCabang>
+                    response) {
+                List<Cabang> cabangList = response.body().getCabangList();
+                mAdapter = new CabangAdapter(cabangList);
+                mRecyclerView.setAdapter(mAdapter);
             }
 
             @Override

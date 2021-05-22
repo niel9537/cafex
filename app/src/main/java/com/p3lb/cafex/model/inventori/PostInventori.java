@@ -1,21 +1,20 @@
-package com.p3lb.cafex.model.User;
+package com.p3lb.cafex.model.inventori;
 
 import com.google.gson.annotations.SerializedName;
-import com.p3lb.cafex.model.cabang.Cabang;
 
 import java.util.List;
 
-public class PostUser {
+public class PostInventori {
     @SerializedName("status")
     String status;
     @SerializedName("result")
-    List<User> userList;
+    List<Inventori> inventoriList;
     @SerializedName("message")
     String message;
 
-    public PostUser(String status, List<User> userList, String message) {
+    public PostInventori(String status, List<Inventori> inventoriList, String message) {
         this.status = status;
-        this.userList = userList;
+        this.inventoriList = inventoriList;
         this.message = message;
     }
 
@@ -27,12 +26,12 @@ public class PostUser {
         this.status = status;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<Inventori> getInventoriList() {
+        return inventoriList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setInventoriList(List<Inventori> inventoriList) {
+        this.inventoriList = inventoriList;
     }
 
     public String getMessage() {

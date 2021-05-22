@@ -21,14 +21,53 @@
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="100dp">
+        <EditText
+            android:id="@+id/edtsearchuser"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_input"
+            android:fontFamily="@font/open_sans_bold"
+            android:hint="Cari user ..."
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/button"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-
+        <ImageButton
+            android:id="@+id/btnsearchuser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:padding="20dp"
+            android:layout_marginVertical="5dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/ic_search"
+            android:fontFamily="@font/open_sans_bold"
+            android:backgroundTint="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/searchmenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searchmenu"
+            app:layout_constraintTop_toTopOf="@+id/searchmenu"
+            app:layout_constraintVertical_bias="0.0"
+            android:drawableLeft="@drawable/ic_search" />
+    </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="150dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="20dp"
+            android:paddingBottom="5dp"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -37,8 +76,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                android:paddingBottom="20dp"
+                android:layout_marginBottom="0dp"
+                android:paddingBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.487"
@@ -47,5 +86,46 @@
                 app:layout_constraintVertical_bias="0.0" />
 
         </LinearLayout>
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/menuFltBtn"
+        android:layout_width="175dp"
+        android:layout_height="239dp"
+        app:fab_addButtonPlusIconColor="@color/button"
+        app:fab_addButtonColorNormal="@color/background"
+        app:fab_expandDirection="up"
+        app:fab_labelStyle="@style/LabelStyle"
+        app:fab_labelsPosition="left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.698">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnTampilUserRegister"
+            android:layout_width="wrap_content"
+            app:fab_colorPressed="@color/cardview_shadow_start_color"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            android:background="@color/background"
+            app:fab_colorNormal="@color/background"
+            app:fab_icon="@drawable/ic_user"
+            app:fab_title="Tampil Pendaftar"
+            />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="LogOut"
+        android:textColor="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

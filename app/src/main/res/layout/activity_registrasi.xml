@@ -35,12 +35,14 @@
         android:text="MENU REGISTRASI"
         android:textAlignment="center"
         android:textColor="@color/button"
-        android:textSize="30sp"
+        android:textSize="30dp"
+        android:layout_marginBottom="5dp"
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp">
 
         <EditText
             android:gravity="center"
@@ -60,10 +62,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginHorizontal="20dp">
 
         <EditText
-
             android:gravity="center"
             android:id="@+id/email_user"
             android:layout_width="match_parent"
@@ -72,18 +74,15 @@
             android:hint=" Email"
             android:layout_marginBottom="4dp"
             android:inputType="textEmailAddress"
-            android:textAlignment="textStart"
-            android:textColor="@color/button"
-            android:textColorHighlight="@color/button"
-            android:textColorHint="@color/button"
-            android:textColorLink="@color/font" />
+            android:textColor="@color/button" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginHorizontal="20dp">
 
         <EditText
             android:gravity="center"
@@ -94,7 +93,6 @@
             android:background="@drawable/custom_input"
             android:hint="  Password"
             android:inputType="textPassword"
-            android:textAlignment="viewStart"
             android:textColor="@color/button"
             android:textColorHighlight="@color/button"
             android:textColorHint="@color/button"
@@ -106,7 +104,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginHorizontal="20dp">
 
         <EditText
             android:gravity="center"
@@ -117,7 +116,6 @@
             android:hint="  Nomor Handphone "
             android:layout_marginBottom="4dp"
             android:inputType="number"
-            android:textAlignment="viewStart"
             android:textColor="@color/button"
             android:textColorHighlight="@color/button"
             android:textColorHint="@color/button"
@@ -127,7 +125,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginHorizontal="20dp">
 
         <EditText
 
@@ -139,7 +138,6 @@
             android:hint="  Nomor KTP  "
             android:layout_marginBottom="4dp"
             android:inputType="number"
-            android:textAlignment="viewStart"
             android:textColor="@color/button"
             android:textColorHighlight="@color/button"
             android:textColorHint="@color/button"
@@ -149,7 +147,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginHorizontal="20dp">
 
         <EditText
             android:gravity="center"
@@ -160,7 +159,6 @@
             android:hint="  Id Cabang  "
             android:layout_marginBottom="4dp"
             android:inputType="number"
-            android:textAlignment="viewStart"
             android:textColor="@color/button"
             android:textColorHighlight="@color/button"
             android:textColorHint="@color/button"
@@ -170,18 +168,21 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_placeholder"
-        android:layout_marginTop="5dp"
-        android:gravity="center">
+        android:layout_marginBottom="16dp"
+        android:background="@color/background"
+        android:textColorHint="@color/button"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp">
 
         <Spinner
-            android:padding="2dp"
-            android:gravity="center"
             android:id="@+id/spinnerJabatanUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:popupBackground="@color/background"
+            android:spinnerMode="dropdown" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -189,6 +190,7 @@
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/view"

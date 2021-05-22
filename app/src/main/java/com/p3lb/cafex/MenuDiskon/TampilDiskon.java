@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +37,8 @@ import retrofit2.Response;
 
 public class TampilDiskon extends AppCompatActivity {
     ApiInterface mApiInterface;
+    EditText edtsearchdiskon;
+    ImageButton btnsearchdiskon;
     private FloatingActionButton fltTambahDiskon;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -55,13 +59,20 @@ public class TampilDiskon extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_diskon);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         fltTambahDiskon = (FloatingActionButton) findViewById(R.id.btnTambahDiskon);
+        edtsearchdiskon = (EditText) findViewById(R.id.edtsearchdiskon);
+        btnsearchdiskon = (ImageButton) findViewById(R.id.btnsearchdiskon);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         dd=this;
         refresh();
-
+        btnsearchdiskon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchdiskon();
+            }
+        });
         fltTambahDiskon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,11 +90,30 @@ public class TampilDiskon extends AppCompatActivity {
             public void onResponse(Call<PostDiskon> call, Response<PostDiskon>
                     response) {
                 List<Diskon> diskonList = response.body().getDiskonList();
-                Log.d("Retrofit Get", "Jumlah diskon: " +
-                        String.valueOf(diskonList.size()));
                 mAdapter = new DiskonAdapter(diskonList);
                 mRecyclerView.setAdapter(mAdapter);
 
+
+            }
+
+            @Override
+            public void onFailure(Call<PostDiskon> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(TampilDiskon.this, "Gagal memuat diskon  " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void searchdiskon() {
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<PostDiskon> call = mApiInterface.searchdiskon(edtsearchdiskon.getText().toString());
+        call.enqueue(new Callback<PostDiskon>() {
+            @Override
+            public void onResponse(Call<PostDiskon> call, Response<PostDiskon>
+                    response) {
+                List<Diskon> diskonList = response.body().getDiskonList();
+                mAdapter = new DiskonAdapter(diskonList);
+                mRecyclerView.setAdapter(mAdapter);
 
             }
 

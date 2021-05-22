@@ -84,7 +84,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
+        <Spinner
+            android:background="@drawable/style_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"/>
         <Button
             android:id="@+id/btnUpdateCabang"
             android:layout_marginTop="30dp"

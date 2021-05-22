@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,15 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.p3lb.cafex.MenuDiskon.TambahDiskon;
-import com.p3lb.cafex.MenuDiskon.TampilDiskon;
+import com.p3lb.cafex.MenuAuth.TampilRegistrasi;
+import com.p3lb.cafex.MenuInventori.TampilInventori;
 import com.p3lb.cafex.R;
-import com.p3lb.cafex.adapter.DiskonAdapter;
 import com.p3lb.cafex.adapter.UserAdapter;
-import com.p3lb.cafex.model.User.PostUser;
-import com.p3lb.cafex.model.User.User;
-import com.p3lb.cafex.model.diskon.Diskon;
-import com.p3lb.cafex.model.diskon.PostDiskon;
+import com.p3lb.cafex.model.auth.GetUsers;
+import com.p3lb.cafex.model.auth.Users;
+import com.p3lb.cafex.model.user.PostUser;
+import com.p3lb.cafex.model.user.User;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
@@ -33,9 +34,12 @@ import retrofit2.Response;
 
 public class TampilUser extends AppCompatActivity {
     ApiInterface mApiInterface;
+    EditText edtsearchuser;
+    ImageButton btnsearchuser;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private FloatingActionButton fltTambahUserRegister;
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
@@ -50,13 +54,29 @@ public class TampilUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_datauser);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_user);
+        fltTambahUserRegister = (FloatingActionButton) findViewById(R.id.btnTampilUserRegister);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        edtsearchuser = (EditText) findViewById(R.id.edtsearchuser);
+        btnsearchuser = (ImageButton) findViewById(R.id.btnsearchuser);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         ii=this;
         refresh();
+        btnsearchuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchuser();
+            }
+        });
+        fltTambahUserRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TampilUser.this, TampilRegistrasi.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -70,6 +90,26 @@ public class TampilUser extends AppCompatActivity {
                 List<User> userList = response.body().getUserList();
                 Log.d("Retrofit Get", "Jumlah user: " +
                         String.valueOf(userList.size()));
+                mAdapter = new UserAdapter(userList);
+                mRecyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<PostUser> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(TampilUser.this, "Gagal memuat user  " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void searchuser() {
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<PostUser> call = mApiInterface.searchuser(edtsearchuser.getText().toString(),idcabang);
+        call.enqueue(new Callback<PostUser>() {
+            @Override
+            public void onResponse(Call<PostUser> call, Response<PostUser>
+                    response) {
+                List<User> userList = response.body().getUserList();
                 mAdapter = new UserAdapter(userList);
                 mRecyclerView.setAdapter(mAdapter);
             }

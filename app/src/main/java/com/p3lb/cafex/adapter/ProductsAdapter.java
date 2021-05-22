@@ -18,6 +18,7 @@ import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.produk.Products;
 //import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //import jp.wasabeef.picasso.transformations.CropCircleTransformation;
@@ -67,6 +68,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
     @Override
     public int getItemCount() {
         return mproductsList.size();
+    }
+
+    public void filterlist(ArrayList<Products> filteredList){
+        mproductsList = filteredList;
+        notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
