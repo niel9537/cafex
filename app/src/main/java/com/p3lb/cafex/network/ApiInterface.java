@@ -78,12 +78,29 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<LoginRegisterUsers> cekidcabang(@Field("id_cabang") String id_cabang);
 
+    @POST("users/forgotpass")
+    @FormUrlEncoded
+    Call<LoginRegisterUsers> forgotpass(@Field("nama_user") String nama_user,
+                                        @Field("id_cabang") String id_cabang);
+    @POST("users/resetpassword")
+    @FormUrlEncoded
+    Call<LoginRegisterUsers> resetpass(@Field("nama_user") String nama_user,
+                                       @Field("id_cabang") String id_cabang,
+                                       @Field("password_user") String password_user);
+
+    @POST("users/verifikasikode")
+    @FormUrlEncoded
+    Call<LoginRegisterUsers> verifikasikode(@Field("nama_user") String nama_user,
+                                            @Field("id_cabang") String id_cabang,
+                                            @Field("password_user") String password_user);
+
     @POST("users/login")
     @FormUrlEncoded
     Call<LoginRegisterUsers> loginUsers(@Field("id_cabang") String id_cabang,
                                         @Field("nama_user") String nama_user,
                                         @Field("password_user") String password_user,
                                         @Field("jabatan_user") int jabatan_user);
+
     @POST("users/register")
     @FormUrlEncoded
     Call<LoginRegisterUsers> regisUser(@Field("id_cabang") String id_cabang,

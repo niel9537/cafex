@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:layout_marginTop="200dp"
+        android:padding="16dp"
+        tools:context=".MenuAuth.VerifikasiPassword">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="Verifikasi Kode"
+            android:textColor="@color/button"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/forgetkode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/custom_input"
+            android:hint="KODE"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/button"
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="*Masukan kode dari email"
+            android:textColor="@color/button"
+            android:textSize="10dp"/>
+
+        <Button
+            android:id="@+id/btnkonfirmasiforget"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/bg_placeholder"
+            android:backgroundTint="@color/button"
+            android:text="KONFIRMASI"
+            android:textColor="@color/background"/>
+
+    </LinearLayout>
+</ScrollView>

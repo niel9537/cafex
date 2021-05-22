@@ -47,7 +47,7 @@ import retrofit2.Response;
 
 public class LoginKasir extends AppCompatActivity {
     EditText username_login, password_login, cabang_login, jabatan_login;
-    TextView klikRegisterKasir, klikAdmin;
+    TextView klikRegisterKasir, klikAdmin, lupapassword;
     Button btnLogin;
     SharedPreferences sharedPreferences;
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
@@ -67,6 +67,14 @@ public class LoginKasir extends AppCompatActivity {
         klikRegisterKasir = (TextView) findViewById(R.id.klikRegisterKasir);
         klikAdmin = (TextView) findViewById(R.id.klikAdmin);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        lupapassword = (TextView) findViewById(R.id.lupapassword);
+        lupapassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginKasir.this, LupaPassword.class);
+                startActivity(intent);
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

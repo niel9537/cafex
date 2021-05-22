@@ -30,20 +30,40 @@
         app:layout_constraintStart_toStartOf="@+id/cabang_login"
         app:layout_constraintTop_toBottomOf="@+id/cabang_login" />
 
+
     <TextView
         android:id="@+id/klikUser"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_bold"
-        android:gravity="center"
+        android:gravity="left"
         android:text="Anda kasir? Klik disini"
+        android:layout_marginTop="10dp"
         android:textColor="@color/button"
         android:textColorHighlight="@color/button"
         android:textColorHint="@color/button"
         android:textColorLink="#E33030"
         app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnLogin"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <TextView
+        android:id="@+id/lupapassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:gravity="right"
+        android:text="Lupa password?"
+        android:textColor="@color/button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/klikUser"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/klikUser"
+        app:layout_constraintTop_toTopOf="@+id/klikUser"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/klikRegisterKasir"
@@ -59,6 +79,7 @@
         app:layout_constraintEnd_toEndOf="@+id/btnLogin"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnLogin" />
+
 
 
     <EditText
@@ -136,6 +157,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView11"
+        android:layout_width="214dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/bungee_shade"
+        android:text="EC"
+        android:textAlignment="center"
+        android:textColor="@color/button"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -148,6 +184,4 @@
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

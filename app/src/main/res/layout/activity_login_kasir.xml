@@ -32,7 +32,7 @@
 
     <TextView
         android:id="@+id/klikAdmin"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_bold"
         android:gravity="center"
@@ -42,8 +42,24 @@
         android:textColorHint="@color/button"
         android:textColorLink="#E33030"
         app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnLogin"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <TextView
+        android:id="@+id/lupapassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="Lupa password?"
+        android:textColor="@color/button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/klikAdmin"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/klikAdmin"
+        app:layout_constraintTop_toTopOf="@+id/klikAdmin"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/klikRegisterKasir"

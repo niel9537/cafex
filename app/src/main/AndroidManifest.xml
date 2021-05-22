@@ -62,6 +62,12 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LoginAdmin"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuAuth.VerifikasiPassword"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuAuth.LupaPassword"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuAuth.ResetPassword"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LoginKasir"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
