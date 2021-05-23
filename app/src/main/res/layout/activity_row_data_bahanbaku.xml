@@ -20,8 +20,61 @@
             android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center"
+                        android:text="Qty"
+                        android:layout_weight="4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="12dp" />
+                    <TextView
+
+                        android:gravity="center"
+                        android:text="Exp "
+                        android:layout_weight="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="12dp" />
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="3"
+                        android:textStyle="bold"
+                        android:text="Masuk"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="12dp" />
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="3"
+                        android:textStyle="bold"
+                        android:text="Keluar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+                <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -44,8 +97,8 @@
                     <TextView
                         android:id="@+id/hargabahanbaku"
                         android:gravity="left"
-                        android:text="Harga "
-                        android:layout_weight="4"
+                        android:text="Expired Date "
+                        android:layout_weight="3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="1dp"
@@ -78,8 +131,13 @@
                         android:textSize="12dp" />
 
                 </LinearLayout>
+
+                </LinearLayout>
+
+
             </LinearLayout>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 

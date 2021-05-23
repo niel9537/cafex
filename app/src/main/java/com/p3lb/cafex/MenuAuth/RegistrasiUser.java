@@ -62,15 +62,65 @@ public class RegistrasiUser extends AppCompatActivity {
                 }else{
                     if(spinnerJabatanUser.getSelectedItem().toString().equals("Kasir")) {
                        // RegistrasiUserKasir();
-                        ambilidcabangkasir();
+                        getusernamekasir();
                     }else if(spinnerJabatanUser.getSelectedItem().toString().equals("Admin")){
                        // RegistrasiUserAdmin();
-                        ambilidcabangadmin();
+                        getusernameadmin();
                     }
                 }
             }
         });
 
+    }
+
+    void getusernameadmin(){
+        Call<LoginRegisterUsers> postUsersCall = apiInterface.getusername(
+                nama_user.getText().toString());
+
+        postUsersCall.enqueue(new Callback<LoginRegisterUsers>() {
+            @Override
+            public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
+                if(response.isSuccessful()) {
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    ambilidcabangadmin();
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "Username sudah ada", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    void getusernamekasir(){
+        Call<LoginRegisterUsers> postUsersCall = apiInterface.getusername(
+                nama_user.getText().toString());
+
+        postUsersCall.enqueue(new Callback<LoginRegisterUsers>() {
+            @Override
+            public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
+                if(response.isSuccessful()) {
+                    Log.d("RETRO", "ON SUCCESS : " + response.message());
+                    ambilidcabangkasir();
+                }
+                else {
+                    Log.d("RETRO", "ON FAIL : " + response.message());
+                    Toasty.error(getApplicationContext(), "Username sudah ada", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
+                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     void ambilidcabangkasir(){
         Call<LoginRegisterUsers> postUsersCall = apiInterface.cekidcabang(
@@ -86,9 +136,7 @@ public class RegistrasiUser extends AppCompatActivity {
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "ID tidak ditemukan", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegistrasiUser.this, RegistrasiUser.class);
-                    startActivity(intent);
+                    Toasty.error(getApplicationContext(), "ID cabang tidak ditemukan", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -113,9 +161,7 @@ public class RegistrasiUser extends AppCompatActivity {
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "ID tidak ditemukan", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegistrasiUser.this, RegistrasiUser.class);
-                    startActivity(intent);
+                    Toasty.error(getApplicationContext(), "ID cabang tidak ditemukan", Toast.LENGTH_SHORT).show();
                 }
             }
 

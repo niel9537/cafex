@@ -37,6 +37,7 @@ import retrofit2.Response;
 public class TambahDiskon extends AppCompatActivity {
     EditText namaDiskon, minimalBayar, maksimalDiskon, hargaDiskon;
     RadioButton radioPersen, radioHarga, radioButton;
+    Button backcreatediskon;
     RadioGroup radioGroup;
     TextView expDate;
     Button btnTambahDiskon, btnTanggal;
@@ -54,9 +55,16 @@ public class TambahDiskon extends AppCompatActivity {
         radioHarga = (RadioButton) findViewById(R.id.radioHarga);
         expDate = (TextView) findViewById(R.id.expDate);
         btnTambahDiskon = (Button) findViewById(R.id.btnTambahDiskon);
+        backcreatediskon = (Button) findViewById(R.id.backcreatediskon);
         btnTanggal = (Button) findViewById(R.id.btnTanggal);
         radioGroup = (RadioGroup) findViewById(R.id.radioGrup);
-
+        backcreatediskon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TambahDiskon.this, TampilDiskon.class);
+                startActivity(intent);
+            }
+        });
         //api hp android untuk datepicker haruslah 24+
         btnTanggal.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)

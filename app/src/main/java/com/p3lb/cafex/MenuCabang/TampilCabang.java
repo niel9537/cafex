@@ -6,6 +6,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.p3lb.cafex.MenuAuth.Dashboard;
 import com.p3lb.cafex.MenuDiskon.TambahDiskon;
 import com.p3lb.cafex.MenuDiskon.TampilDiskon;
 import com.p3lb.cafex.R;
@@ -38,6 +40,7 @@ public class TampilCabang extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText edtsearchcabang;
     ImageButton btnsearchcabang;
+    Button backlistcabang;
     private FloatingActionButton fltTambahCabang;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -60,12 +63,20 @@ public class TampilCabang extends AppCompatActivity {
         edtsearchcabang = (EditText) findViewById(R.id.edtsearchcabang);
         btnsearchcabang = (ImageButton) findViewById(R.id.btnsearchcabang);
         fltTambahCabang = (FloatingActionButton) findViewById(R.id.btnTambahCabang);
+        backlistcabang = (Button) findViewById(R.id.backlistcabang);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         ik=this;
         refresh();
+        backlistcabang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TampilCabang.this, Dashboard.class);
+                startActivity(intent);
+            }
+        });
         btnsearchcabang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

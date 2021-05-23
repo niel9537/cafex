@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class KeluarkanBahanbaku extends AppCompatActivity {
     EditText jumlahBahanbaku;
-    Button btnkeluarbahanbaku, btnTanggalbahanbaku;
+    Button btnkeluarbahanbaku, btnTanggalbahanbaku, backkeluarkanbahanbaku;
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
@@ -43,11 +43,10 @@ public class KeluarkanBahanbaku extends AppCompatActivity {
     private static final String KEY_JUMLAHINPUTAN = "inputan";
     String idinventori = "";
     String namabahanbaku = "";
+    String iddetailinventoriku = "";
     String idcabang = "";
     String inputan = "";
-    int inp = 0;
-    int x = 0;
-    int jumlahkeluaran = 0;
+    String stat = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +54,18 @@ public class KeluarkanBahanbaku extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         jumlahBahanbaku = (EditText) findViewById(R.id.jumlahBahanbaku);
         btnkeluarbahanbaku = (Button) findViewById(R.id.btnkeluarkanbahanbakumasuk);
+        backkeluarkanbahanbaku = (Button) findViewById(R.id.backkeluarkanbahanbaku);
         idcabang = sharedPreferences.getString(KEY_ID, null);
         idinventori = sharedPreferences.getString(KEY_INVENTORI,null);
         namabahanbaku = sharedPreferences.getString(KEY_BAHANBAKU, null);
         inputan = sharedPreferences.getString(KEY_JUMLAHINPUTAN, null);
+        backkeluarkanbahanbaku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Intent = new Intent(KeluarkanBahanbaku.this, TampilInventori.class);
+                startActivity(Intent);
+            }
+        });
         btnkeluarbahanbaku.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,34 +80,17 @@ public class KeluarkanBahanbaku extends AppCompatActivity {
 
     }
 
-    public void keluarkanbahanbaku(){
 
+    public void keluarkanbahanbaku(){
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        Call<PostBahanbaku> bahanbakuCall = mApiInterface.ambilbahanbaku(idinventori, idcabang, namabahanbaku);
+        Call<PostBahanbaku> bahanbakuCall = mApiInterface.updatebahanbaku(idcabang, idinventori, namabahanbaku, jumlahBahanbaku.getText().toString());
         bahanbakuCall.enqueue(new Callback<PostBahanbaku>() {
             @Override
             public void onResponse(Call<PostBahanbaku> call, Response<PostBahanbaku> response) {
                 if (response.isSuccessful()) {
-                    List<Bahanbaku> bahanbakuList = response.body().getBahanbakuList();
-                    String iddetailinventori = bahanbakuList.get(0).getIdDetailinventori();
-                    String jumlahbahanbaku = bahanbakuList.get(0).getJumlahBahanbaku();
-                    jumlahkeluaran = Integer.parseInt(jumlahBahanbaku.getText().toString());
-                    int jumlahtersedia = Integer.parseInt(jumlahbahanbaku);
-                    if (jumlahtersedia > jumlahkeluaran) {
-                        //update tapi status masih 1
-                        int result = jumlahtersedia - jumlahkeluaran;
-                        updatebahanbaku(iddetailinventori, result, "1");
-                    } else {
-                        jumlahkeluaran = jumlahkeluaran - jumlahtersedia;
-                        updatebahanbaku(iddetailinventori, 0, "0");
-                        if(jumlahkeluaran>0){
-                            keluarkanbahanbaku();
-                        }else{
-                            Intent intent = new Intent(KeluarkanBahanbaku.this, TampilInventori.class);
-                            startActivity(intent);
-                        }
-                    }
-
+                    Toasty.success(getApplicationContext(), "Berhasil keluarkan bahanbaku", Toast.LENGTH_SHORT).show();
+                    Intent Intent = new Intent(KeluarkanBahanbaku.this, TampilInventori.class);
+                    startActivity(Intent);
                 } else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
                     Toasty.error(getApplicationContext(), "Gagal keluarkan bahanbaku", Toast.LENGTH_SHORT).show();
@@ -115,85 +105,6 @@ public class KeluarkanBahanbaku extends AppCompatActivity {
         });
 
     }
-
-
-    public void updatebahanbaku(String iddetailinventori, int result, String status){
-        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        Call<PostBahanbaku> bahanbakuCall = mApiInterface.updatebahanbaku(
-                iddetailinventori,
-                idcabang,
-                String.valueOf(result),
-                status);
-        bahanbakuCall.enqueue(new Callback<PostBahanbaku>() {
-            @Override
-            public void onResponse(Call<PostBahanbaku> call, Response<PostBahanbaku> response) {
-                if(response.isSuccessful()) {
-                    Log.d("RETRO", "ON SUCCESS : " + response.message());
-                    Toasty.success(getApplicationContext(), "Sukses keluarkan bahanbaku", Toast.LENGTH_SHORT).show();
-                    //SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //editor.remove("KEY_INVENTORI"); // hapus key inventori
-                    //editor.remove("KEY_BAHANBAKU"); // hapus key bahanbaku
-                    //editor.commit(); // commit changes
-
-                }
-                else {
-                    Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "Gagal keluarkan bahanbaku", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PostBahanbaku> call, Throwable t) {
-                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    public void keluarkanbahanbakukecil(){
-        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        Call<PostBahanbaku> bahanbakuCall = mApiInterface.ambilbahanbaku(
-                idinventori,
-                idcabang,
-                namabahanbaku);
-        bahanbakuCall.enqueue(new Callback<PostBahanbaku>() {
-            @Override
-            public void onResponse(Call<PostBahanbaku> call, Response<PostBahanbaku> response) {
-                if(response.isSuccessful()) {
-
-                    List<Bahanbaku> bahanbakuList = response.body().getBahanbakuList();
-                    String iddetailinventori = bahanbakuList.get(0).getIdDetailinventori();
-                    String jumlahbahanbaku = bahanbakuList.get(0).getJumlahBahanbaku();
-                    int jumlahtersedia = Integer.parseInt(jumlahbahanbaku);
-                    int jumlahinputan = Integer.parseInt(inputan);
-                    int jumlahkeluaran = jumlahinputan - jumlahtersedia;
-                    updatebahanbaku(iddetailinventori, 0, "0");
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(KEY_JUMLAHINPUTAN,String.valueOf(jumlahkeluaran));
-                    editor.apply();
-//                    Log.d("RETRO", "ON SUCCESS : " + response.message());
-//                    Toasty.success(getApplicationContext(), "Sukses memasukkan bahanbaku", Toast.LENGTH_SHORT).show();
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.remove("KEY_INVENTORI"); // will delete key name
-//                    editor.remove("KEY_BAHANBAKU"); // will delete key email
-//                    editor.commit(); // commit changes
-//                    Intent intent = new Intent(KeluarkanBahanbaku.this, TampilInventori.class);
-//                    startActivity(intent);
-                }
-                else {
-                    Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "Gagal keluarkan bahanbaku", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PostBahanbaku> call, Throwable t) {
-                Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
 
 
 }

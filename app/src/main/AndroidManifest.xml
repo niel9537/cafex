@@ -23,9 +23,13 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuTransaksi.TampilCheckoutMenu"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuTransaksi.TransaksiHistory"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuProduk.TampilDataProduk"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.DetailRegistrasi"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuAuth.ProfileUser"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuDiskon.TambahDiskon"
             android:theme="@style/AppTheme.NoActionBar"/>

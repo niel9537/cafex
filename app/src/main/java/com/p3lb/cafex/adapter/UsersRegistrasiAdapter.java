@@ -38,9 +38,13 @@ public class UsersRegistrasiAdapter extends RecyclerView.Adapter<UsersRegistrasi
 
     @Override
     public void onBindViewHolder (UsersRegistrasiAdapter.MyViewHolder holder, final int position){
-        holder.namauser.setText(muserslist.get(position).getNama_user());
-        holder.noktpuser.setText(muserslist.get(position).getNoktp_user());
-        holder.jabatanuser.setText(muserslist.get(position).getJabatan_user());
+        holder.namauser.setText("Nama : "+muserslist.get(position).getNama_user());
+        holder.noktpuser.setText("No KTP : "+muserslist.get(position).getNoktp_user());
+        if(muserslist.get(position).getJabatan_user().equals("3")){
+            holder.jabatanuser.setText("Jabatan : Kasir");
+        }else{
+            holder.jabatanuser.setText("Jabatan : Admin");
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

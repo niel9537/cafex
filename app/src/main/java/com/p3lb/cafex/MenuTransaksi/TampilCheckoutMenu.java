@@ -73,7 +73,7 @@ import retrofit2.Response;
 public class TampilCheckoutMenu extends AppCompatActivity{
     TextView totalBayar, grandTotal;
     EditText namaPembeli, diskon;
-    Button btnBayar, btnDiskon;
+    Button btnBayar, btnDiskon, backcart;
     ApiInterface mApiInterface;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -110,6 +110,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         btnBayar = (Button) findViewById(R.id.btnBayar);
         diskon = (EditText) findViewById(R.id.diskon);
         btnDiskon = (Button) findViewById(R.id.btnDiskon);
+        backcart = (Button) findViewById(R.id.backcart);
         grandTotal = (TextView) findViewById(R.id.grandTotal);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         idcabang = sharedPreferences.getString(KEY_ID,null);
@@ -122,7 +123,13 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         mi=this;
         refresh();
-
+        backcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
+                startActivity(intent);
+            }
+        });
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

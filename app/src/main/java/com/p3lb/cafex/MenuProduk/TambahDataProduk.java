@@ -50,7 +50,7 @@ import retrofit2.Response;
 public class TambahDataProduk extends AppCompatActivity {
     EditText nama_produk, harga_produk, biaya_produk;
     Spinner kategori_produk;
-    Button btnSimpan, btnGallery;
+    Button btnSimpan, btnGallery, backcreateproduk;
     ImageView foto_produk;
 
     private String mediaPath;
@@ -79,11 +79,19 @@ public class TambahDataProduk extends AppCompatActivity {
         foto_produk = (ImageView) findViewById(R.id.fotoProduk);
         btnGallery = (Button) findViewById(R.id.btnGallery);
         btnSimpan = (Button) findViewById(R.id.btnSimpan);
+        backcreateproduk = (Button) findViewById(R.id.backcreateproduk);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.kategori, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kategori_produk.setAdapter(adapter);
         //Buka gallery
+        backcreateproduk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TambahDataProduk.this, TampilDataProduk.class);
+                startActivity(intent);
+            }
+        });
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

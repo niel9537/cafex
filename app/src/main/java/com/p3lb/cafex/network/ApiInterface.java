@@ -65,6 +65,10 @@ public interface ApiInterface {
     @GET("users")
     Call<GetUsers> getUsers();
 
+    @POST("users/getusername")
+    @FormUrlEncoded
+    Call<LoginRegisterUsers> getusername(@Field("nama_user") String nama_user);
+
     @POST("users/searchuser")
     @FormUrlEncoded
     Call<PostUser> searchuser(@Field("nama_user") String nama_user,
@@ -101,6 +105,7 @@ public interface ApiInterface {
                                         @Field("password_user") String password_user,
                                         @Field("jabatan_user") int jabatan_user);
 
+
     @POST("users/register")
     @FormUrlEncoded
     Call<LoginRegisterUsers> regisUser(@Field("id_cabang") String id_cabang,
@@ -126,6 +131,21 @@ public interface ApiInterface {
     @POST("users/tampiluser")
     @FormUrlEncoded
     Call<PostUser> showuser(@Field("id_cabang") String id_cabang);
+
+    @POST("users/profileuser")
+    @FormUrlEncoded
+    Call<PostUser> profileuser(@Field("id_cabang") String id_cabang,
+                               @Field("nama_user") String nama_user);
+
+    @POST("users/updateprofile")
+    @FormUrlEncoded
+    Call<LoginRegisterUsers> updateprofile(@Field("id_user") String id_user,
+                                           @Field("id_cabang") String id_cabang,
+                                           @Field("nama_user") String nama_user,
+                                           @Field("nohp_user") String nohp_user,
+                                           @Field("noktp_user") String noktp_user,
+                                           @Field("email_user") String email_user,
+                                           @Field("jabatan_user") String jabatan_user);
 
     @POST("users/updateuser")
     @FormUrlEncoded
@@ -279,12 +299,13 @@ public interface ApiInterface {
     Call<PostBahanbaku> ambilbahanbaku(@Field("id_inventori") String id_inventori,
                                         @Field("id_cabang") String id_cabang,
                                         @Field("nama_bahanbaku") String nama_bahanbaku);
-    @POST("inventori/updatebahanbaku")
+
+    @POST("inventori/fifobahanbaku")
     @FormUrlEncoded
-    Call<PostBahanbaku> updatebahanbaku(@Field("id_detailinventori") String id_detailinventori,
-                                        @Field("id_cabang") String id_cabang,
-                                        @Field("jumlah_bahanbaku") String jumlah_bahanbaku,
-                                        @Field("status") String status);
+    Call<PostBahanbaku> updatebahanbaku(@Field("id_cabang") String id_cabang,
+                                        @Field("id_inventori") String id_inventori,
+                                        @Field("nama_bahanbaku") String nama_bahanbaku,
+                                        @Field("jumlah_bahanbaku") String jumlah_bahanbaku);
 
 
 }

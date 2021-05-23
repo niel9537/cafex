@@ -7,12 +7,34 @@
     android:background="@color/background"
     tools:context=".MenuInventori.TampilDetailInventori">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/backdetailbahanbaku"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_margin="5dp"
+            android:background="@color/background"
+            android:drawableLeft="@drawable/ic_back"
+            android:padding="2dp"
+            android:text="Kembali"
+            android:textSize="12dp" />
+    </LinearLayout>
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="10dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="Riwayat bahan baku"
         android:textColor="@color/button"
@@ -34,13 +56,14 @@
 
         <Button
             android:padding="5dp"
+            android:layout_margin="20dp"
             android:layout_marginRight="10dp"
             android:id="@+id/btnbahanbakumasuk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="2"
-            android:background="@drawable/bg_placeholder"
+            android:background="@drawable/custom_input"
             android:backgroundTint="@android:color/holo_green_light"
             android:text="MASUK"
             android:textColor="@color/background"
@@ -52,12 +75,13 @@
         <Button
             android:layout_marginLeft="10dp"
             android:padding="5dp"
+            android:layout_margin="20dp"
             android:id="@+id/btnbahanbakukeluar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="2"
-            android:background="@drawable/bg_placeholder"
+            android:background="@drawable/custom_input"
             android:backgroundTint="@android:color/holo_red_light"
             android:text="KELUAR"
             android:textColor="@color/background"
@@ -71,7 +95,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="180dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

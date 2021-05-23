@@ -46,6 +46,7 @@ import retrofit2.Response;
 public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
     ApiInterface mApiInterface;
     EditText searchmenu;
+    Button backlistproduk;
     ImageButton btnsearhcmenu;
     MenusAdapter menusAdapter;
     private RecyclerView mRecyclerView;
@@ -57,8 +58,10 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
     private static final String KEY_TRX = "trx";
+    private static final String KEY_JABATAN = "trx";
     String nama_user = "";
     String id_username = "";
+    String role = "";
     TextView placeholderUsername;
     public static TampilDataMenu me;
     private FloatingActionButton  fltKeranjangBelanja, fltRefund;
@@ -78,14 +81,15 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         nama_user = sharedPreferences.getString(KEY_USERNAME,null);
         id_username = sharedPreferences.getString(KEY_ID,null);
+        role = sharedPreferences.getString(KEY_JABATAN,null);
         placeholderUsername = (TextView) findViewById(R.id.placeholderUsername);
         searchmenu = (EditText) findViewById(R.id.edtsearchmenu);
         btnsearhcmenu = (ImageButton) findViewById(R.id.btnsearchmenu);
+        backlistproduk = (Button) findViewById(R.id.backlistproduk);
         placeholderUsername.setText(""+nama_user+" | "+id_username);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         //me=this;
-
         productsList =  new ArrayList<>();
         Log.d("Produk1", ""+productsList);
         btnsearhcmenu.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +98,18 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
                 searchmenu();
             }
         });
+        backlistproduk.setVisibility(View.INVISIBLE);
+//        if(role.equals("2") || role.equals("1")){
+//            backlistproduk.setVisibility(View.VISIBLE);
+//            backlistproduk.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(TampilDataMenu.this, Dashboard.class);
+//                    startActivity(intent);
+//                }
+//            });
+//        }
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

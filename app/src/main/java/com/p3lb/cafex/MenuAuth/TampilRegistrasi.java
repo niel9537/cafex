@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.p3lb.cafex.MenuProduk.TambahDataProduk;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
+import com.p3lb.cafex.MenuUser.TampilUser;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.adapter.ProductsAdapter;
 import com.p3lb.cafex.adapter.UsersRegistrasiAdapter;
@@ -33,6 +35,7 @@ import retrofit2.Response;
 
 public class TampilRegistrasi extends AppCompatActivity {
     ApiInterface mApiInterface;
+    Button backlistpendaftar;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -49,6 +52,7 @@ public class TampilRegistrasi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_datauser_register);
+        backlistpendaftar = (Button) findViewById(R.id.backlistpendaftar);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_userregister);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         idcabang = sharedPreferences.getString(KEY_ID,null);
@@ -58,7 +62,13 @@ public class TampilRegistrasi extends AppCompatActivity {
         mii=this;
 
         refresh();
-
+        backlistpendaftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TampilRegistrasi.this, TampilUser.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

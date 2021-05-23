@@ -13,7 +13,17 @@
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".MenuDiskon.EditDiskon">
-
+        <Button
+            android:id="@+id/backeditdiskon"
+            android:padding="2dp"
+            android:layout_gravity="left"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:drawableLeft="@drawable/ic_back"
+            android:text="Kembali"
+            android:textSize="12dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

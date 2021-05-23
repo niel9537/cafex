@@ -29,7 +29,7 @@ import retrofit2.Response;
 
 public class EditUser extends AppCompatActivity {
     EditText namaUser, nohpUser, noktpUser, emailUser;
-    Button btnEditUser;
+    Button btnEditUser, backedituser;
     String ID;
     ApiInterface mApiInterface;
 
@@ -49,7 +49,7 @@ public class EditUser extends AppCompatActivity {
         noktpUser = (EditText) findViewById(R.id.noktpUser);
         emailUser = (EditText) findViewById(R.id.emailUser);
         btnEditUser = (Button) findViewById(R.id.btnEditUser) ;
-
+        backedituser = (Button) findViewById(R.id.backedituser);
         //Inisialisasi intent ke komponen form
         Intent mIntent = getIntent();
         ID = mIntent.getStringExtra("id_user");
@@ -60,7 +60,13 @@ public class EditUser extends AppCompatActivity {
         // Definisi API
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
 
-
+        backedituser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditUser.this, TampilUser.class);
+                startActivity(intent);
+            }
+        });
         // Fungsi Tombol Update
         btnEditUser.setOnClickListener(new View.OnClickListener() {
             @Override

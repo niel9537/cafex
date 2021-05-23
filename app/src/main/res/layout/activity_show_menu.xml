@@ -7,13 +7,34 @@
     android:background="@color/background"
     tools:context=".MenuTransaksi.TampilDataMenu">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/backlistproduk"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_margin="5dp"
+            android:background="@color/background"
+            android:drawableLeft="@drawable/ic_back"
+            android:padding="2dp"
+            android:text="Kembali"
+            android:textSize="12dp" />
+    </LinearLayout>
     <TextView
         android:layout_marginHorizontal="20dp"
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="90dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="Menu"
         android:textColor="@color/button"
@@ -29,7 +50,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="120dp">
         <EditText
             android:id="@+id/edtsearchmenu"
             android:layout_weight="1"
@@ -144,7 +165,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/placeholderUsername"
         android:layout_width="match_parent"
         android:layout_height="26dp"

@@ -41,7 +41,7 @@ import retrofit2.Response;
 
 public class EditCabang extends AppCompatActivity {
     EditText namaCabang, notelpCabang, alamatCabang;
-    Button btnUpdateCabang;
+    Button btnUpdateCabang, backeditcabang;
     String ID;
     ApiInterface mApiInterface;
 
@@ -59,8 +59,8 @@ public class EditCabang extends AppCompatActivity {
         namaCabang = (EditText) findViewById(R.id.namaCabang);
         notelpCabang = (EditText) findViewById(R.id.notelpCabang);
         alamatCabang = (EditText) findViewById(R.id.alamatCabang);
-        btnUpdateCabang = (Button) findViewById(R.id.btnUpdateCabang) ;
-
+        btnUpdateCabang = (Button) findViewById(R.id.btnUpdateCabang);
+        backeditcabang = (Button) findViewById(R.id.backeditcabang);
         //Inisialisasi intent ke komponen form
         Intent mIntent = getIntent();
         ID = mIntent.getStringExtra("id_cabang");
@@ -71,7 +71,13 @@ public class EditCabang extends AppCompatActivity {
         // Definisi API
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
 
-
+        backeditcabang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditCabang.this, TampilCabang.class);
+                startActivity(intent);
+            }
+        });
         // Fungsi Tombol Update
         btnUpdateCabang.setOnClickListener(new View.OnClickListener() {
             @Override

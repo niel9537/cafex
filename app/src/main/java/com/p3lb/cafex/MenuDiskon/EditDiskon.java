@@ -62,7 +62,7 @@ public class EditDiskon extends AppCompatActivity {
     RadioButton radioPersen, radioHarga, radioButton;
     RadioGroup radioGroup;
     TextView expDate;
-    Button btnTambahDiskon, btnTanggal;
+    Button btnTambahDiskon, btnTanggal, backeditdiskon;
     Calendar c;
     DatePickerDialog dpd;
     String ID;
@@ -88,6 +88,7 @@ public class EditDiskon extends AppCompatActivity {
         btnTambahDiskon = (Button) findViewById(R.id.btnTambahDiskon) ;
         btnTanggal = (Button) findViewById(R.id.btnTanggal);
         radioGroup = (RadioGroup) findViewById(R.id.radioGrup);
+        backeditdiskon = (Button) findViewById(R.id.backeditdiskon);
         //Inisialisasi intent ke komponen form
         Intent mIntent = getIntent();
         ID = mIntent.getStringExtra("id_diskon");
@@ -97,7 +98,13 @@ public class EditDiskon extends AppCompatActivity {
         expDate.setText(mIntent.getStringExtra("exp_diskon"));
         // Definisi API
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-
+        backeditdiskon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditDiskon.this, TampilDiskon.class);
+                startActivity(intent);
+            }
+        });
         //api hp android untuk datepicker haruslah 24+
         btnTanggal.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)

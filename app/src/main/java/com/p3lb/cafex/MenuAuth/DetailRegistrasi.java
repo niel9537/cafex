@@ -40,7 +40,7 @@ import retrofit2.Response;
 
 public class DetailRegistrasi extends AppCompatActivity {
     TextView txtNamauser, txtNoktpuser, txtJabatanuser, txtNohpuser, txtEmailuser;
-    Button btnKonfirmasi, btnHapus;
+    Button btnKonfirmasi, btnHapus, backuserdetail;
     String idcabang = "";
     String username = "";
     String iduser = "";
@@ -63,6 +63,7 @@ public class DetailRegistrasi extends AppCompatActivity {
         txtEmailuser = (TextView) findViewById(R.id.txtEmailuser);
         btnKonfirmasi = (Button) findViewById(R.id.btnKonfirm);
         btnHapus = (Button) findViewById(R.id.btnHapus);
+        backuserdetail = (Button) findViewById(R.id.backuserdetail);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         username = sharedPreferences.getString(KEY_USERNAME,null);
@@ -75,7 +76,13 @@ public class DetailRegistrasi extends AppCompatActivity {
         txtEmailuser.setText(mIntent.getStringExtra("email_user"));
         txtNohpuser.setText(mIntent.getStringExtra("nohp_user"));
         di=this;
-
+        backuserdetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailRegistrasi.this, TampilRegistrasi.class);
+                startActivity(intent);
+            }
+        });
         btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.p3lb.cafex.MenuAuth.Dashboard;
 import com.p3lb.cafex.MenuTransaksi.TampilCheckoutMenu;
 import com.p3lb.cafex.MenuTransaksi.TampilDataMenu;
 import com.p3lb.cafex.R;
@@ -34,6 +36,7 @@ import retrofit2.Response;
 public class TampilDataProduk extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText searchproduk;
+    Button backlistmenu;
     ImageButton btnsearchproduk;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -50,6 +53,7 @@ public class TampilDataProduk extends AppCompatActivity {
         fltTambahProduk = findViewById(R.id.btnTambahProduk);
         searchproduk = (EditText) findViewById(R.id.edtsearchproduk);
         btnsearchproduk = (ImageButton) findViewById(R.id.btnsearchproduk);
+        backlistmenu = (Button) findViewById(R.id.backlistmenu);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_produk);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -57,6 +61,13 @@ public class TampilDataProduk extends AppCompatActivity {
         ma=this;
 
         refresh();
+        backlistmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TampilDataProduk.this, Dashboard.class);
+                startActivity(intent);
+            }
+        });
         btnsearchproduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

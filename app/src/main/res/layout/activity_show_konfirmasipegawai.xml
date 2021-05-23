@@ -13,6 +13,17 @@
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".MenuAuth.DetailRegistrasi">
+        <Button
+            android:id="@+id/backuserdetail"
+            android:padding="2dp"
+            android:layout_gravity="left"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:drawableLeft="@drawable/ic_back"
+            android:text="Kembali"
+            android:textSize="12dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/uc"/>
+            app:srcCompat="@drawable/ic_profile"/>
         <TextView
             android:id="@+id/txtNama"
             android:layout_width="match_parent"

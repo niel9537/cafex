@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.p3lb.cafex.MenuAuth.Dashboard;
+import com.p3lb.cafex.MenuCabang.TampilCabang;
 import com.p3lb.cafex.MenuDiskon.TambahDiskon;
 import com.p3lb.cafex.MenuDiskon.TampilDiskon;
 import com.p3lb.cafex.R;
@@ -36,7 +37,7 @@ import retrofit2.Response;
 
 public class TampilInventori extends AppCompatActivity {
     EditText bahanbaku;
-    Button btntambahbahanbaku;
+    Button btntambahbahanbaku, backlistinventori;
     ApiInterface mApiInterface;
     //private FloatingActionButton fltTambahDiskon;
     private RecyclerView mRecyclerView;
@@ -58,6 +59,7 @@ public class TampilInventori extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_inventori);
         bahanbaku = (EditText) findViewById(R.id.bahanbaku);
         btntambahbahanbaku = (Button) findViewById(R.id.btntambahbahanbaku);
+        backlistinventori = (Button) findViewById(R.id.backlistinventori);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         //fltTambahDiskon = (FloatingActionButton) findViewById(R.id.btnTambahInventori);
         idcabang = sharedPreferences.getString(KEY_ID,null);
@@ -67,7 +69,13 @@ public class TampilInventori extends AppCompatActivity {
         kk=this;
         refresh();
 
-
+        backlistinventori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TampilInventori.this, Dashboard.class);
+                startActivity(intent);
+            }
+        });
         btntambahbahanbaku.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

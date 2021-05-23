@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.p3lb.cafex.MenuAuth.Dashboard;
 import com.p3lb.cafex.MenuAuth.TampilRegistrasi;
 import com.p3lb.cafex.MenuProduk.TambahDataProduk;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
@@ -39,6 +40,7 @@ public class TampilDiskon extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText edtsearchdiskon;
     ImageButton btnsearchdiskon;
+    Button backlistdiskon;
     private FloatingActionButton fltTambahDiskon;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -61,12 +63,21 @@ public class TampilDiskon extends AppCompatActivity {
         fltTambahDiskon = (FloatingActionButton) findViewById(R.id.btnTambahDiskon);
         edtsearchdiskon = (EditText) findViewById(R.id.edtsearchdiskon);
         btnsearchdiskon = (ImageButton) findViewById(R.id.btnsearchdiskon);
+        backlistdiskon = (Button) findViewById(R.id.backlistdiskon);
+
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         dd=this;
         refresh();
+        backlistdiskon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TampilDiskon.this, Dashboard.class);
+                startActivity(intent);
+            }
+        });
         btnsearchdiskon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

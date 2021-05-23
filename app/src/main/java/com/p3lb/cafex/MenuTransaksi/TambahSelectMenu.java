@@ -36,7 +36,7 @@ public class TambahSelectMenu extends AppCompatActivity {
     TextView namaProduk, hargaProduk, kategoriProduk, subTotalProduk, jumlahItem;
     EditText namaCustomer;
     String idProduk;
-    Button btnMinus, btnPlus;
+    Button btnMinus, btnPlus, back;
     ImageButton btnSimpan;
     ImageView fotoProduk;
     SharedPreferences sharedPreferences;
@@ -79,7 +79,9 @@ public class TambahSelectMenu extends AppCompatActivity {
         kode_cabang = sharedPreferences.getString(KEY_ID,null);
         btnMinus = (Button) findViewById(R.id.minusBtn);
         btnPlus = (Button) findViewById(R.id.plusBtn);
+        back = (Button) findViewById(R.id.backselectmenu);
         btnSimpan = (ImageButton) findViewById(R.id.btnSimpan);
+
         btnPlus.setOnClickListener(clickListener);
         btnMinus.setOnClickListener(clickListener);
         //Inisialisasi intent ke komponen form
@@ -100,6 +102,13 @@ public class TambahSelectMenu extends AppCompatActivity {
         // Definisi API
         apiInterface = ApiHelper.getClient().create(ApiInterface.class);
         iniSubtotal();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TambahSelectMenu.this, TampilDataMenu.class);
+                startActivity(intent);
+            }
+        });
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

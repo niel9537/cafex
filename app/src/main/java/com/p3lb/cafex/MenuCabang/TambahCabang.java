@@ -27,7 +27,7 @@ import retrofit2.Response;
 
 public class TambahCabang extends AppCompatActivity {
     EditText namaCabang, notelpCabang, alamatCabang;
-    Button btnTambahCabang;
+    Button btnTambahCabang, backcreatecabang;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +37,14 @@ public class TambahCabang extends AppCompatActivity {
         notelpCabang = (EditText) findViewById(R.id.notelpCabang);
         alamatCabang = (EditText) findViewById(R.id.alamatCabang);
         btnTambahCabang = (Button) findViewById(R.id.btnTambahCabang);
-
+        backcreatecabang = (Button) findViewById(R.id.backcreatecabang);
+        backcreatecabang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TambahCabang.this, TampilCabang.class);
+                startActivity(intent);
+            }
+        });
         btnTambahCabang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

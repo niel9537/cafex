@@ -41,7 +41,7 @@ import retrofit2.Response;
 public class TampilRefund extends AppCompatActivity {
     ApiInterface mApiInterface;
     TextView id_transaksi, nama_pembeli, tanggal_beli, grand_total;
-    Button btnrefund;
+    Button btnrefund, backrefund;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -67,6 +67,7 @@ public class TampilRefund extends AppCompatActivity {
         tanggal_beli = (TextView) findViewById(R.id.tanggal_beli);
         grand_total = (TextView) findViewById(R.id.grand_total);
         btnrefund = (Button) findViewById(R.id.btnrefund);
+        backrefund = (Button) findViewById(R.id.backrefund);
         idcabang = sharedPreferences.getString(KEY_ID, null);
         trxid = sharedPreferences.getString(KEY_TRX, null);
         mLayoutManager = new LinearLayoutManager(this);
@@ -74,7 +75,13 @@ public class TampilRefund extends AppCompatActivity {
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         is = this;
         refresh();
-
+        backrefund.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TampilRefund.this, TampilDataMenu.class);
+                startActivity(intent);
+            }
+        });
         btnrefund.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

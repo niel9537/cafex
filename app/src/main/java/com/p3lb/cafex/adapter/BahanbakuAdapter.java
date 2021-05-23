@@ -34,7 +34,7 @@ public class BahanbakuAdapter extends RecyclerView.Adapter<BahanbakuAdapter.MyVi
     @Override
     public void onBindViewHolder (BahanbakuAdapter.MyViewHolder holder, final int position){
         holder.jumlahbahanbaku.setText(bahanbakuList.get(position).getJumlahBahanbaku()+" kg");
-        holder.hargabahanbaku.setText("Rp "+bahanbakuList.get(position).getHargaBahanbaku());
+        holder.hargabahanbaku.setText(bahanbakuList.get(position).getExpBahanbaku());
         holder.tanggalmasuk.setText(bahanbakuList.get(position).getTanggalMasuk());
         if(bahanbakuList.get(position).getTanggalKeluar().equals("0000-00-00")){
             holder.tanggalkeluar.setText("-");

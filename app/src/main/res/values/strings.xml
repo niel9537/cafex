@@ -1,9 +1,21 @@
 <resources>
     <string name="app_name">Cafe X</string>
     <string-array name="kategori">
-        <item>Ice</item>
-        <item>Hot</item>
-        <item>Snack</item>
+        <item>EC Signature Coffee Hot</item>
+        <item>EC Signature Coffee Ice</item>
+        <item>EC Signature Tea</item>
+        <item>Espresso Based Coffee Hot</item>
+        <item>Espresso Based Coffee Ice</item>
+        <item>Flavor Based Coffee Hot</item>
+        <item>Flavor Based Coffee Ice</item>
+        <item>Manual Brew Coffee Hot</item>
+        <item>Manual Brew Coffee Ice</item>
+        <item>Snacks</item>
+        <item>Non Coffee Beverages Hot</item>
+        <item>Non Coffee Beverages Ice</item>
+        <item>Hot Tea</item>
+        <item>Tea Mocktail</item>
+        <item>Foods</item>
     </string-array>
     <string-array name="jabatan">
         <item>Kasir</item>

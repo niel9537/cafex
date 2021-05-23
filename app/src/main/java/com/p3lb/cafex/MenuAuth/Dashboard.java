@@ -25,6 +25,7 @@ import com.p3lb.cafex.MenuProduk.TampilDataProduk;
 import com.p3lb.cafex.MenuRefund.TampilRefund;
 import com.p3lb.cafex.MenuTransaksi.TampilCheckoutMenu;
 import com.p3lb.cafex.MenuTransaksi.TampilDataMenu;
+import com.p3lb.cafex.MenuTransaksi.TransaksiHistory;
 import com.p3lb.cafex.MenuUser.TampilUser;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.network.ApiHelper;
@@ -35,6 +36,7 @@ import es.dmoral.toasty.Toasty;
 public class Dashboard extends AppCompatActivity {
     CardView cardUser, cardProduk, cardKasir, cardDiskon, cardLaporan, cardCabang;
     SharedPreferences sharedPreferences;
+    Button btnhistory, btnprofile;
     ImageView logout;
     String jabatan = "";
     private static final String SHARED_PREF_NAME = "mypref";
@@ -43,6 +45,8 @@ public class Dashboard extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_home);
+        btnhistory = (Button) findViewById(R.id.btnhistory);
+        btnprofile = (Button) findViewById(R.id.btnprofile);
         cardUser = (CardView) findViewById(R.id.cardUser);
         cardProduk = (CardView) findViewById(R.id.cardProduk);
         cardKasir = (CardView) findViewById(R.id.cardKasir);
@@ -52,7 +56,21 @@ public class Dashboard extends AppCompatActivity {
         logout = (ImageView) findViewById(R.id.logout);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         jabatan = sharedPreferences.getString(KEY_JABATAN,null);
+        btnhistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, TransaksiHistory.class);
+                startActivity(intent);
+            }
+        });
 
+        btnprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, ProfileUser.class);
+                startActivity(intent);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

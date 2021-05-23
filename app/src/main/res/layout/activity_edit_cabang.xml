@@ -13,7 +13,17 @@
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".MenuCabang.EditCabang">
-
+        <Button
+            android:id="@+id/backeditcabang"
+            android:padding="2dp"
+            android:layout_gravity="left"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:drawableLeft="@drawable/ic_back"
+            android:text="Kembali"
+            android:textSize="12dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,11 +94,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:background="@drawable/style_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"/>
         <Button
             android:id="@+id/btnUpdateCabang"
             android:layout_marginTop="30dp"

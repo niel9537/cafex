@@ -51,7 +51,7 @@ public class EditDataProduk extends AppCompatActivity {
 
     EditText nama_produk, harga_produk, biaya_produk;
     Spinner kategori_produk;
-    Button btnSimpan, btnGallery;
+    Button btnSimpan, btnGallery, backeditproduk;
     ImageView foto_produk;
     String ID;
     private String mediaPath;
@@ -86,6 +86,7 @@ public class EditDataProduk extends AppCompatActivity {
         foto_produk = (ImageView) findViewById(R.id.fotoProduk);
         btnGallery = (Button) findViewById(R.id.btnGallery);
         btnSimpan = (Button) findViewById(R.id.btnSimpan);
+        backeditproduk = (Button) findViewById(R.id.backeditproduk);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.kategori, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kategori_produk.setAdapter(adapter);
@@ -103,7 +104,13 @@ public class EditDataProduk extends AppCompatActivity {
 
         // Definisi API
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-
+        backeditproduk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditDataProduk.this, TampilDataProduk.class);
+                startActivity(intent);
+            }
+        });
         // Fungsi Tombol Pilih Galery
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override

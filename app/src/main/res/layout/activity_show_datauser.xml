@@ -7,12 +7,33 @@
     android:background="@color/background"
     tools:context=".MenuUser.TampilUser">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/backlistuser"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_margin="5dp"
+            android:background="@color/background"
+            android:drawableLeft="@drawable/ic_back"
+            android:padding="2dp"
+            android:text="Kembali"
+            android:textSize="12dp" />
+    </LinearLayout>
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="List User"
         android:textColor="@color/button"

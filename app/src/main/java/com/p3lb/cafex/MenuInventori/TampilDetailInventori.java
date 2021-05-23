@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class TampilDetailInventori extends AppCompatActivity {
     EditText bahanbaku;
-    Button btnbahanbakumasuk, btnbahanbakukeluar;
+    Button btnbahanbakumasuk, btnbahanbakukeluar, backdetailbahanbaku;
     ApiInterface mApiInterface;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -59,6 +59,7 @@ public class TampilDetailInventori extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         btnbahanbakumasuk = (Button) findViewById(R.id.btnbahanbakumasuk);
         btnbahanbakukeluar = (Button) findViewById(R.id.btnbahanbakukeluar);
+        backdetailbahanbaku = (Button) findViewById(R.id.backdetailbahanbaku);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -68,7 +69,13 @@ public class TampilDetailInventori extends AppCompatActivity {
         namabahanbaku = mIntent.getStringExtra("nama_bahanbaku");
         qa=this;
         refresh();
-
+        backdetailbahanbaku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Intent = new Intent(TampilDetailInventori.this, TampilInventori.class);
+                startActivity(Intent);
+            }
+        });
         btnbahanbakumasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

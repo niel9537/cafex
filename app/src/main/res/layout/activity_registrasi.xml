@@ -169,13 +169,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@color/background"
+        android:background="@drawable/custom_input"
         android:textColorHint="@color/button"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/background"
         android:layout_marginHorizontal="20dp">
 
         <Spinner
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:outlineSpotShadowColor="@color/background"
             android:id="@+id/spinnerJabatanUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

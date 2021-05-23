@@ -37,7 +37,7 @@ import retrofit2.Response;
 public class TambahBahanbaku extends AppCompatActivity {
     EditText jumlahBahanbaku, hargaBahanbaku;
     TextView expBahanbaku;
-    Button btntambahbahanbakumasuk, btnTanggalbahanbaku;
+    Button btntambahbahanbakumasuk, btnTanggalbahanbaku, backmasukanbahanbaku;
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
@@ -59,10 +59,17 @@ public class TambahBahanbaku extends AppCompatActivity {
         expBahanbaku = (TextView) findViewById(R.id.expBahanbaku);
         btntambahbahanbakumasuk = (Button) findViewById(R.id.btntambahbahanbakumasuk);
         btnTanggalbahanbaku = (Button) findViewById(R.id.btnTanggalbahanbaku);
+        backmasukanbahanbaku = (Button) findViewById(R.id.backmasukanbahanbaku);
         idcabang = sharedPreferences.getString(KEY_ID, null);
         idinventori = sharedPreferences.getString(KEY_INVENTORI,null);
         namabahanbaku = sharedPreferences.getString(KEY_BAHANBAKU, null);
-
+        backmasukanbahanbaku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TambahBahanbaku.this, TampilInventori.class);
+                startActivity(intent);
+            }
+        });
         //api hp android untuk datepicker haruslah 24+
         btnTanggalbahanbaku.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
