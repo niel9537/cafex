@@ -59,6 +59,14 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     private static final String KEY_ID = "id";
     private static final String KEY_TRX = "trx";
     private static final String KEY_JABATAN = "trx";
+    private static final String KEY_TOTALBAYAR = "totalbayardiskon";
+    private static final String KEY_BAYAR = "totalbayar";
+    private static final String KEY_PESANAN = "pesanan";
+    private static final String KEY_DISKON = "diskon";
+    String keybayar = "";
+    String keytotalbayar = "";
+    String diskon = "";
+
     String nama_user = "";
     String id_username = "";
     String role = "";
@@ -82,6 +90,9 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
         nama_user = sharedPreferences.getString(KEY_USERNAME,null);
         id_username = sharedPreferences.getString(KEY_ID,null);
         role = sharedPreferences.getString(KEY_JABATAN,null);
+        keybayar = sharedPreferences.getString(KEY_BAYAR,null);
+        keytotalbayar = sharedPreferences.getString(KEY_TOTALBAYAR,null);
+        diskon = sharedPreferences.getString(KEY_DISKON,null);
         placeholderUsername = (TextView) findViewById(R.id.placeholderUsername);
         searchmenu = (EditText) findViewById(R.id.edtsearchmenu);
         btnsearhcmenu = (ImageButton) findViewById(R.id.btnsearchmenu);
@@ -98,6 +109,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
                 searchmenu();
             }
         });
+        Log.d("Pref ", ""+keytotalbayar+" "+" "+keybayar+""+diskon+" IDCABANG "+nama_user);
         backlistproduk.setVisibility(View.INVISIBLE);
 //        if(role.equals("2") || role.equals("1")){
 //            backlistproduk.setVisibility(View.VISIBLE);

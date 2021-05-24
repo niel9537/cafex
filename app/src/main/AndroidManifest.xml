@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.p3lb.cafex">
-
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -17,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--Menu Produk-->
+
         <activity android:name=".MenuTransaksi.TampilDataMenu"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuTransaksi.TambahSelectMenu"
@@ -71,6 +73,9 @@
         <activity android:name=".MenuAuth.LupaPassword"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.ResetPassword"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ApplicationClass"/>
+        <activity android:name=".PrintoothActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LoginKasir"
             android:theme="@style/AppTheme.NoActionBar">

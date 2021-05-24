@@ -39,6 +39,7 @@ import com.p3lb.cafex.MenuAuth.LoginKasir;
 import com.p3lb.cafex.MenuAuth.RegistrasiUser;
 import com.p3lb.cafex.MenuProduk.EditDataProduk;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
+import com.p3lb.cafex.PrintoothActivity;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.adapter.CartsAdapter;
 import com.p3lb.cafex.adapter.MenusAdapter;
@@ -71,7 +72,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TampilCheckoutMenu extends AppCompatActivity{
-    TextView totalBayar, grandTotal;
+    TextView totalBayar, grandTotal, Pesanan;
     EditText namaPembeli, diskon;
     Button btnBayar, btnDiskon, backcart;
     ApiInterface mApiInterface;
@@ -84,6 +85,12 @@ public class TampilCheckoutMenu extends AppCompatActivity{
     private static final String KEY_ID = "id";
     private static final String KEY_TOTALBAYAR = "totalbayardiskon";
     private static final String KEY_BAYAR = "totalbayar";
+    private static final String KEY_PESANAN = "pesanan";
+    private static final String KEY_DISKON = "diskon";
+
+    String totalbayaruser = "";
+    String namadiskon ="";
+    String pesanan = "";
     String idcabang = "";
     String username = "";
     String id_detail = "";
@@ -106,6 +113,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_datacart);
         totalBayar = (TextView) findViewById(R.id.totalBayar);
+        Pesanan = (TextView) findViewById(R.id.pesanan);
         namaPembeli = (EditText) findViewById(R.id.namaPembeli);
         btnBayar = (Button) findViewById(R.id.btnBayar);
         diskon = (EditText) findViewById(R.id.diskon);
@@ -203,6 +211,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 if(response.isSuccessful()) {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     iddiskon = response.body().getId_diskon();
+                    namadiskon = response.body().getNama_diskon();
                     minbayar = response.body().getMin_bayar();
                     maxdiskon = response.body().getMax_diskon();
                     persendiskon = response.body().getPersen_diskon();
@@ -229,7 +238,15 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                         hasil = ttlbayar - hrgdiskon;
                     }
                     grandTotal.setText("Rp "+hasil);
+                    if(hargadiskon.equals("")){
+                        int per = (int) (prsndiskon*100);
+                        editor.putString(KEY_DISKON,namadiskon+" "+per+"%");
+                    }else{
+                        int per = hrgdiskon;
+                        editor.putString(KEY_DISKON,namadiskon+" Rp "+per+"");
+                    }
                     editor.putString(KEY_TOTALBAYAR,String.valueOf(hasil));
+                    Log.d("Bayar","Bayar "+hasil);
                     editor.apply();
                    // bayarwithdiskon = diskon(totalbyr,minbayar,maxdiskon,persendiskon);
                     //grandTotal.setText(String.valueOf("Rp "+bayarwithdiskon));
@@ -256,12 +273,18 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                     response) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 List<Cart> cartList = response.body().getListDataCart();
-
                 Log.d("Retrofit Get", "Jumlah item keranjang: " +
                         String.valueOf(cartList.size()));
+                for(Cart cart : cartList){
+                    pesanan += ""+cart.getNama_produk()+" x"+cart.getJumlah_item()+"\n";
+                    pesanan += "SubTotal = Rp "+cart.getHarga_subtotal()+" \n";
+                }
+                Log.d("Pesanan2", pesanan);
+                editor.putString(KEY_PESANAN, pesanan);
                 totalbyr = totalbayar(cartList);
                 totalBayar.setText(String.valueOf("Rp "+totalbyr));
                 editor.putString(KEY_BAYAR,String.valueOf(totalbyr));
+                Log.d("Bayar2","Bayar "+totalbyr);
                 editor.apply();
                 mAdapter = new CartsAdapter(cartList);
                 new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
@@ -292,13 +315,15 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Transaksi berhasil di proses", Toast.LENGTH_SHORT).show();
                     updatecart();
+                    Intent intent = new Intent(TampilCheckoutMenu.this, PrintoothActivity.class);
+                    startActivity(intent);
+
 
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
                     Toasty.error(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
-                    startActivity(intent);
+
                 }
             }
 
@@ -326,13 +351,15 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Transaksi berhasil di proses", Toast.LENGTH_SHORT).show();
                     updatecart();
+                    Intent intent = new Intent(TampilCheckoutMenu.this, PrintoothActivity.class);
+                    startActivity(intent);
+
 
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
                     Toasty.error(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
-                    startActivity(intent);
+
                 }
             }
 
@@ -355,24 +382,18 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Update berhasil", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
-                    startActivity(intent);
 
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
                     Toasty.error(getApplicationContext(), "Update gagal", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
-                    startActivity(intent);
                 }
             }
 
             @Override
             public void onFailure(Call<PostTransaksi> call, Throwable t) {
                 Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toasty.success(getApplicationContext(), "Sukses di update", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(TampilCheckoutMenu.this, TampilDataMenu.class);
-                startActivity(intent);
+                Toasty.success(getApplicationContext(), "gagal di update "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

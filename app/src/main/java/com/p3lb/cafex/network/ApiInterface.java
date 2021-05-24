@@ -1,5 +1,6 @@
 package com.p3lb.cafex.network;
 
+import com.p3lb.cafex.model.Struk.PostStruk;
 import com.p3lb.cafex.model.bahanbaku.PostBahanbaku;
 import com.p3lb.cafex.model.inventori.PostInventori;
 import com.p3lb.cafex.model.user.PostUser;
@@ -161,6 +162,11 @@ public interface ApiInterface {
                               @Field("nama_user") String nama_user);
 
     //===========================Transaksi==================================//
+    @POST("transaksi/struk")
+    @FormUrlEncoded
+    Call<PostStruk> getstruk(@Field("id_cabang") String id_cabang,
+                              @Field("nama_user") String nama_user);
+
     @POST("transaksi/carirefund")
     @FormUrlEncoded
     Call<PostRefund> getrefund(@Field("id_cabang") String id_cabang,
@@ -271,7 +277,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Users> registerownercabang(@Field("nama_user") String nama_user);
 
-    //==========================Cabang======================================//
+    //==========================Inventori======================================//
     @POST("inventori/tampilinventori")
     @FormUrlEncoded
     Call<PostInventori> getInventori(@Field("id_cabang") String id_cabang);
