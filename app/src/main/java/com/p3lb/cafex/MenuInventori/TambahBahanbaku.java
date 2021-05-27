@@ -121,7 +121,7 @@ public class TambahBahanbaku extends AppCompatActivity {
                 jumlahBahanbaku.getText().toString(),
                 hargaBahanbaku.getText().toString(),
                 expBahanbaku.getText().toString(),
-                "");
+                "0000-00-00");
 
 
             bahanbakuCall.enqueue(new Callback<PostBahanbaku>() {

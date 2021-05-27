@@ -3,6 +3,13 @@ package com.p3lb.cafex.network;
 import com.p3lb.cafex.model.Struk.PostStruk;
 import com.p3lb.cafex.model.bahanbaku.PostBahanbaku;
 import com.p3lb.cafex.model.inventori.PostInventori;
+import com.p3lb.cafex.model.trxbulanan.Postnormalbulan;
+import com.p3lb.cafex.model.trxdiskonbulan.Posttrxdiskonbulan;
+import com.p3lb.cafex.model.trxdiskonbulanan.Postdiskonlbulan;
+import com.p3lb.cafex.model.trxhbpbulan.Posttrxhbpbulan;
+import com.p3lb.cafex.model.trxnormalbulan.Posttrxnormalbulan;
+import com.p3lb.cafex.model.trxrefundbulan.Posttrxrefundbulan;
+import com.p3lb.cafex.model.trxrefundbulanan.Postrefundbulan;
 import com.p3lb.cafex.model.user.PostUser;
 import com.p3lb.cafex.model.auth.ConfirmDeleteUsers;
 import com.p3lb.cafex.model.auth.GetUsers;
@@ -312,6 +319,42 @@ public interface ApiInterface {
                                         @Field("id_inventori") String id_inventori,
                                         @Field("nama_bahanbaku") String nama_bahanbaku,
                                         @Field("jumlah_bahanbaku") String jumlah_bahanbaku);
+
+    //==========================Laporan======================================//
+    @POST("laporan/gettransaksibulan")
+    @FormUrlEncoded
+    Call<Posttrxnormalbulan> gettransaksibulan(@Field("id_cabang") String id_cabang,
+                                               @Field("tanggal") String tanggal);
+
+    @POST("laporan/gettransaksidiskonbulan")
+    @FormUrlEncoded
+    Call<Posttrxdiskonbulan> gettransaksidiskonbulan(@Field("id_cabang") String id_cabang,
+                                               @Field("tanggal") String tanggal);
+
+    @POST("laporan/gettransaksirefundbulan")
+    @FormUrlEncoded
+    Call<Posttrxrefundbulan> gettransaksirefundbulan(@Field("id_cabang") String id_cabang,
+                                                     @Field("tanggal") String tanggal);
+
+    @POST("laporan/gettransaksihbpbulan")
+    @FormUrlEncoded
+    Call<Posttrxhbpbulan> gettransaksihbpbulan(@Field("id_cabang") String id_cabang,
+                                               @Field("tanggal") String tanggal);
+
+    @POST("laporan/trxbulanan")
+    @FormUrlEncoded
+    Call<Postnormalbulan> gettrxbulanan(@Field("id_cabang") String id_cabang,
+                                        @Field("tanggal") String tanggal);
+
+    @POST("laporan/trxbulananwithdiskon")
+    @FormUrlEncoded
+    Call<Postdiskonlbulan> gettrxdiskonbulanan(@Field("id_cabang") String id_cabang,
+                                               @Field("tanggal") String tanggal);
+
+    @POST("laporan/trxbulananwithrefund")
+    @FormUrlEncoded
+    Call<Postrefundbulan> gettrxrefundbulanan(@Field("id_cabang") String id_cabang,
+                                              @Field("tanggal") String tanggal);
 
 
 }

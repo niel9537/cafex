@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ import com.p3lb.cafex.MenuCabang.TampilCabang;
 import com.p3lb.cafex.MenuDiskon.TambahDiskon;
 import com.p3lb.cafex.MenuDiskon.TampilDiskon;
 import com.p3lb.cafex.MenuInventori.TampilInventori;
+import com.p3lb.cafex.MenuLaporan.LaporanPendapatanBulanan;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
 import com.p3lb.cafex.MenuRefund.TampilRefund;
 import com.p3lb.cafex.MenuTransaksi.TampilCheckoutMenu;
@@ -37,10 +39,12 @@ public class Dashboard extends AppCompatActivity {
     CardView cardUser, cardProduk, cardKasir, cardDiskon, cardLaporan, cardCabang;
     SharedPreferences sharedPreferences;
     Button btnhistory, btnprofile;
-    ImageView logout;
+    TextView logout;
     String jabatan = "";
+    String idcabang = "";
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_JABATAN = "jabatan";
+    private static final String KEY_ID = "id";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +57,15 @@ public class Dashboard extends AppCompatActivity {
         cardDiskon = (CardView) findViewById(R.id.cardDiskon);
         cardLaporan = (CardView) findViewById(R.id.cardLaporan);
         cardCabang = (CardView) findViewById(R.id.cardCabang);
-        logout = (ImageView) findViewById(R.id.logout);
+        logout = (TextView) findViewById(R.id.logout);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         jabatan = sharedPreferences.getString(KEY_JABATAN,null);
+        idcabang = sharedPreferences.getString(KEY_ID,null);
+        Log.d("IDCABANG ", idcabang);
         btnhistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this, TransaksiHistory.class);
+                Intent intent = new Intent(Dashboard.this, LaporanPendapatanBulanan.class);
                 startActivity(intent);
             }
         });

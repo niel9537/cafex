@@ -79,7 +79,12 @@ public class TampilInventori extends AppCompatActivity {
         btntambahbahanbaku.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addbahanbaku();
+                if(bahanbaku.getText().toString().isEmpty()){
+                    Toasty.error(TampilInventori.this, "Isi nama bahanbaku terlebih dahulu", Toast.LENGTH_LONG).show();
+                }else{
+                    addbahanbaku();
+                }
+
             }
         });
     }

@@ -77,6 +77,8 @@
         <activity android:name=".ApplicationClass"/>
         <activity android:name=".PrintoothActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuLaporan.LaporanPendapatanBulanan"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LoginKasir"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

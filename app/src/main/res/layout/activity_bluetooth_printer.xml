@@ -11,19 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <Button
-            android:background="@color/button"
-            android:textColor="@color/background"
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
+            android:id="@+id/btnbackprintooth"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="BACK TO MAIN"/>
+        <Button
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
             android:id="@+id/btn_print"
             android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="5dp"
+            android:layout_marginTop="10dp"
             android:text="PRINT"/>
         <Button
-            android:textColor="@color/background"
-            android:background="@color/button"
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
             android:id="@+id/btn_unpair_pair"
             android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"

@@ -51,6 +51,7 @@ public class ProfileUser extends AppCompatActivity {
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
+    private static final String KEY_IDUSER = "iduser";
     public static ProfileUser zzz;
     String idcabang = "";
     String namauser = "";
@@ -79,7 +80,7 @@ public class ProfileUser extends AppCompatActivity {
         namauser = sharedPreferences.getString(KEY_USERNAME,null);
         Log.d("idcabang",""+idcabang);
         Log.d("namauser",""+namauser);
-        iduser = sharedPreferences.getString(KEY_ID,null);
+        iduser = sharedPreferences.getString(KEY_IDUSER,null);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         //zzz=this;
 
@@ -142,7 +143,7 @@ public class ProfileUser extends AppCompatActivity {
                     iduserku = userList.get(0).getIdUser();
                     Log.e("ID", ""+iduserku);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(KEY_ID,iduserku);
+                    editor.putString(KEY_IDUSER,iduserku);
                     editor.apply();
                     usernameku = userList.get(0).getNamaUser();
                     jabatanku = userList.get(0).getJabatanUser();

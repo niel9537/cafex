@@ -16,8 +16,8 @@
         app:cardCornerRadius="10dp"
         app:cardBackgroundColor="@color/background">
         <LinearLayout
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginVertical="5dp"
+            android:layout_marginHorizontal="20dp"
             android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,8 +36,8 @@
                     android:orientation="horizontal">
                     <TextView
                         android:gravity="left"
-                        android:text="Nama Diskon : "
-                        android:layout_weight="3"
+                        android:text="Nama  "
+                        android:layout_weight="4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
@@ -61,8 +61,8 @@
                     android:orientation="horizontal">
                     <TextView
                         android:gravity="left"
-                        android:text="Minimal bayar : "
-                        android:layout_weight="3"
+                        android:text="Min Bayar "
+                        android:layout_weight="4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
@@ -86,8 +86,8 @@
                     android:orientation="horizontal">
                     <TextView
                         android:gravity="left"
-                        android:text="Diskon : "
-                        android:layout_weight="3"
+                        android:text="Diskon "
+                        android:layout_weight="4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
@@ -111,8 +111,8 @@
                     android:orientation="horizontal">
                     <TextView
                         android:gravity="left"
-                        android:text="Maximal Diskon : "
-                        android:layout_weight="3"
+                        android:text="Max Diskon "
+                        android:layout_weight="4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
@@ -136,8 +136,8 @@
                     android:orientation="horizontal">
                     <TextView
                         android:gravity="left"
-                        android:text="Expired Diskon : "
-                        android:layout_weight="3"
+                        android:text="Exp Diskon "
+                        android:layout_weight="4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"

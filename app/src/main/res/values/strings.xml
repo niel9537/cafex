@@ -21,4 +21,9 @@
         <item>Kasir</item>
         <item>Admin</item>
     </string-array>
+    <string-array name="laporan">
+        <item>Transaksi Normal</item>
+        <item>Transaksi Refund</item>
+        <item>Transaksi Diskon</item>
+    </string-array>
 </resources>

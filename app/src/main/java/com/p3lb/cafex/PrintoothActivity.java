@@ -49,7 +49,7 @@ import retrofit2.Response;
 
 public class PrintoothActivity extends AppCompatActivity implements PrintingCallback {
     Printing printing;
-    Button btn_unpair_pair, btn_print;
+    Button btn_unpair_pair, btn_print, btnbackprintooth;
     String currentDate;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -86,6 +86,14 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
     private void initView(){
         btn_print = (Button) findViewById(R.id.btn_print);
         btn_unpair_pair = (Button) findViewById(R.id.btn_unpair_pair);
+        btnbackprintooth = (Button) findViewById(R.id.btnbackprintooth);
+        btnbackprintooth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PrintoothActivity.this, TampilDataMenu.class);
+                startActivity(intent);
+            }
+        });
         if(printing!=null)
             printing.setPrintingCallback(this);
 

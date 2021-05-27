@@ -216,7 +216,9 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                     maxdiskon = response.body().getMax_diskon();
                     persendiskon = response.body().getPersen_diskon();
                     hargadiskon = response.body().getHarga_diskon();
-                    String ttl = sharedPreferences.getString(KEY_BAYAR,null);
+                    //String ttl = sharedPreferences.getString(KEY_BAYAR,null);
+                    String ttl = totalBayar.getText().toString();
+                    Log.d("Diskon 1 :", ""+ttl);
                     int ttlbayar = Integer.parseInt(ttl);
                     int mnbayar = Integer.parseInt(minbayar);
                     double prsndiskon = Double.parseDouble(persendiskon);
@@ -224,12 +226,18 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                     int hrgdiskon = Integer.parseInt(hargadiskon);
                     int hasil = 0;
                     if(hrgdiskon == 0){
+                        Log.d("Diskon 1 :", ""+ttlbayar);
                         if(ttlbayar > mnbayar){
+                            Log.d("Diskon 2 :", ""+ttlbayar);
                             int dskn = (int) (ttlbayar*prsndiskon);
+                            Log.d("Diskon 3 :", ""+dskn);
                             if(dskn > mxdiskon){
+
                                 hasil = ttlbayar - mxdiskon;
+                                Log.d("Diskon 5 :", ""+hasil);
                             }else{
                                 hasil = ttlbayar - dskn;
+                                Log.d("Diskon 4 :", ""+hasil);
                             }
                         }else{
                             hasil = ttlbayar;
@@ -282,7 +290,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 Log.d("Pesanan2", pesanan);
                 editor.putString(KEY_PESANAN, pesanan);
                 totalbyr = totalbayar(cartList);
-                totalBayar.setText(String.valueOf("Rp "+totalbyr));
+                totalBayar.setText(String.valueOf(totalbyr));
                 editor.putString(KEY_BAYAR,String.valueOf(totalbyr));
                 Log.d("Bayar2","Bayar "+totalbyr);
                 editor.apply();
