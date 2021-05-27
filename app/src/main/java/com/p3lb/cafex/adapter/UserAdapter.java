@@ -32,12 +32,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder (UserAdapter.MyViewHolder holder, final int position){
-        holder.iduser.setText("ID : "+userList.get(position).getIdUser());
-        holder.namauser.setText("Nama : "+userList.get(position).getNamaUser());
-        holder.nohpuser.setText("Nomor HP : "+userList.get(position).getNohpUser());
-        holder.noktpuser.setText("Nomor KTP : "+userList.get(position).getNoktpUser());
-        holder.jabatanuser.setText("Jabatan : "+userList.get(position).getJabatanUser());
-        holder.emailuser.setText("Email : "+userList.get(position).getEmailUser());
+        holder.iduser.setText(userList.get(position).getIdUser());
+        holder.namauser.setText(userList.get(position).getNamaUser());
+        holder.nohpuser.setText(userList.get(position).getNohpUser());
+        holder.noktpuser.setText(userList.get(position).getNoktpUser());
+        holder.jabatanuser.setText(userList.get(position).getJabatanUser());
+        holder.emailuser.setText(userList.get(position).getEmailUser());
         if(userList.get(position).getJabatanUser().equals("3")){
             holder.jabatanuser.setText("Kasir");
         }else{

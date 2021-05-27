@@ -51,7 +51,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     MenusAdapter menusAdapter;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    ImageView textView;
+    TextView textView;
     private RecyclerView.LayoutManager mLayoutManager;
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
@@ -81,7 +81,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_menu);
-        textView = (ImageView) findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.textView);
         fltKeranjangBelanja = findViewById(R.id.btnKeranjangBelanja);
         fltRefund = findViewById(R.id.btnRefund);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycleView);

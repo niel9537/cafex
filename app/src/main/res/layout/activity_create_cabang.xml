@@ -15,12 +15,14 @@
         tools:context=".MenuCabang.TambahCabang">
         <Button
             android:id="@+id/backcreatecabang"
-            android:padding="2dp"
+            android:padding="5dp"
             android:layout_gravity="left"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/background"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/black"
             android:drawableLeft="@drawable/ic_back"
             android:text="Kembali"
             android:textSize="12dp"/>
@@ -37,62 +39,124 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/namaCabang"
+         <LinearLayout
+             android:layout_marginVertical="20dp"
+             android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_input"
-            android:hint="Nama Cabang"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/button"
-            android:textSize="15dp"
-            android:padding="10dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:text="Nama"
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/namaCabang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_input"
+                android:hint="Nama Cabang"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+         </LinearLayout>
 
 
 
-        <EditText
-            android:id="@+id/notelpCabang"
+        <LinearLayout
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_input"
-            android:gravity="center"
-            android:hint="Nomor Telepon"
-            android:inputType="number"
-            android:padding="10dp"
-            android:textColor="@color/button"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:text="No Telp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/notelpCabang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_input"
+                android:hint="Nomor Telepon"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/alamatCabang"
+        <LinearLayout
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_input"
-            android:hint="Alamat Cabang"
-            android:gravity="center"
-            android:textColor="@color/button"
-            android:textSize="15dp"
-            android:padding="10dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:text="Alamat"
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/alamatCabang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_input"
+                android:hint="Alamat Cabang"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
 
         <Button
@@ -101,10 +165,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_placeholder"
-            android:backgroundTint="@color/button"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
             android:text="Tambah Cabang"
-            android:textColor="@color/background"/>
+            android:textColor="@color/button"/>
 
     </LinearLayout>
 </ScrollView>

@@ -15,12 +15,13 @@
         tools:context=".MenuAuth.DetailRegistrasi">
         <Button
             android:id="@+id/backuserdetail"
-            android:padding="2dp"
+            android:padding="5dp"
             android:layout_gravity="left"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/background"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:drawableLeft="@drawable/ic_back"
             android:text="Kembali"
             android:textSize="12dp"/>
@@ -39,102 +40,175 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/ic_profile"/>
-        <TextView
-            android:id="@+id/txtNama"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="40dp"
-            android:text="Nama User"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textColor="@color/button"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtNoktp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/button"
+                android:textStyle="bold"
+                android:text="Nama"
+                android:gravity="left"
+                android:textSize="15dp"
+                android:layout_weight="3"/>
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/txtNama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:text="Nama User"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="40dp"
-            android:text="Nomor KTP"
-            android:gravity="center"
-            android:textColor="@color/button"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:id="@+id/txtJabatanuser"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+             android:layout_marginVertical="20dp"
+             android:layout_marginLeft="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/button"
+                android:textStyle="bold"
+                android:text="No KTP"
+                android:gravity="left"
+                android:textSize="15dp"
+                android:layout_weight="3"/>
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/txtNoktp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:text="Nomor KTP"
+                android:gravity="center"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+         </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Jabatan"
-            android:gravity="center"
-            android:textColor="@color/button"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:id="@+id/txtNohpuser"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/button"
+                android:textStyle="bold"
+                android:text="Jabatan"
+                android:gravity="left"
+                android:textSize="15dp"
+                android:layout_weight="3"/>
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/txtJabatanuser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:text="Jabatan"
+                android:gravity="center"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Nomor handphone"
-            android:gravity="center"
-            android:textColor="@color/button"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtEmailuser"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+             android:layout_marginVertical="20dp"
+            android:layout_marginLeft="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/button"
+                android:textStyle="bold"
+                android:text="No HP"
+                android:gravity="left"
+                android:textSize="15dp"
+                android:layout_weight="3"/>
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/txtNohpuser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:text="Nomor handphone"
+                android:gravity="center"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="Email"
-            android:textColor="@color/button"
-            android:textColorHighlight="@color/button"
-            android:textColorHint="@color/background"
-            android:textColorLink="@color/button"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/button"
+                android:textStyle="bold"
+                android:text="Email"
+                android:gravity="left"
+                android:textSize="15dp"
+                android:layout_weight="3"/>
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/txtEmailuser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:gravity="center"
+                android:text="Email"
+                android:textColor="@color/button"
+                android:textColorHighlight="@color/button"
+                android:textColorHint="@color/background"
+                android:textColorLink="@color/button"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
         <Button
             android:id="@+id/btnKonfirm"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_placeholder"
-            android:backgroundTint="@color/button"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:text="Konfirmasi"
-            android:textColor="@color/background"/>
+            android:textStyle="bold"
+            android:textColor="@color/button"/>
         <Button
             android:id="@+id/btnHapus"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_placeholder"
-            android:backgroundTint="@color/button"
+            android:background="@drawable/view"
+            android:textStyle="bold"
+            android:backgroundTint="@android:color/white"
             android:text="HAPUS"
-            android:textColor="@color/background"/>
+            android:textColor="@color/button"/>
 
     </LinearLayout>
 </ScrollView>

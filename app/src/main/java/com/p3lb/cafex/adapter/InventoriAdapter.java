@@ -33,7 +33,7 @@ public class InventoriAdapter extends RecyclerView.Adapter<InventoriAdapter.MyVi
 
     @Override
     public void onBindViewHolder (InventoriAdapter.MyViewHolder holder, final int position){
-        holder.idinventori.setText(inventoriList.get(position).getId_inventori());
+        holder.idinventori.setText("ID "+inventoriList.get(position).getId_inventori());
         holder.namabahanbaku.setText(inventoriList.get(position).getNama_bahanbaku());
         holder.tanggalbuat.setText(inventoriList.get(position).getTanggal_buat());
         //idkuu = cabangList.get(position).getId_diskon();

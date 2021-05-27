@@ -13,22 +13,24 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    android:layout_marginTop="70dp"
+    android:layout_marginTop="20dp"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     tools:context=".MenuUser.EditUser">
     <Button
         android:id="@+id/backedituser"
-        android:padding="2dp"
+        android:padding="5dp"
         android:layout_gravity="left"
         android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@drawable/view"
+        android:backgroundTint="@android:color/white"
         android:drawableLeft="@drawable/ic_back"
         android:text="Kembali"
         android:textSize="12dp"/>
     <TextView
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="EDIT USER"
@@ -39,62 +41,143 @@
         android:gravity="center_horizontal" />
 
 
-
-        <EditText
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:id="@+id/namaUser"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/custom_input"
-            android:hint="  Nama "
-            android:inputType="textPersonName"
-            android:textColor="@color/button"
-            android:textColorHint="@color/background" />
-
-        <EditText
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:id="@+id/nohpUser"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:text="Nama "
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:id="@+id/namaUser"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/custom_input"
+                android:hint="  Nama "
+                android:inputType="textPersonName"
+                android:textColor="@color/button" />
+    </LinearLayout>
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/custom_input"
-            android:hint="  Nomor Handphone "
-            android:inputType="textPersonName"
-            android:textColor="@color/button"
-            android:textColorHint="@color/background" />
-
-        <EditText
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:id="@+id/noktpUser"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:text="No HP "
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:id="@+id/nohpUser"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/custom_input"
+                android:hint="  Nomor HP "
+                android:inputType="textPersonName"
+                android:textColor="@color/button" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/custom_input"
-            android:hint="  Nomor KTP "
-            android:inputType="textPersonName"
-            android:textColor="@color/button"
-            android:textColorHint="@color/background" />
-
-        <EditText
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:id="@+id/emailUser"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:text="No KTP "
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:id="@+id/noktpUser"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/custom_input"
+                android:hint="  Nomor KTP "
+                android:inputType="textPersonName"
+                android:textColor="@color/button"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/custom_input"
-            android:hint=" Email "
-            android:inputType="textPersonName"
-            android:textColor="@color/button"
-            android:textColorHint="@color/background" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:textColor="@color/button"
+                android:textSize="15dp"
+                android:text="Email "
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:id="@+id/emailUser"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+
+                android:background="@drawable/custom_input"
+                android:hint=" Email "
+                android:inputType="textPersonName"
+                android:textColor="@color/button" />
+        </LinearLayout>
 
 
         <Button
@@ -105,9 +188,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/view"
-            android:backgroundTint="@color/button"
+            android:backgroundTint="@android:color/white"
             android:text="UPDATE"
-            android:textColor="#ffffff" />
+            android:textColor="@android:color/black" />
 
 
 </LinearLayout>

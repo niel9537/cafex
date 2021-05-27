@@ -73,10 +73,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_placeholder"
-            android:backgroundTint="@color/button"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:textStyle="bold"
             android:text="Keluarkan Bahanbaku"
-            android:textColor="@color/background"/>
+            android:textColor="@color/button"/>
 
     </LinearLayout>
 </ScrollView>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".PrintoothActivity"
-    >
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_marginTop="200dp"

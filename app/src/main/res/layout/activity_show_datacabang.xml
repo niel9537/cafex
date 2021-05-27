@@ -12,7 +12,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="65dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="Cabang"
         android:textColor="@color/button"
@@ -37,9 +37,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:layout_margin="5dp"
-            android:background="@color/background"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@color/button"
             android:drawableLeft="@drawable/ic_back"
-            android:padding="2dp"
+            android:padding="5dp"
             android:text="Kembali"
             android:textSize="12dp" />
     </LinearLayout>
