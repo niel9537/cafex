@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_above="@+id/navbar"
+        android:id="@+id/liniearlaporan"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginBottom="50dp"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="Menu Laporan"/>
+        <Button
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/black"
+            android:id="@+id/laporanbulanan"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="LAPORAN BULANAN"/>
+        <Button
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/black"
+            android:id="@+id/laporantahunan"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:text="LAPORAN TAHUNAN"/>
+        <Button
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/black"
+            android:id="@+id/riwayattransaksi"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="RIWAYAT TRANSAKSI"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navbar"
+        android:padding="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/view"
+        android:backgroundTint="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btndashboard"
+            android:background="@android:color/white"
+            android:drawableTop="@drawable/ic_home"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Home"/>
+        <Button
+            android:background="@android:color/white"
+            android:drawableTop="@drawable/ic_history"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Laporan"/>
+        <Button
+            android:background="@android:color/white"
+            android:id="@+id/btnprofile"
+            android:drawableTop="@drawable/ic_profile"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profile"/>
+    </LinearLayout>
+</RelativeLayout>

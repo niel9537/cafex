@@ -11,10 +11,10 @@
     <application
         android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="CafeX"
+        android:icon="@mipmap/icon"
+        android:label="cafex."
         android:usesCleartextTraffic="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--Menu Produk-->
@@ -68,6 +68,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LoginAdmin"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuAuth.LoginKasir"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.VerifikasiPassword"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LupaPassword"
@@ -79,7 +81,11 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuLaporan.LaporanPendapatanBulanan"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MenuAuth.LoginKasir"
+        <activity android:name=".MenuLaporan.LaporanPendapatanTahunan"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuLaporan.LaporanActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -87,6 +93,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity android:name=".MenuAuth.LoginKasir"-->
+<!--            android:theme="@style/AppTheme.NoActionBar">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
 
     </application>
 

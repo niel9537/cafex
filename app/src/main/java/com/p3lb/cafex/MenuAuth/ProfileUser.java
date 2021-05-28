@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.p3lb.cafex.MenuCabang.TambahCabang;
 import com.p3lb.cafex.MenuCabang.TampilCabang;
+import com.p3lb.cafex.MenuLaporan.LaporanActivity;
 import com.p3lb.cafex.MenuTransaksi.TransaksiHistory;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.adapter.CabangAdapter;
@@ -117,7 +118,7 @@ public class ProfileUser extends AppCompatActivity {
         btnhistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileUser.this, TransaksiHistory.class);
+                Intent intent = new Intent(ProfileUser.this, LaporanActivity.class);
                 startActivity(intent);
             }
         });

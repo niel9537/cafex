@@ -15,12 +15,13 @@
         tools:context=".MenuTransaksi.TambahSelectMenu">
         <Button
             android:id="@+id/backselectmenu"
-            android:padding="2dp"
+            android:padding="5dp"
             android:layout_gravity="left"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/background"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:drawableLeft="@drawable/ic_back"
             android:text="Kembali"
             android:textSize="12dp"/>
@@ -191,17 +192,17 @@
 
         <ImageButton
             app:srcCompat="@drawable/addcart"
-            android:backgroundTint="@color/button"
+            android:backgroundTint="@android:color/white"
             android:layout_marginRight="0dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="40dp"
             android:id="@+id/btnSimpan"
             android:layout_gravity="center_vertical|bottom|right|top"
             style="@style/Base.Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_placeholder"
-            android:textColor="@color/background"
+            android:background="@drawable/view"
+            android:textColor="@color/button"
             android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 

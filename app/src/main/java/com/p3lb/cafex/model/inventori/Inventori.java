@@ -7,13 +7,13 @@ public class Inventori {
     private String id_inventori;
     @SerializedName("nama_bahanbaku")
     private String nama_bahanbaku;
-    @SerializedName("tanggal_buat")
-    private String tanggal_buat;
+    @SerializedName("total_bahanbaku")
+    private String total_bahanbaku;
 
-    public Inventori(String id_inventori, String nama_bahanbaku, String tanggal_buat) {
+    public Inventori(String id_inventori, String nama_bahanbaku, String total_bahanbaku) {
         this.id_inventori = id_inventori;
         this.nama_bahanbaku = nama_bahanbaku;
-        this.tanggal_buat = tanggal_buat;
+        this.total_bahanbaku = total_bahanbaku;
     }
 
     public String getId_inventori() {
@@ -32,11 +32,11 @@ public class Inventori {
         this.nama_bahanbaku = nama_bahanbaku;
     }
 
-    public String getTanggal_buat() {
-        return tanggal_buat;
+    public String getTotal_bahanbaku() {
+        return total_bahanbaku;
     }
 
-    public void setTanggal_buat(String tanggal_buat) {
-        this.tanggal_buat = tanggal_buat;
+    public void setTotal_bahanbaku(String total_bahanbaku) {
+        this.total_bahanbaku = total_bahanbaku;
     }
 }

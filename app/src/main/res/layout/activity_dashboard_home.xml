@@ -17,7 +17,7 @@
             android:id="@+id/textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dashboard"
+            android:text="dashboard"
             android:textSize="30sp"
             android:padding="10dp"
             android:textColor="@color/button"

@@ -22,6 +22,7 @@ import com.p3lb.cafex.MenuCabang.TampilCabang;
 import com.p3lb.cafex.MenuDiskon.TambahDiskon;
 import com.p3lb.cafex.MenuDiskon.TampilDiskon;
 import com.p3lb.cafex.MenuInventori.TampilInventori;
+import com.p3lb.cafex.MenuLaporan.LaporanActivity;
 import com.p3lb.cafex.MenuLaporan.LaporanPendapatanBulanan;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
 import com.p3lb.cafex.MenuRefund.TampilRefund;
@@ -65,7 +66,7 @@ public class Dashboard extends AppCompatActivity {
         btnhistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this, LaporanPendapatanBulanan.class);
+                Intent intent = new Intent(Dashboard.this, LaporanActivity.class);
                 startActivity(intent);
             }
         });

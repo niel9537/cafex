@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/background"
-    tools:context=".MenuLaporan.LaporanPendapatanBulanan">
+    tools:context=".MenuLaporan.LaporanPendapatanTahunan">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Button
-            android:id="@+id/backlaporanbulanan"
+            android:id="@+id/backlaporantahunan"
             android:background="@drawable/view"
             android:backgroundTint="@android:color/white"
             android:padding="5dp"
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Laporan Bulanan"
+            android:text="Laporan Tahunan"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:textSize="25dp"
@@ -39,7 +39,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp">
             <TextView
-                android:hint="Tahun dan Bulan"
+                android:hint="Tahun"
                 android:padding="5dp"
                 android:textAlignment="center"
                 android:layout_gravity="center"
@@ -59,7 +59,7 @@
                 android:layout_weight="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bulan"
+                android:text="Tahun"
                 android:gravity="center"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:text="*Tanggal random, Bulan dan Tahun harus tepat "
+            android:text="*Tanggal dan Bulan random, Tahun harus tepat "
             android:textColor="@android:color/black"
             android:textSize="10dp"
             android:gravity="left"/>
@@ -289,41 +289,19 @@
             android:orientation="horizontal"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp">
-            <Spinner
-                android:layout_marginHorizontal="10dp"
+            <TextView
+                android:layout_marginHorizontal="30dp"
                 android:id="@+id/spinnerLaporanBulanan"
-                android:textSize="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/button"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="List Pendapatan Bulanan"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"/>
-            <Button
-                android:id="@+id/tampilBulanan"
-                android:backgroundTint="@android:color/white"
-                android:background="@drawable/bg_placeholder"
-                android:layout_weight="3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TAMPIL"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:textSize="15dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginVertical="5dp"
-            android:paddingVertical="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/dekskripsilaporan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="*Deskripsi"
-                android:layout_marginHorizontal="20dp"
-                android:paddingVertical="2dp"/>
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

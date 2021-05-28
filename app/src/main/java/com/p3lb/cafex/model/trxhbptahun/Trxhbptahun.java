@@ -1,17 +1,17 @@
-package com.p3lb.cafex.model.trxhbpbulan;
+package com.p3lb.cafex.model.trxhbptahun;
 
 import androidx.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Trxhbpbulan {
+public class Trxhbptahun {
     @SerializedName("total_transaksi")
     private String total_transaksi;
     @SerializedName("total_biayaproduk")
     @Nullable
     private String total_biayaproduk;
 
-    public Trxhbpbulan(String total_transaksi, @Nullable String total_biayaproduk) {
+    public Trxhbptahun(String total_transaksi, @Nullable String total_biayaproduk) {
         this.total_transaksi = total_transaksi;
         this.total_biayaproduk = total_biayaproduk;
     }

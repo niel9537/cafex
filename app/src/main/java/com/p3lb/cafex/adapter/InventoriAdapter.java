@@ -35,7 +35,7 @@ public class InventoriAdapter extends RecyclerView.Adapter<InventoriAdapter.MyVi
     public void onBindViewHolder (InventoriAdapter.MyViewHolder holder, final int position){
         holder.idinventori.setText("ID "+inventoriList.get(position).getId_inventori());
         holder.namabahanbaku.setText(inventoriList.get(position).getNama_bahanbaku());
-        holder.tanggalbuat.setText(inventoriList.get(position).getTanggal_buat());
+        holder.totalbahanbaku.setText(inventoriList.get(position).getTotal_bahanbaku()+" Kg");
         //idkuu = cabangList.get(position).getId_diskon();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class InventoriAdapter extends RecyclerView.Adapter<InventoriAdapter.MyVi
                 Intent mIntent = new Intent(view.getContext(), TampilDetailInventori.class);
                 mIntent.putExtra("id_inventori", inventoriList.get(position).getId_inventori());
                 mIntent.putExtra("nama_bahanbaku", inventoriList.get(position).getNama_bahanbaku());
-                mIntent.putExtra("tanggal_buat", inventoriList.get(position).getTanggal_buat());
+                mIntent.putExtra("total_bahanbaku", inventoriList.get(position).getTotal_bahanbaku());
                 view.getContext().startActivity(mIntent);
             }
         });
@@ -60,12 +60,12 @@ public class InventoriAdapter extends RecyclerView.Adapter<InventoriAdapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView idinventori, namabahanbaku, tanggalbuat;
+        public TextView idinventori, namabahanbaku, totalbahanbaku;
         public MyViewHolder(View itemView) {
             super(itemView);
             idinventori = (TextView) itemView.findViewById(R.id.idinventori);
             namabahanbaku = (TextView) itemView.findViewById(R.id.namabahanbaku);
-            tanggalbuat = (TextView) itemView.findViewById(R.id.tanggalbuat);
+            totalbahanbaku = (TextView) itemView.findViewById(R.id.totalbahanbaku);
         }
     }
 }

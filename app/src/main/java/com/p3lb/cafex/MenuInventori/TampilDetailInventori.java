@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class TampilDetailInventori extends AppCompatActivity {
     EditText bahanbaku;
-    Button btnbahanbakumasuk, btnbahanbakukeluar, backdetailbahanbaku;
+    Button btnbahanbakumasuk, btnbahanbakukeluar, backdetailbahanbaku, deleteinventori;
     ApiInterface mApiInterface;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -60,6 +60,7 @@ public class TampilDetailInventori extends AppCompatActivity {
         btnbahanbakumasuk = (Button) findViewById(R.id.btnbahanbakumasuk);
         btnbahanbakukeluar = (Button) findViewById(R.id.btnbahanbakukeluar);
         backdetailbahanbaku = (Button) findViewById(R.id.backdetailbahanbaku);
+        deleteinventori = (Button) findViewById(R.id.deleteinventori);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -69,6 +70,12 @@ public class TampilDetailInventori extends AppCompatActivity {
         namabahanbaku = mIntent.getStringExtra("nama_bahanbaku");
         qa=this;
         refresh();
+        deleteinventori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteinventori();
+            }
+        });
         backdetailbahanbaku.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +129,33 @@ public class TampilDetailInventori extends AppCompatActivity {
             public void onFailure(Call<PostBahanbaku> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
                 Toasty.error(TampilDetailInventori.this, "Gagal memuat bahanbaku  " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void deleteinventori() {
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Log.d("Id", ""+idinventori);
+        Call<PostInventori> deleteinventori = mApiInterface.deleteinventori(idcabang,idinventori);
+        deleteinventori.enqueue(new Callback<PostInventori>() {
+            @Override
+            public void onResponse(Call<PostInventori> call, Response<PostInventori>
+                    response) {
+                if (response.isSuccessful()) {
+                    Toasty.success(TampilDetailInventori.this, "Sukses hapus bahanbaku  ", Toast.LENGTH_SHORT).show();
+                    Intent Intent = new Intent(TampilDetailInventori.this, TampilInventori.class);
+                    startActivity(Intent);
+                }else{
+                    Toasty.success(TampilDetailInventori.this, "Gagal hapus bahanbaku  ", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<PostInventori> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(TampilDetailInventori.this, "Gagal hapus bahanbaku  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
