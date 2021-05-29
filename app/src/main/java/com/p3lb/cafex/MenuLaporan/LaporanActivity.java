@@ -24,7 +24,13 @@ public class LaporanActivity extends AppCompatActivity {
         laporantahunan = (Button) findViewById(R.id.laporantahunan);
         laporanbulanan = (Button) findViewById(R.id.laporanbulanan);
         btndashboard = (Button) findViewById(R.id.btndashboard);
-
+        riwayattransaksi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LaporanActivity.this, HistoryTransaksi.class);
+                startActivity(intent);
+            }
+        });
         btnprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -14,9 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.p3lb.cafex.Config;
+import com.p3lb.cafex.ListCabangActivity;
 import com.p3lb.cafex.MenuProduk.TampilDataProduk;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.auth.LoginRegisterUsers;
+import com.p3lb.cafex.model.listcabang.ListCabang;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
@@ -27,7 +29,7 @@ import retrofit2.Response;
 
 public class LoginAdmin extends AppCompatActivity {
     EditText username_login, password_login, cabang_login, jabatan_login;
-    TextView klikRegisterKasir, klikUser, lupapassword;
+    TextView klikRegisterKasir, klikUser, lupapassword, listcabang;
     Button btnLogin;
     SharedPreferences sharedPreferences;
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
@@ -49,6 +51,14 @@ public class LoginAdmin extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         klikUser = (TextView) findViewById(R.id.klikUser);
         lupapassword = (TextView) findViewById(R.id.lupapassword);
+        listcabang = (TextView) findViewById(R.id.listcabang);
+        listcabang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginAdmin.this, ListCabangActivity.class);
+                startActivity(intent);
+            }
+        });
         lupapassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

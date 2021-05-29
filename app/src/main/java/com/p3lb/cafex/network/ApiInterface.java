@@ -3,6 +3,9 @@ package com.p3lb.cafex.network;
 import com.p3lb.cafex.model.Struk.PostStruk;
 import com.p3lb.cafex.model.bahanbaku.PostBahanbaku;
 import com.p3lb.cafex.model.inventori.PostInventori;
+import com.p3lb.cafex.model.listcabang.GetCabang;
+import com.p3lb.cafex.model.trxbulanan.Getnormalbulan;
+import com.p3lb.cafex.model.trxbulanan.History;
 import com.p3lb.cafex.model.trxbulanan.Postnormalbulan;
 import com.p3lb.cafex.model.trxdiskonbulan.Posttrxdiskonbulan;
 import com.p3lb.cafex.model.trxdiskonbulanan.Postdiskonlbulan;
@@ -14,6 +17,7 @@ import com.p3lb.cafex.model.trxnormaltahun.Posttrxnormaltahun;
 import com.p3lb.cafex.model.trxrefundbulan.Posttrxrefundbulan;
 import com.p3lb.cafex.model.trxrefundbulanan.Postrefundbulan;
 import com.p3lb.cafex.model.trxrefundtahun.Posttrxrefundtahun;
+import com.p3lb.cafex.model.trxtahunan.Gettrxtahunan;
 import com.p3lb.cafex.model.user.PostUser;
 import com.p3lb.cafex.model.auth.ConfirmDeleteUsers;
 import com.p3lb.cafex.model.auth.GetUsers;
@@ -224,6 +228,10 @@ public interface ApiInterface {
     Call<PostTransaksi> updatecart(@Field("id_cabang") String id_cabang,
                                       @Field("nama_pembeli") String nama_pembeli,
                                       @Field("nama_user") String nama_user);
+
+    @POST("transaksi/historitransaksi")
+    @FormUrlEncoded
+    Call<Getnormalbulan> historitransaksi(@Field("id_cabang") String id_cabang);
     //===========================Diskon==================================//
     @POST("diskon/getdiskonpersen")
     @FormUrlEncoded
@@ -260,6 +268,10 @@ public interface ApiInterface {
     Call<Diskon> deletediskon(@Field("id_diskon") String id_diskon);
 
     //==========================Cabang======================================//
+    @POST("cabang/listcabang")
+    @FormUrlEncoded
+    Call<GetCabang> listcabang(@Field("status") String status);
+
     @POST("cabang/addcabang")
     @FormUrlEncoded
     Call<Cabang> addcabang(@Field("nama_cabang") String nama_cabang,
@@ -383,5 +395,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Posttrxhbptahun> gettransaksihbptahun(@Field("id_cabang") String id_cabang,
                                                @Field("tanggal") String tanggal);
+
+    @POST("laporan/gettransaksiperbulan")
+    @FormUrlEncoded
+    Call<Gettrxtahunan> gettransaksiperbulan(@Field("id_cabang") String id_cabang,
+                                             @Field("tanggal") String tanggal);
 
 }

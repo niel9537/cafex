@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.p3lb.cafex.R;
+import com.p3lb.cafex.adapter.NettAdapter;
 import com.p3lb.cafex.adapter.TranksaksiAdapter;
 import com.p3lb.cafex.adapter.TranksaksiDiskonAdapter;
 import com.p3lb.cafex.adapter.TranksaksiRefundAdapter;
@@ -46,6 +47,9 @@ import com.p3lb.cafex.model.trxrefundbulanan.Postrefundbulan;
 import com.p3lb.cafex.model.trxrefundbulanan.Refundbulan;
 import com.p3lb.cafex.model.trxrefundtahun.Posttrxrefundtahun;
 import com.p3lb.cafex.model.trxrefundtahun.Trxrefundtahun;
+import com.p3lb.cafex.model.trxtahunan.Gettrxtahunan;
+import com.p3lb.cafex.model.trxtahunan.Report;
+import com.p3lb.cafex.model.trxtahunan.Result;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
@@ -69,13 +73,13 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
     String idcabang = "";
     Calendar c;
     DatePickerDialog dpd;
-    String totaltrx = "";
-    String jumlahtrx = "";
-    String totaldiskon = "";
-    String jumlahdiskon = "";
-    String totalrefund = "";
-    String jumlahrefund = "";
-    String totalhbp = "";
+    String totaltrx = "0";
+    String jumlahtrx = "0";
+    String totaldiskon = "0";
+    String jumlahdiskon = "0";
+    String totalrefund = "0";
+    String jumlahrefund = "0";
+    String totalhbp = "0";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,6 +128,7 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                         gettransaksidiskon();
                         gettransaksirefund();
                         gethbptahun();
+                        tampilnettbulanan();
 
                     }
                 }, day, month, year);
@@ -221,8 +226,10 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                             hbp = Integer.parseInt(totalhbp);
                         }
                         totalHBP.setText("Rp " + totalhbp);
-                        int total = Integer.parseInt(totaltrx);
-                        int net = total - hbp;
+                        int total = 0;
+                        String s = (totalTransaksi.getText().toString().substring(3));
+                        total = Integer.parseInt(s);
+                        int net = total-hbp;
                         totalNett.setText("Rp " + net);
                         Log.d("totaltrx", "total " + total);
                     }catch (NullPointerException e){
@@ -245,16 +252,18 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
         });
     }
 
-    public void tampiltrxnormal() {
+
+    public void tampilnettbulanan() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        Call<Postnormalbulan> call = mApiInterface.gettrxbulanan(idcabang, txtTanggal.getText().toString());
-        call.enqueue(new Callback<Postnormalbulan>() {
+        Call<Gettrxtahunan> call = mApiInterface.gettransaksiperbulan(idcabang, txtTanggal.getText().toString());
+        call.enqueue(new Callback<Gettrxtahunan>() {
             @Override
-            public void onResponse(Call<Postnormalbulan> call, Response<Postnormalbulan>
+            public void onResponse(Call<Gettrxtahunan> call, Response<Gettrxtahunan>
                     response) {
                 if(response.isSuccessful()){
-                    List<Normalbulan> normalbulanList = response.body().getNormalbulanList();
-                    mAdapter = new TranksaksiAdapter(normalbulanList);
+                    List<Result> results = response.body().getResultList();
+                    List<Report> reports = response.body().getReportList();
+                    mAdapter = new NettAdapter(results,reports);
                     mRecyclerView.setAdapter(mAdapter);
                 }else{
                     Toasty.error(LaporanPendapatanTahunan.this, "Gagal  ", Toast.LENGTH_SHORT).show();
@@ -263,55 +272,7 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Postnormalbulan> call, Throwable t) {
-                Log.e("Retrofit Get", t.toString());
-                Toasty.error(LaporanPendapatanTahunan.this, "Gagal  " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void tampiltrxdiskon() {
-        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        Call<Postdiskonlbulan> call = mApiInterface.gettrxdiskonbulanan(idcabang, txtTanggal.getText().toString());
-        call.enqueue(new Callback<Postdiskonlbulan>() {
-            @Override
-            public void onResponse(Call<Postdiskonlbulan> call, Response<Postdiskonlbulan>
-                    response) {
-                if(response.isSuccessful()){
-                    List<Diskonbulan> diskonbulans = response.body().getDiskonbulanList();
-                    mAdapter = new TranksaksiDiskonAdapter(diskonbulans);
-                    mRecyclerView.setAdapter(mAdapter);
-                }else{
-                    Toasty.error(LaporanPendapatanTahunan.this, "Gagal  ", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<Postdiskonlbulan> call, Throwable t) {
-                Log.e("Retrofit Get", t.toString());
-                Toasty.error(LaporanPendapatanTahunan.this, "Gagal  " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void tampiltrxrefund() {
-        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        Call<Postrefundbulan> call = mApiInterface.gettrxrefundbulanan(idcabang, txtTanggal.getText().toString());
-        call.enqueue(new Callback<Postrefundbulan>() {
-            @Override
-            public void onResponse(Call<Postrefundbulan> call, Response<Postrefundbulan>
-                    response) {
-                if(response.isSuccessful()){
-                    List<Refundbulan> refundbulans = response.body().getRefundbulanList();
-                    mAdapter = new TranksaksiRefundAdapter(refundbulans);
-                    mRecyclerView.setAdapter(mAdapter);
-                }else{
-                    Toasty.error(LaporanPendapatanTahunan.this, "Gagal  ", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<Postrefundbulan> call, Throwable t) {
+            public void onFailure(Call<Gettrxtahunan> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
                 Toasty.error(LaporanPendapatanTahunan.this, "Gagal  " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }

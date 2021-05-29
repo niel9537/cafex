@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MenuLaporan.LaporanPendapatanBulanan">
+    tools:context=".MenuLaporan.LaporanPendapatanTahunan">
 
     <androidx.cardview.widget.CardView
-        android:padding="5dp"
+        android:padding="2dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,8 +19,9 @@
         app:cardCornerRadius="10dp"
         app:cardBackgroundColor="@android:color/white">
         <LinearLayout
-            android:layout_margin="10dp"
-            android:padding="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_margin="2dp"
+            android:padding="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -37,9 +38,19 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/idtransaksi"
+                        android:id="@+id/bulan"
                         android:gravity="center"
-                        android:hint="ID Trx "
+                        android:hint="12"
+                        android:layout_weight="4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="12dp" />
+                    <TextView
+                        android:gravity="center"
+                        android:text="nett"
                         android:layout_weight="3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -48,20 +59,9 @@
                         android:textColor="@android:color/black"
                         android:textSize="12dp" />
                     <TextView
-                        android:id="@+id/namapembeli"
+                        android:id="@+id/nett"
                         android:gravity="center"
-                        android:hint="Nama"
-                        android:layout_weight="3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black"
-                        android:textSize="12dp" />
-                    <TextView
-                        android:id="@+id/totalbayar"
-                        android:gravity="center"
-                        android:layout_weight="3"
+                        android:layout_weight="2"
                         android:textStyle="bold"
                         android:hint="Total bayar"
                         android:layout_width="match_parent"

@@ -83,7 +83,11 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuLaporan.LaporanPendapatanTahunan"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuLaporan.HistoryTransaksi"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuLaporan.LaporanActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ListCabangActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">

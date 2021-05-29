@@ -217,6 +217,12 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                 List<Trxrefundbulan> trxrefundbulanList = response.body().getTrxrefundbulanList();
                 totalrefund = trxrefundbulanList.get(0).getTotal_refund();
                 jumlahrefund = trxrefundbulanList.get(0).getJumlah_transaksirefund();
+                if(totalrefund == null){
+                    totalrefund = "0";
+                }
+                if(jumlahrefund == null){
+                    jumlahrefund = "0";
+                }
                 totalRefund.setText("Rp "+totalrefund);
                 jumlahRefund.setText(jumlahrefund);
             }

@@ -63,10 +63,10 @@
 
     <TextView
         android:id="@+id/klikRegisterKasir"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_semibold"
-        android:gravity="center"
+        android:gravity="left"
         android:paddingBottom="20dp"
         android:text="belum punya akun? klik disini"
         android:textColor="@color/button"
@@ -74,6 +74,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnLogin"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin" />
+
+
+    <TextView
+        android:id="@+id/listcabang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round"
+        android:backgroundTint="@android:color/white"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="right"
+        android:padding="2dp"
+        android:text=" list cbg "
+        android:textColor="@color/button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/btnLogin" />
 
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MenuLaporan.LaporanPendapatanBulanan">
+    tools:context=".MenuLaporan.HistoryTransaksi">
 
     <androidx.cardview.widget.CardView
         android:padding="5dp"
