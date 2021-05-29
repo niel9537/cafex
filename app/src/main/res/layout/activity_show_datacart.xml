@@ -15,12 +15,13 @@
         tools:context=".MenuTransaksi.TampilCheckoutMenu">
         <Button
             android:id="@+id/backcart"
-            android:padding="2dp"
+            android:padding="5dp"
             android:layout_gravity="left"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/background"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:drawableLeft="@drawable/ic_back"
             android:text="Kembali"
             android:textSize="12dp"/>
@@ -117,9 +118,9 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="CARI"
-                    android:background="@drawable/bg_placeholder"
-                    android:backgroundTint="@color/button"
-                    android:textColor="@color/background"
+                    android:background="@drawable/view"
+                    android:backgroundTint="@android:color/white"
+                    android:textColor="@color/button"
                     android:textSize="15dp"
                     android:padding="10dp"
                     android:textStyle="bold"
@@ -176,10 +177,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_placeholder"
-            android:backgroundTint="@color/button"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:text="Bayar"
-            android:textColor="@color/background"/>
+            android:textColor="@color/button"/>
 
 
     </LinearLayout>

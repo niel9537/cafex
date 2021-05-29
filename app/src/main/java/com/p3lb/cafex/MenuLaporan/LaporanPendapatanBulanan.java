@@ -253,7 +253,11 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                             hbp = Integer.parseInt(totalhbp);
                         }
                         totalHBP.setText("Rp " + totalhbp);
-                        int total = Integer.parseInt(totaltrx);
+
+                        String s = (totalTransaksi.getText().toString().substring(3));
+
+                        int total = Integer.parseInt(s);
+                        //int total = Integer.parseInt(totaltrx);
                         int net = total - hbp;
                         totalNett.setText("Rp " + net);
                         Log.d("totaltrx", "total " + total);

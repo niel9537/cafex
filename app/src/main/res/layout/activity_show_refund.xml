@@ -15,12 +15,13 @@
         tools:context=".MenuRefund.TampilRefund">
         <Button
             android:id="@+id/backrefund"
-            android:padding="2dp"
+            android:padding="5dp"
             android:layout_gravity="left"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/background"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:drawableLeft="@drawable/ic_back"
             android:text="Kembali"
             android:textSize="12dp"/>
@@ -170,10 +171,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_placeholder"
-            android:backgroundTint="@color/button"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:text="REFUND"
-            android:textColor="@color/background"/>
+            android:textColor="@color/button"/>
 
     </LinearLayout>
 </ScrollView>

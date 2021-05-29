@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="Produk"
                     android:textColor="@color/button"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:text="Kasir"
                     android:textColor="@color/button"
-                    android:textSize="16sp"/>
+                    android:textSize="20sp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:text="User"
                     android:textColor="@color/button"
-                    android:textSize="16sp"/>
+                    android:textSize="20sp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
