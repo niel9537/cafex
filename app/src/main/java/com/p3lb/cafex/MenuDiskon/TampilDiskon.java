@@ -40,8 +40,7 @@ public class TampilDiskon extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText edtsearchdiskon;
     ImageButton btnsearchdiskon;
-    Button backlistdiskon;
-    private FloatingActionButton fltTambahDiskon;
+    Button backlistdiskon, btnTambahDiskon;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -60,7 +59,7 @@ public class TampilDiskon extends AppCompatActivity {
         setContentView(R.layout.activity_show_datadiskon);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_diskon);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
-        fltTambahDiskon = (FloatingActionButton) findViewById(R.id.btnTambahDiskon);
+        btnTambahDiskon = (Button) findViewById(R.id.btnTambahDiskon);
         edtsearchdiskon = (EditText) findViewById(R.id.edtsearchdiskon);
         btnsearchdiskon = (ImageButton) findViewById(R.id.btnsearchdiskon);
         backlistdiskon = (Button) findViewById(R.id.backlistdiskon);
@@ -84,7 +83,7 @@ public class TampilDiskon extends AppCompatActivity {
                 searchdiskon();
             }
         });
-        fltTambahDiskon.setOnClickListener(new View.OnClickListener() {
+        btnTambahDiskon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TampilDiskon.this, TambahDiskon.class);

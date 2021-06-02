@@ -40,8 +40,7 @@ public class TampilCabang extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText edtsearchcabang;
     ImageButton btnsearchcabang;
-    Button backlistcabang;
-    private FloatingActionButton fltTambahCabang;
+    Button backlistcabang, btnTambahCabang;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -62,7 +61,7 @@ public class TampilCabang extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         edtsearchcabang = (EditText) findViewById(R.id.edtsearchcabang);
         btnsearchcabang = (ImageButton) findViewById(R.id.btnsearchcabang);
-        fltTambahCabang = (FloatingActionButton) findViewById(R.id.btnTambahCabang);
+        btnTambahCabang = (Button) findViewById(R.id.btnTambahCabang);
         backlistcabang = (Button) findViewById(R.id.backlistcabang);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
@@ -83,7 +82,7 @@ public class TampilCabang extends AppCompatActivity {
                 searchcabang();
             }
         });
-        fltTambahCabang.setOnClickListener(new View.OnClickListener() {
+        btnTambahCabang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TampilCabang.this, TambahCabang.class);

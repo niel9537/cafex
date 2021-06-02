@@ -122,7 +122,6 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                 int day = c.get(Calendar.DAY_OF_MONTH);
                 int month = c.get(Calendar.MONTH);
                 int year = c.get(Calendar.YEAR);
-
                 dpd = new DatePickerDialog(LaporanPendapatanBulanan.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int myear, int mmonth, int mday) {
@@ -137,6 +136,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                 }, day, month, year);
 
                 dpd.show();
+
             }
         });
         tampilBulanan.setOnClickListener(new View.OnClickListener() {

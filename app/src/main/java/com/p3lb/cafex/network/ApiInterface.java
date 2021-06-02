@@ -233,6 +233,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Getnormalbulan> historitransaksi(@Field("id_cabang") String id_cabang);
     //===========================Diskon==================================//
+    @POST("diskon/listdiskon")
+    @FormUrlEncoded
+    Call<PostDiskon> listdiskon(@Field("status") String status);
+
     @POST("diskon/getdiskonpersen")
     @FormUrlEncoded
     Call<Diskon> getdiskonpersen(@Field("nama_diskon") String nama_diskon);

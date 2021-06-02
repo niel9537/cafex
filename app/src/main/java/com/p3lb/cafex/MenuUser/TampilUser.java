@@ -38,11 +38,10 @@ public class TampilUser extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText edtsearchuser;
     ImageButton btnsearchuser;
-    Button backlistuser;
+    Button backlistuser, btnTampilUserRegister;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private FloatingActionButton fltTambahUserRegister;
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
@@ -57,7 +56,7 @@ public class TampilUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_datauser);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_user);
-        fltTambahUserRegister = (FloatingActionButton) findViewById(R.id.btnTampilUserRegister);
+        btnTampilUserRegister = (Button) findViewById(R.id.btnTampilUserRegister);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         edtsearchuser = (EditText) findViewById(R.id.edtsearchuser);
         btnsearchuser = (ImageButton) findViewById(R.id.btnsearchuser);
@@ -81,7 +80,7 @@ public class TampilUser extends AppCompatActivity {
                 searchuser();
             }
         });
-        fltTambahUserRegister.setOnClickListener(new View.OnClickListener() {
+        btnTampilUserRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TampilUser.this, TampilRegistrasi.class);

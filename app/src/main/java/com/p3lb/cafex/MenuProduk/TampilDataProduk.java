@@ -36,13 +36,12 @@ import retrofit2.Response;
 public class TampilDataProduk extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText searchproduk;
-    Button backlistmenu;
+    Button backlistmenu, btnTambahProduk;
     ImageButton btnsearchproduk;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     public static TampilDataProduk ma;
-    private FloatingActionButton fltTambahProduk;
     List<Products> productsList;
 
 
@@ -50,7 +49,7 @@ public class TampilDataProduk extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_dataproduk);
-        fltTambahProduk = findViewById(R.id.btnTambahProduk);
+        btnTambahProduk = findViewById(R.id.btnTambahProduk);
         searchproduk = (EditText) findViewById(R.id.edtsearchproduk);
         btnsearchproduk = (ImageButton) findViewById(R.id.btnsearchproduk);
         backlistmenu = (Button) findViewById(R.id.backlistmenu);
@@ -74,7 +73,7 @@ public class TampilDataProduk extends AppCompatActivity {
                 searchproduk();
             }
         });
-        fltTambahProduk.setOnClickListener(new View.OnClickListener() {
+        btnTambahProduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TampilDataProduk.this, TambahDataProduk.class);

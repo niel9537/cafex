@@ -73,6 +73,7 @@ import retrofit2.Response;
 
 public class TampilCheckoutMenu extends AppCompatActivity{
     TextView totalBayar, grandTotal, Pesanan;
+    Spinner spinnerDiskon;
     EditText namaPembeli, diskon;
     Button btnBayar, btnDiskon, backcart;
     ApiInterface mApiInterface;
@@ -102,7 +103,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
     private int totalbyr = 0;
     private int bayarwithdiskon = 0;
     public static TampilCheckoutMenu mi;
-
+    List<Diskon> diskonkuList;
     List<Cart> cartList ;
 
 
@@ -116,10 +117,11 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         Pesanan = (TextView) findViewById(R.id.pesanan);
         namaPembeli = (EditText) findViewById(R.id.namaPembeli);
         btnBayar = (Button) findViewById(R.id.btnBayar);
-        diskon = (EditText) findViewById(R.id.diskon);
+        //diskon = (EditText) findViewById(R.id.diskon);
         btnDiskon = (Button) findViewById(R.id.btnDiskon);
         backcart = (Button) findViewById(R.id.backcart);
         grandTotal = (TextView) findViewById(R.id.grandTotal);
+        spinnerDiskon = (Spinner) findViewById(R.id.spinnerDiskon);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         username = sharedPreferences.getString(KEY_USERNAME,null);
@@ -131,6 +133,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         mi=this;
         refresh();
+        listdiskon();
         backcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,23 +144,24 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(totalBayar.getText().toString().equals("Rp 0")){
-                    Toasty.error(TampilCheckoutMenu.this, "Keranjang masih kosong", Toast.LENGTH_LONG).show();
+                if(totalBayar.getText().toString().equals("Rp 0") || totalBayar.getText().toString().equals("0")){
+                    Toasty.normal(TampilCheckoutMenu.this, "Keranjang masih kosong", Toast.LENGTH_LONG).show();
                     return;
                 }else{
-                    if (namaPembeli.getText().toString().isEmpty()) {
-                        Toasty.error(TampilCheckoutMenu.this, "Masukkan nama pembeli", Toast.LENGTH_SHORT).show();
-                        return;
-                    }else{
+//                    if (namaPembeli.getText().toString().isEmpty()) {
+//                        Toasty.error(TampilCheckoutMenu.this, "Masukkan nama pembeli", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }else{
                         //Toasty.normal(TampilCheckoutMenu.this, "Sukses", Toast.LENGTH_SHORT).show();
 //                        if(diskon.getText().toString().isEmpty()){
-                        if(diskon.getText().toString().isEmpty() || grandTotal.getText().toString().equals("0")){
+//                        if(diskon.getText().toString().isEmpty() || grandTotal.getText().toString().equals("0")){
+                        if(grandTotal.getText().toString().equals("0")){
                             bayar();
                         }else{
                             diskonbayar();
                         }
 
-                    }
+                    //}
                 }
 
             }
@@ -166,7 +170,12 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         btnDiskon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getdiskonpersen();
+                if(totalBayar.getText().toString().equals("0")){
+                    Toasty.normal(TampilCheckoutMenu.this, "Keranjang masih kosong", Toast.LENGTH_SHORT).show();
+                }else{
+                    getdiskonpersen();
+                }
+
             }
         });
 
@@ -204,7 +213,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
 
     public void getdiskonpersen(){
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
-        Call<Diskon> call = mApiInterface.getdiskonpersen(diskon.getText().toString());
+        Call<Diskon> call = mApiInterface.getdiskonpersen(spinnerDiskon.getSelectedItem().toString());
         call.enqueue(new Callback<Diskon>() {
             @Override
             public void onResponse(Call<Diskon> call, Response<Diskon> response) {
@@ -272,6 +281,44 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         });
     }
 
+    public void listdiskon() {
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<PostDiskon> call = mApiInterface.listdiskon("1");
+        call.enqueue(new Callback<PostDiskon>() {
+            @Override
+            public void onResponse(Call<PostDiskon> call, Response<PostDiskon>
+                    response) {
+                    //Storing data di list
+                    diskonkuList = response.body().getDiskonList();
+                    //Panggil method list
+                    showListinSpinner();
+            }
+
+            @Override
+            public void onFailure(Call<PostDiskon> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(TampilCheckoutMenu.this, "Gagal memuat diskon  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void showListinSpinner(){
+        //String array to store all the book names
+        String[] items = new String[diskonkuList.size()];
+
+        //Traversing through the whole list to get all the names
+        for(int i=0; i<diskonkuList.size(); i++){
+            //Storing names to string array
+            items[i] = diskonkuList.get(i).getNama_diskon();
+        }
+        //Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        //setting adapter to spinner
+        spinnerDiskon.setAdapter(adapter);
+        //Creating an array adapter for list view
+    }
+
     public void refresh() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostPutDelCart> call = mApiInterface.getCart(idcabang);
@@ -310,12 +357,20 @@ public class TampilCheckoutMenu extends AppCompatActivity{
 
     void bayar(){
         String bayartotal = String.valueOf(totalbyr);
-        Call<PostTransaksi> postTransaksiCall = mApiInterface.addTransaksi(
-                idcabang,
-                namaPembeli.getText().toString(),
-                username,
-                bayartotal);
-
+        Call<PostTransaksi> postTransaksiCall;
+        if(namaPembeli.getText().toString().isEmpty()){
+            postTransaksiCall = mApiInterface.addTransaksi(
+                    idcabang,
+                    "-",
+                    username,
+                    bayartotal);
+        }else {
+            postTransaksiCall = mApiInterface.addTransaksi(
+                    idcabang,
+                    namaPembeli.getText().toString(),
+                    username,
+                    bayartotal);
+        }
         postTransaksiCall.enqueue(new Callback<PostTransaksi>() {
             @Override
             public void onResponse(Call<PostTransaksi> call, Response<PostTransaksi> response) {
@@ -330,7 +385,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -338,19 +393,29 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             @Override
             public void onFailure(Call<PostTransaksi> call, Throwable t) {
                 Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     void diskonbayar(){
         String bayarttl = sharedPreferences.getString(KEY_TOTALBAYAR,null);
-        Call<PostTransaksi> postTransaksiCall = mApiInterface.addTransaksiDiskon(
-                idcabang,
-                iddiskon,
-                namaPembeli.getText().toString(),
-                username,
-                bayarttl);
+        Call<PostTransaksi> postTransaksiCall;
+        if(namaPembeli.getText().toString().isEmpty()){
+            postTransaksiCall = mApiInterface.addTransaksiDiskon(
+                    idcabang,
+                    iddiskon,
+                    "-",
+                    username,
+                    bayarttl);
+        }else {
+            postTransaksiCall = mApiInterface.addTransaksiDiskon(
+                    idcabang,
+                    iddiskon,
+                    namaPembeli.getText().toString(),
+                    username,
+                    bayarttl);
+        }
 
         postTransaksiCall.enqueue(new Callback<PostTransaksi>() {
             @Override
@@ -366,7 +431,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Transaksi gagal di proses", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -374,16 +439,24 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             @Override
             public void onFailure(Call<PostTransaksi> call, Throwable t) {
                 Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     void updatecart(){
-        Call<PostTransaksi> postTransaksiCall = mApiInterface.updatecart(
-                idcabang,
-                namaPembeli.getText().toString(),
-                username);
+        Call<PostTransaksi> postTransaksiCall;
+        if(namaPembeli.getText().toString().isEmpty()){
+            postTransaksiCall = mApiInterface.updatecart(
+                    idcabang,
+                    "-",
+                    username);
+        }else{
+            postTransaksiCall = mApiInterface.updatecart(
+                    idcabang,
+                    namaPembeli.getText().toString(),
+                    username);
+        }
         postTransaksiCall.enqueue(new Callback<PostTransaksi>() {
             @Override
             public void onResponse(Call<PostTransaksi> call, Response<PostTransaksi> response) {
@@ -394,7 +467,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "Update gagal", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Update gagal", Toast.LENGTH_SHORT).show();
                 }
             }
 

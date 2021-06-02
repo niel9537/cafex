@@ -45,6 +45,30 @@
             android:text="Kembali"
             android:textSize="12dp" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnTambahCabang"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:drawableRight="@drawable/ic_addproduk"
+            android:padding="5dp"
+            android:text="Tambah "
+            android:textSize="12dp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -111,46 +135,7 @@
         </LinearLayout>
 
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/menuFltBtn"
-        android:layout_width="175dp"
-        android:layout_height="239dp"
-        app:fab_addButtonPlusIconColor="@color/button"
-        app:fab_addButtonColorNormal="@color/background"
-        app:fab_expandDirection="up"
-        app:fab_labelStyle="@style/LabelStyle"
-        app:fab_labelsPosition="left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.856"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.698">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnTambahCabang"
-            android:layout_width="wrap_content"
-            app:fab_colorPressed="@color/cardview_shadow_start_color"
-            android:layout_height="wrap_content"
-            app:fabSize="mini"
-            android:background="@color/background"
-            app:fab_colorNormal="@color/background"
-            app:fab_icon="@drawable/ic_addproduk"
-            app:fab_title="Tambah Cabang"
-            />
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="LogOut"
-        android:textColor="@color/background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

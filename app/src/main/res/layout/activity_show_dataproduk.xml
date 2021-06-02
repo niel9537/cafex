@@ -74,33 +74,6 @@
 
         </LinearLayout>
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/menuFltBtn"
-        android:layout_width="102dp"
-        android:layout_height="725dp"
-        android:layout_marginBottom="120dp"
-        app:fab_addButtonPlusIconColor="@color/button"
-        app:fab_addButtonColorNormal="@color/background"
-        app:fab_expandDirection="up"
-        app:fab_labelStyle="@style/LabelStyle"
-        app:fab_labelsPosition="left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.856"
-        app:layout_constraintStart_toStartOf="@+id/textView">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnTambahProduk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/background"
-            app:fabSize="mini"
-            app:fab_colorNormal="@color/button"
-            app:fab_icon="@drawable/fooddrink24dp"
-            app:fab_title="Tambah Produk" />
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -123,8 +96,32 @@
             android:padding="5dp"
             android:text="Kembali"
             android:textSize="12dp" />
-    </LinearLayout>
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnTambahProduk"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:drawableRight="@drawable/ic_addproduk"
+            android:padding="5dp"
+            android:text="Tambah"
+            android:textSize="12dp" />
+
+    </LinearLayout>
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -138,16 +135,6 @@
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:textColor="@color/background"
-        android:text="LogOut"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
