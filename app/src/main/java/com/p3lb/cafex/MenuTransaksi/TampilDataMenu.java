@@ -46,7 +46,7 @@ import retrofit2.Response;
 public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
     ApiInterface mApiInterface;
     EditText searchmenu;
-    Button backlistproduk;
+    Button backlistmenu;
     ImageButton btnsearhcmenu;
     MenusAdapter menusAdapter;
     private RecyclerView mRecyclerView;
@@ -58,7 +58,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
     private static final String KEY_TRX = "trx";
-    private static final String KEY_JABATAN = "trx";
+    private static final String KEY_JABATAN = "jabatan";
     private static final String KEY_TOTALBAYAR = "totalbayardiskon";
     private static final String KEY_BAYAR = "totalbayar";
     private static final String KEY_PESANAN = "pesanan";
@@ -96,7 +96,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
         placeholderUsername = (TextView) findViewById(R.id.placeholderUsername);
         searchmenu = (EditText) findViewById(R.id.edtsearchmenu);
         btnsearhcmenu = (ImageButton) findViewById(R.id.btnsearchmenu);
-        backlistproduk = (Button) findViewById(R.id.backlistproduk);
+        backlistmenu = (Button) findViewById(R.id.backlistmenu);
         placeholderUsername.setText(""+nama_user+" | "+id_username);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
@@ -110,18 +110,20 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
             }
         });
         Log.d("Pref ", ""+keytotalbayar+" "+" "+keybayar+""+diskon+" IDCABANG "+nama_user);
-        backlistproduk.setVisibility(View.INVISIBLE);
-//        if(role.equals("2") || role.equals("1")){
-//            backlistproduk.setVisibility(View.VISIBLE);
-//            backlistproduk.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = new Intent(TampilDataMenu.this, Dashboard.class);
-//                    startActivity(intent);
-//                }
-//            });
-//        }
 
+        if(role.equals("2") || role.equals("1")) {
+            backlistmenu.setVisibility(View.VISIBLE);
+            backlistmenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TampilDataMenu.this, Dashboard.class);
+                    startActivity(intent);
+                }
+            });
+
+        }else{
+            backlistmenu.setVisibility(View.INVISIBLE);
+        }
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

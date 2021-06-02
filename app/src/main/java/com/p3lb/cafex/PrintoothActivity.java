@@ -67,6 +67,7 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
     String username = "";
     String pesanan = "";
     String idtransaksi ="";
+    String subtotal ="";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -145,13 +146,14 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
                 idtransaksi = strukList.get(0).getId_transaksi();
                 total = strukList.get(0).getTotal_bayar();
                 namadiskon = strukList.get(0).getNama_diskon();
+                subtotal = strukList.get(0).getSubtotal();
 
             }
 
             @Override
             public void onFailure(Call<PostStruk> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(PrintoothActivity.this, "Gagal memuat struk  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(PrintoothActivity.this, "Gagal memuat struk  " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -205,8 +207,19 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
                 .setNewLinesAfter(1)
                 .build());
         if(namadiskon!=null){
+            int totals = Integer.parseInt(total);
+            int subtotals = Integer.parseInt(subtotal);
+            int discount = subtotals - totals;
             printables.add(new TextPrintable.Builder()
-                    .setText(" DISKON :"+namadiskon+"\n")
+                    .setText(" DISKON :"+namadiskon)
+                    .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
+                    .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
+                    .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
+                    .build());
+
+            printables.add(new TextPrintable.Builder()
+                    .setText(" -"+discount+"\n")
+                    .setAlignment(DefaultPrinter.Companion.getALIGNMENT_LEFT())
                     .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
                     .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
                     .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())

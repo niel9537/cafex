@@ -52,6 +52,7 @@ import com.p3lb.cafex.model.trxtahunan.Report;
 import com.p3lb.cafex.model.trxtahunan.Result;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.util.Calendar;
 import java.util.List;
@@ -111,36 +112,69 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
             }
         });
         btnTanggal.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
+            //@RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                c=Calendar.getInstance();
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                int month = c.get(Calendar.MONTH);
-                int year = c.get(Calendar.YEAR);
-
-                dpd = new DatePickerDialog(LaporanPendapatanTahunan.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int myear, int mmonth, int mday) {
-                        mmonth = mmonth+1;
-                        txtTanggal.setText(myear+"-"+mmonth+"-"+mday);
-                        gettransaksinormal();
-                        gettransaksidiskon();
-                        gettransaksirefund();
-                        gethbptahun();
-                        tampilnettbulanan();
-
-                    }
-                }, day, month, year);
-
-                dpd.show();
+                final Calendar today = Calendar.getInstance();
+                MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(LaporanPendapatanTahunan.this,
+                        new MonthPickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(int selectedMonth, int selectedYear) {
+                                int year = selectedYear;
+                                txtTanggal.setText(year+"-"+"01"+"-"+"01");
+                                initdate();
+                                gettransaksinormal();
+                                gettransaksidiskon();
+                                gettransaksirefund();
+                                gethbptahun();
+                                tampilnettbulanan();
+                            }
+                        }, today.get(Calendar.YEAR), today.get(Calendar.MONTH));
+                builder.setActivatedMonth(Calendar.JANUARY)
+                        .setMinYear(2020)
+                        .setMaxYear(2040)
+                        .showYearOnly()
+                        .setTitle("Pilih Tahun")
+                        .build().show();
+//                c=Calendar.getInstance();
+//                int day = c.get(Calendar.DAY_OF_MONTH);
+//                int month = c.get(Calendar.MONTH);
+//                int year = c.get(Calendar.YEAR);
+//
+//                dpd = new DatePickerDialog(LaporanPendapatanTahunan.this, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker datePicker, int myear, int mmonth, int mday) {
+//                        mmonth = mmonth+1;
+//                        txtTanggal.setText(myear+"-"+mmonth+"-"+mday);
+//                        gettransaksinormal();
+//                        gettransaksidiskon();
+//                        gettransaksirefund();
+//                        gethbptahun();
+//                        tampilnettbulanan();
+//
+//                    }
+//                }, day, month, year);
+//
+//                dpd.show();
             }
         });
 
 
 
     }
-
+    public void initdate(){
+         totaltrx = "0";
+         jumlahtrx = "0";
+         totaldiskon = "0";
+         jumlahdiskon = "0";
+         totalrefund = "0";
+         jumlahrefund = "0";
+         totalhbp = "0";
+         totalHBP.setText("0");
+         totalTransaksi.setText("Rp 0");
+         totalGross.setText("0");
+         totalNett.setText("0");
+    }
     public void gettransaksinormal() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<Posttrxnormaltahun> call = mApiInterface.gettransaksitahun(idcabang, txtTanggal.getText().toString());
@@ -151,6 +185,10 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                 List<Trxnormaltahun> trxnormaltahunList = response.body().getTrxnormaltahunList();
                 totaltrx = trxnormaltahunList.get(0).getTotal_transaksi();
                 jumlahtrx = trxnormaltahunList.get(0).getJumlah_transaksi();
+                if(totaltrx == null){
+                    totalTransaksi.setText("0");
+                }
+
                 totalTransaksi.setText("Rp "+totaltrx);
                 jumlahTransaksi.setText(jumlahtrx);
                 totalGross.setText("Rp "+totaltrx);
@@ -195,6 +233,9 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                     response) {
                 List<Trxrefundtahun> trxrefundtahunList = response.body().getTrxrefundtahunList();
                 totalrefund = trxrefundtahunList.get(0).getTotal_refund();
+                if(totalrefund == null){
+                    totalRefund.setText("0");
+                }
                 jumlahrefund = trxrefundtahunList.get(0).getJumlah_transaksirefund();
                 totalRefund.setText("Rp "+totalrefund);
                 jumlahRefund.setText(jumlahrefund);
@@ -220,7 +261,7 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                         List<Trxhbptahun> trxhbptahunList = response.body().getTrxhbptahunList();
                         totalhbp = trxhbptahunList.get(0).getTotal_biayaproduk();
                         int hbp = 0;
-                        if(totalhbp.isEmpty()){
+                        if(totalhbp.equals("null")){
                             hbp = 0;
                         }else{
                             hbp = Integer.parseInt(totalhbp);
@@ -235,8 +276,6 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                     }catch (NullPointerException e){
                         e.printStackTrace();
                         Toasty.error(LaporanPendapatanTahunan.this, "Tidak ditemukan  ", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LaporanPendapatanTahunan.this, LaporanPendapatanTahunan.class);
-                        startActivity(intent);
                     }
                 }else{
                     Toasty.error(LaporanPendapatanTahunan.this, "Gagal  ", Toast.LENGTH_SHORT).show();

@@ -55,6 +55,7 @@ public class LoginKasir extends AppCompatActivity {
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
+    private static final String KEY_JABATAN = "jabatan";
     private static final String Kasir = Config.KASIR;
 
     @Override
@@ -125,6 +126,7 @@ public class LoginKasir extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString(KEY_USERNAME,username_login.getText().toString());
                         editor.putString(KEY_ID,cabang_login.getText().toString());
+                        editor.putString(KEY_JABATAN,"3");
                         editor.apply();
                         Log.d("RETRO", "ON SUCCESS : " + response.message());
                         Toasty.success(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();

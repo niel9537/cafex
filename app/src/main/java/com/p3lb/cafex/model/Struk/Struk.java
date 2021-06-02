@@ -11,12 +11,15 @@ public class Struk {
     private String nama_pembeli;
     @SerializedName("nama_diskon")
     private String nama_diskon;
+    @SerializedName("subtotal")
+    private String subtotal;
 
-    public Struk(String id_transaksi, String total_bayar, String nama_pembeli, String nama_diskon) {
+    public Struk(String id_transaksi, String total_bayar, String nama_pembeli, String nama_diskon, String subtotal) {
         this.id_transaksi = id_transaksi;
         this.total_bayar = total_bayar;
         this.nama_pembeli = nama_pembeli;
         this.nama_diskon = nama_diskon;
+        this.subtotal = subtotal;
     }
 
     public String getId_transaksi() {
@@ -49,5 +52,13 @@ public class Struk {
 
     public void setNama_diskon(String nama_diskon) {
         this.nama_diskon = nama_diskon;
+    }
+
+    public String getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(String subtotal) {
+        this.subtotal = subtotal;
     }
 }

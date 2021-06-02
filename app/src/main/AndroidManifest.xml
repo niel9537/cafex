@@ -16,7 +16,8 @@
         android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon,android:label">
         <!--Menu Produk-->
 
         <activity android:name=".MenuTransaksi.TampilDataMenu"

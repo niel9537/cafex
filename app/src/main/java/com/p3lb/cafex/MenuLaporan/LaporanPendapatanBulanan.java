@@ -3,6 +3,7 @@ package com.p3lb.cafex.MenuLaporan;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import java.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,8 +51,9 @@ import com.p3lb.cafex.model.trxrefundbulanan.Postrefundbulan;
 import com.p3lb.cafex.model.trxrefundbulanan.Refundbulan;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
-import java.util.Calendar;
+
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
@@ -115,30 +117,55 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
             }
         });
         btnTanggal.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                c=Calendar.getInstance();
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                int month = c.get(Calendar.MONTH);
-                int year = c.get(Calendar.YEAR);
-                dpd = new DatePickerDialog(LaporanPendapatanBulanan.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int myear, int mmonth, int mday) {
-                        mmonth = mmonth+1;
-                        txtTanggal.setText(myear+"-"+mmonth+"-"+mday);
-                        gettransaksinormal();
-                        gettransaksidiskon();
-                        gettransaksirefund();
-                        gethbpbulan();
-
-                    }
-                }, day, month, year);
-
-                dpd.show();
-
+                final Calendar today = Calendar.getInstance();
+                MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(LaporanPendapatanBulanan.this,
+                        new MonthPickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(int selectedMonth, int selectedYear) {
+                                int month = selectedMonth + 1;
+                                txtTanggal.setText(selectedYear+"-"+month+"-"+"1");
+                                gettransaksinormal();
+                                gettransaksidiskon();
+                                gettransaksirefund();
+                                gethbpbulan();
+                            }
+                        }, today.get(Calendar.YEAR), today.get(Calendar.MONTH));
+                builder.setActivatedMonth(Calendar.JANUARY)
+                        .setMinYear(2021)
+                        .setActivatedYear(today.get(Calendar.YEAR))
+                        .setMaxYear(2040)
+                        .setMinMonth(Calendar.JANUARY)
+                        .setTitle("Pilih Bulan")
+                        .build().show();
             }
         });
+//        btnTanggal.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.N)
+//            @Override
+//            public void onClick(View v) {
+//                c=Calendar.getInstance();
+//                int day = c.get(Calendar.DAY_OF_MONTH);
+//                int month = c.get(Calendar.MONTH);
+//                int year = c.get(Calendar.YEAR);
+//                dpd = new DatePickerDialog(LaporanPendapatanBulanan.this, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker datePicker, int myear, int mmonth, int mday) {
+//                        mmonth = mmonth+1;
+//                        txtTanggal.setText(myear+"-"+mmonth+"-"+mday);
+//                        gettransaksinormal();
+//                        gettransaksidiskon();
+//                        gettransaksirefund();
+//                        gethbpbulan();
+//
+//                    }
+//                }, day, month, year);
+//
+//                dpd.show();
+//
+//            }
+//        });
         tampilBulanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,8 +291,6 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                     }catch (NullPointerException e){
                         e.printStackTrace();
                         Toasty.error(LaporanPendapatanBulanan.this, "Tidak ditemukan  ", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LaporanPendapatanBulanan.this, LaporanPendapatanBulanan.class);
-                        startActivity(intent);
                     }
                 }else{
                     Toasty.error(LaporanPendapatanBulanan.this, "Gagal  ", Toast.LENGTH_SHORT).show();
