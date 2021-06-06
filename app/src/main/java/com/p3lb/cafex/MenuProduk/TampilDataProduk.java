@@ -37,7 +37,7 @@ public class TampilDataProduk extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText searchproduk;
     Button backlistmenu, btnTambahProduk;
-    ImageButton btnsearchproduk;
+    Button btnsearchproduk;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -51,7 +51,7 @@ public class TampilDataProduk extends AppCompatActivity {
         setContentView(R.layout.activity_show_dataproduk);
         btnTambahProduk = findViewById(R.id.btnTambahProduk);
         searchproduk = (EditText) findViewById(R.id.edtsearchproduk);
-        btnsearchproduk = (ImageButton) findViewById(R.id.btnsearchproduk);
+        btnsearchproduk = (Button) findViewById(R.id.btnsearchproduk);
         backlistmenu = (Button) findViewById(R.id.backlistmenu);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_produk);
         mLayoutManager = new LinearLayoutManager(this);

@@ -28,7 +28,7 @@ import retrofit2.Response;
 public class RegistrasiUser extends AppCompatActivity {
     EditText nama_user, noktp_user, password_user, id_cabang, nohp_user, email_user;
     Spinner spinnerJabatanUser;
-    Button btnRegister;
+    Button btnRegister, backregistrasilogin;
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
 
     @Override
@@ -43,9 +43,17 @@ public class RegistrasiUser extends AppCompatActivity {
         id_cabang = (EditText) findViewById(R.id.id_cabang);
         spinnerJabatanUser = (Spinner) findViewById(R.id.spinnerJabatanUser);
         btnRegister = (Button) findViewById(R.id.btnRegister);
+        backregistrasilogin = (Button) findViewById(R.id.backregistrasilogin);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.jabatan, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerJabatanUser.setAdapter(adapter);
+        backregistrasilogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistrasiUser.this, LoginKasir.class);
+                startActivity(intent);
+            }
+        });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

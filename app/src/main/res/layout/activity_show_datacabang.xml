@@ -63,9 +63,9 @@
             android:layout_margin="5dp"
             android:background="@drawable/view"
             android:backgroundTint="@android:color/white"
-            android:drawableRight="@drawable/ic_addproduk"
+            android:drawableRight="@drawable/ic_cabang"
             android:padding="5dp"
-            android:text="Tambah "
+            android:text="Tambah  "
             android:textSize="12dp" />
 
     </LinearLayout>
@@ -93,23 +93,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <ImageButton
+        <Button
             android:id="@+id/btnsearchcabang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:padding="20dp"
-            android:layout_marginVertical="5dp"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/ic_search"
-            android:fontFamily="@font/open_sans_bold"
-            android:backgroundTint="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/searchmenu"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/searchmenu"
-            app:layout_constraintTop_toTopOf="@+id/searchmenu"
-            app:layout_constraintVertical_bias="0.0"
-            android:drawableLeft="@drawable/ic_search" />
+            android:background="@drawable/custom_input"
+            android:layout_marginHorizontal="5dp"
+            android:backgroundTint="@android:color/white"
+            android:text="CARI"
+            android:layout_weight="3"/>
     </LinearLayout>
         <LinearLayout
             android:layout_marginTop="150dp"

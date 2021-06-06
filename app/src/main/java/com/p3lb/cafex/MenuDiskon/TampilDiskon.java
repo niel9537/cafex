@@ -39,7 +39,7 @@ import retrofit2.Response;
 public class TampilDiskon extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText edtsearchdiskon;
-    ImageButton btnsearchdiskon;
+    Button btnsearchdiskon;
     Button backlistdiskon, btnTambahDiskon;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -61,7 +61,7 @@ public class TampilDiskon extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         btnTambahDiskon = (Button) findViewById(R.id.btnTambahDiskon);
         edtsearchdiskon = (EditText) findViewById(R.id.edtsearchdiskon);
-        btnsearchdiskon = (ImageButton) findViewById(R.id.btnsearchdiskon);
+        btnsearchdiskon = (Button) findViewById(R.id.btnsearchdiskon);
         backlistdiskon = (Button) findViewById(R.id.backlistdiskon);
 
         idcabang = sharedPreferences.getString(KEY_ID,null);

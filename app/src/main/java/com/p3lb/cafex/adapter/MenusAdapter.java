@@ -41,7 +41,7 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.MyViewHolder
     @Override
     public void onBindViewHolder (MenusAdapter.MyViewHolder holder, final int position){
         holder.nama_produk.setText(mmenuslist.get(position).getNama_produk());
-        holder.harga_produk.setText(mmenuslist.get(position).getHarga_produk());
+        holder.harga_produk.setText("Rp "+mmenuslist.get(position).getHarga_produk());
         holder.kategori_produk.setText(mmenuslist.get(position).getKategori_produk());
         Glide.with(holder.itemView.getContext())
                 .load(Config.IMAGES_URL + mmenuslist.get(position).getFoto_produk())

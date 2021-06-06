@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class LupaPassword extends AppCompatActivity {
     EditText forgetusername, forgetidcabang;
-    Button btnkirimemail;
+    Button btnkirimemail, backloginforgetpassword;
 
     SharedPreferences sharedPreferences;
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
@@ -41,6 +41,14 @@ public class LupaPassword extends AppCompatActivity {
         forgetidcabang = (EditText) findViewById(R.id.forgetidcabang);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         btnkirimemail = (Button) findViewById(R.id.btnkirimemail);
+        backloginforgetpassword = (Button) findViewById(R.id.backloginforgetpassword);
+        backloginforgetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LupaPassword.this, LoginKasir.class);
+                startActivity(intent);
+            }
+        });
         btnkirimemail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

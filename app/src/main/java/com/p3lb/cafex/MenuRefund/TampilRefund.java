@@ -103,17 +103,11 @@ public class TampilRefund extends AppCompatActivity {
                     nama_pembeli.setText(refundList.get(0).getNamaPembeli());
                     tanggal_beli.setText(refundList.get(0).getTanggal());
                     grand_total.setText("Rp "+refundList.get(0).getTotalBayar());
-                    Log.d("Retrofit Get", "Jumlah user: " +
-                            String.valueOf(refundList.size()));
                     mAdapter = new RefundAdapter(refundList);
                     mRecyclerView.setAdapter(mAdapter);
-
                 }
                 else {
-                    Log.d("RETRO", "ON FAIL : " + response.message());
                     Toasty.error(getApplicationContext(), "Gagal mendapatkan refund", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TampilRefund.this, TampilDataMenu.class);
-                    startActivity(intent);
                 }
             }
 

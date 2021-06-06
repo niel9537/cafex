@@ -37,7 +37,7 @@ import retrofit2.Response;
 public class TampilUser extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText edtsearchuser;
-    ImageButton btnsearchuser;
+    Button btnsearchuser;
     Button backlistuser, btnTampilUserRegister;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -59,7 +59,7 @@ public class TampilUser extends AppCompatActivity {
         btnTampilUserRegister = (Button) findViewById(R.id.btnTampilUserRegister);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         edtsearchuser = (EditText) findViewById(R.id.edtsearchuser);
-        btnsearchuser = (ImageButton) findViewById(R.id.btnsearchuser);
+        btnsearchuser = (Button) findViewById(R.id.btnsearchuser);
         backlistuser = (Button) findViewById(R.id.backlistuser);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);

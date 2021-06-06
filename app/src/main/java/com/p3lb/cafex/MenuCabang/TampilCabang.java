@@ -39,7 +39,7 @@ import retrofit2.Response;
 public class TampilCabang extends AppCompatActivity {
     ApiInterface mApiInterface;
     EditText edtsearchcabang;
-    ImageButton btnsearchcabang;
+    Button btnsearchcabang;
     Button backlistcabang, btnTambahCabang;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -60,7 +60,7 @@ public class TampilCabang extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_cabang);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         edtsearchcabang = (EditText) findViewById(R.id.edtsearchcabang);
-        btnsearchcabang = (ImageButton) findViewById(R.id.btnsearchcabang);
+        btnsearchcabang = (Button) findViewById(R.id.btnsearchcabang);
         btnTambahCabang = (Button) findViewById(R.id.btnTambahCabang);
         backlistcabang = (Button) findViewById(R.id.backlistcabang);
         idcabang = sharedPreferences.getString(KEY_ID,null);
