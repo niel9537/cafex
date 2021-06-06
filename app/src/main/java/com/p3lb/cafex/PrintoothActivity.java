@@ -142,6 +142,8 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
             @Override
             public void onResponse(Call<PostStruk> call, Response<PostStruk>
                     response) {
+                List<Struk> struks = response.body().getStrukList();
+                String nama = struks.get(0).getNama_pembeli();
                 List<Struk> strukList = response.body().getStrukList();
                 idtransaksi = strukList.get(0).getId_transaksi();
                 total = strukList.get(0).getTotal_bayar();

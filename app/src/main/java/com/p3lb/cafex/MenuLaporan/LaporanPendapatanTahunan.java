@@ -25,6 +25,7 @@ import com.p3lb.cafex.adapter.NettAdapter;
 import com.p3lb.cafex.adapter.TranksaksiAdapter;
 import com.p3lb.cafex.adapter.TranksaksiDiskonAdapter;
 import com.p3lb.cafex.adapter.TranksaksiRefundAdapter;
+import com.p3lb.cafex.model.check.cek;
 import com.p3lb.cafex.model.trxbulanan.Normalbulan;
 import com.p3lb.cafex.model.trxbulanan.Postnormalbulan;
 import com.p3lb.cafex.model.trxdiskonbulan.Posttrxdiskonbulan;
@@ -123,11 +124,12 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                                 int year = selectedYear;
                                 txtTanggal.setText(year+"-"+"01"+"-"+"01");
                                 initdate();
-                                gettransaksinormal();
-                                gettransaksidiskon();
-                                gettransaksirefund();
-                                gethbptahun();
-                                tampilnettbulanan();
+                                cektahun();
+//                                gettransaksinormal();
+//                                gettransaksidiskon();
+//                                gettransaksirefund();
+//                                gethbptahun();
+//                                tampilnettbulanan();
                             }
                         }, today.get(Calendar.YEAR), today.get(Calendar.MONTH));
                 builder.setActivatedMonth(Calendar.JANUARY)
@@ -171,10 +173,42 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
          jumlahrefund = "0";
          totalhbp = "0";
          totalHBP.setText("0");
+         totalRefund.setText("0");
+         jumlahTransaksi.setText("0");
+         jumlahDiskon.setText("0");
+         totalRefund.setText("0");
+         jumlahRefund.setText("0");
          totalTransaksi.setText("Rp 0");
          totalGross.setText("0");
          totalNett.setText("0");
     }
+    public void cektahun() {
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<cek> call = mApiInterface.cektahun(idcabang, txtTanggal.getText().toString());
+        call.enqueue(new Callback<cek>() {
+            @Override
+            public void onResponse(Call<cek> call, Response<cek>
+                    response) {
+                    if(response.isSuccessful()) {
+                        gettransaksinormal();
+                        gettransaksidiskon();
+                        gettransaksirefund();
+                        gethbptahun();
+                        tampilnettbulanan();
+                    }else{
+                        initdate();
+                        Toasty.normal(LaporanPendapatanTahunan.this, "Tahun tidak tersedia  ", Toast.LENGTH_SHORT).show();
+                    }
+            }
+
+            @Override
+            public void onFailure(Call<cek> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(LaporanPendapatanTahunan.this, "Tahun tidak tersedia  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void gettransaksinormal() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<Posttrxnormaltahun> call = mApiInterface.gettransaksitahun(idcabang, txtTanggal.getText().toString());
@@ -182,6 +216,7 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
             @Override
             public void onResponse(Call<Posttrxnormaltahun> call, Response<Posttrxnormaltahun>
                     response) {
+
                 List<Trxnormaltahun> trxnormaltahunList = response.body().getTrxnormaltahunList();
                 totaltrx = trxnormaltahunList.get(0).getTotal_transaksi();
                 jumlahtrx = trxnormaltahunList.get(0).getJumlah_transaksi();
@@ -267,18 +302,31 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                             hbp = Integer.parseInt(totalhbp);
                         }
                         totalHBP.setText("Rp " + totalhbp);
+                        Log.d("totalhbp", "totalhbp " + totalhbp);
                         int total = 0;
-                        String s = (totalTransaksi.getText().toString().substring(3));
+                        //String s = (totalTransaksi.getText().toString().substring(3));
+                        String s = totaltrx;
+                        Log.d("totalTransaksi", "totalTransaksi " + s);
+                        //String s = totaltrx;
+                        Log.d("s", "s " + s);
                         total = Integer.parseInt(s);
                         int net = total-hbp;
-                        totalNett.setText("Rp " + net);
+                        Log.d("net", "net " + net);
+                        if(total==0){
+                            Log.d("cek", ""+total);
+                            int hbpbaru = Integer.valueOf(totalHBP.getText().toString().substring(3));
+                            int result = Integer.valueOf(totalTransaksi.getText().toString().substring(3));
+                            result = result-hbpbaru;
+                            totalNett.setText("Rp "+result);
+                        }else {
+                            totalNett.setText("Rp " + net);
+                        }
                         Log.d("totaltrx", "total " + total);
                     }catch (NullPointerException e){
                         e.printStackTrace();
-                        Toasty.error(LaporanPendapatanTahunan.this, "Tidak ditemukan  ", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toasty.error(LaporanPendapatanTahunan.this, "Gagal  ", Toast.LENGTH_SHORT).show();
+                    Toasty.normal(LaporanPendapatanTahunan.this, "Gagal memuat laporan  ", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -286,7 +334,7 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
             @Override
             public void onFailure(Call<Posttrxhbptahun> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(LaporanPendapatanTahunan.this, "Gagal  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toasty.normal(LaporanPendapatanTahunan.this, "Gagal memuat laporan  " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

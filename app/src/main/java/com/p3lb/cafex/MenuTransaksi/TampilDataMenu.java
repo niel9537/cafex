@@ -47,7 +47,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     ApiInterface mApiInterface;
     EditText searchmenu;
     Button backlistmenu;
-    ImageButton btnsearhcmenu;
+    Button btnsearhcmenu;
     MenusAdapter menusAdapter;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -72,7 +72,8 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     String role = "";
     TextView placeholderUsername;
     public static TampilDataMenu me;
-    private FloatingActionButton  fltKeranjangBelanja, fltRefund;
+    Button fltKeranjangBelanja;
+    Button  fltRefund;
     List<Products> productsList;
     String idtransaksi = "";
 
@@ -95,7 +96,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
         diskon = sharedPreferences.getString(KEY_DISKON,null);
         placeholderUsername = (TextView) findViewById(R.id.placeholderUsername);
         searchmenu = (EditText) findViewById(R.id.edtsearchmenu);
-        btnsearhcmenu = (ImageButton) findViewById(R.id.btnsearchmenu);
+        btnsearhcmenu = (Button) findViewById(R.id.btnsearchmenu);
         backlistmenu = (Button) findViewById(R.id.backlistmenu);
         placeholderUsername.setText(""+nama_user+" | "+id_username);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));

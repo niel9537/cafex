@@ -2,6 +2,7 @@ package com.p3lb.cafex.network;
 
 import com.p3lb.cafex.model.Struk.PostStruk;
 import com.p3lb.cafex.model.bahanbaku.PostBahanbaku;
+import com.p3lb.cafex.model.check.cek;
 import com.p3lb.cafex.model.inventori.PostInventori;
 import com.p3lb.cafex.model.listcabang.GetCabang;
 import com.p3lb.cafex.model.trxbulanan.Getnormalbulan;
@@ -404,5 +405,13 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Gettrxtahunan> gettransaksiperbulan(@Field("id_cabang") String id_cabang,
                                              @Field("tanggal") String tanggal);
+    @POST("laporan/cektahun")
+    @FormUrlEncoded
+    Call<cek> cektahun(@Field("id_cabang") String id_cabang,
+                       @Field("tanggal") String tanggal);
+    @POST("laporan/cekbulan")
+    @FormUrlEncoded
+    Call<cek> cekbulan(@Field("id_cabang") String id_cabang,
+                       @Field("tanggal") String tanggal);
 
 }

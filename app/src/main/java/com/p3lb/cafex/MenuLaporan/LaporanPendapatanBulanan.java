@@ -32,6 +32,7 @@ import com.p3lb.cafex.adapter.InventoriAdapter;
 import com.p3lb.cafex.adapter.TranksaksiAdapter;
 import com.p3lb.cafex.adapter.TranksaksiDiskonAdapter;
 import com.p3lb.cafex.adapter.TranksaksiRefundAdapter;
+import com.p3lb.cafex.model.check.cek;
 import com.p3lb.cafex.model.diskon.Diskon;
 import com.p3lb.cafex.model.diskon.PostDiskon;
 import com.p3lb.cafex.model.inventori.Inventori;
@@ -81,6 +82,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
     String totalrefund = "";
     String jumlahrefund = "";
     String totalhbp = "";
+    int trx = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,10 +128,11 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                             public void onDateSet(int selectedMonth, int selectedYear) {
                                 int month = selectedMonth + 1;
                                 txtTanggal.setText(selectedYear+"-"+month+"-"+"1");
-                                gettransaksinormal();
-                                gettransaksidiskon();
-                                gettransaksirefund();
-                                gethbpbulan();
+                                cekbulan();
+//                                gettransaksinormal();
+//                                gettransaksidiskon();
+//                                gettransaksirefund();
+//                                gethbpbulan();
                             }
                         }, today.get(Calendar.YEAR), today.get(Calendar.MONTH));
                 builder.setActivatedMonth(Calendar.JANUARY)
@@ -188,6 +191,50 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
 
 
     }
+    public void initdate(){
+        totaltrx = "0";
+        jumlahtrx = "0";
+        totaldiskon = "0";
+        jumlahdiskon = "0";
+        totalrefund = "0";
+        jumlahrefund = "0";
+        totalhbp = "0";
+        totalHBP.setText("0");
+        totalRefund.setText("0");
+        jumlahTransaksi.setText("0");
+        jumlahDiskon.setText("0");
+        totalRefund.setText("0");
+        jumlahRefund.setText("0");
+        totalTransaksi.setText("Rp 0");
+        totalGross.setText("0");
+        totalNett.setText("0");
+    }
+    public void cekbulan() {
+        ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
+        Call<cek> call = mApiInterface.cekbulan(idcabang, txtTanggal.getText().toString());
+        call.enqueue(new Callback<cek>() {
+            @Override
+            public void onResponse(Call<cek> call, Response<cek>
+                    response) {
+                if(response.isSuccessful()) {
+                    initdate();
+                    gettransaksinormal();
+                    gettransaksidiskon();
+                    gettransaksirefund();
+                    gethbpbulan();
+                }else{
+                    initdate();
+                    Toasty.normal(LaporanPendapatanBulanan.this, "Bulan tidak tersedia  ", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<cek> call, Throwable t) {
+                Log.e("Retrofit Get", t.toString());
+                Toasty.error(LaporanPendapatanBulanan.this, "Bulan tidak tersedia  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     public void gettransaksinormal() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
@@ -198,8 +245,14 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                     response) {
                 List<Trxnormalbulan> trxnormalbulanList = response.body().getTrxnormalbulanList();
                 totaltrx = trxnormalbulanList.get(0).getTotal_transaksi();
+                trx =Integer.valueOf(totaltrx);
                 jumlahtrx = trxnormalbulanList.get(0).getJumlah_transaksi();
+                Log.d("trxtotal ", ""+totaltrx);
                 totalTransaksi.setText("Rp "+totaltrx);
+                if(totalTransaksi.getText().toString().equals("Rp null")){
+                    totalTransaksi.setText("Rp 0");
+                    totalGross.setText("Rp 0");
+                }
                 jumlahTransaksi.setText(jumlahtrx);
                 totalGross.setText("Rp "+totaltrx);
             }
@@ -273,21 +326,31 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                     try {
                         List<Trxhbpbulan> trxhbpbulanList = response.body().getTrxhbpbulanList();
                         totalhbp = trxhbpbulanList.get(0).getTotal_biayaproduk();
-                        int hbp = 0;
-                        if(totalhbp.isEmpty()){
-                            hbp = 0;
-                        }else{
-                            hbp = Integer.parseInt(totalhbp);
-                        }
+
+//                        int hbp = 0;
+//                        if(totalhbp.equals("null")){
+//                            hbp = 0;
+//                        }else{
+//                            hbp = Integer.parseInt(totalhbp);
+//                        }
                         totalHBP.setText("Rp " + totalhbp);
+                        //int trx = Integer.valueOf(totalTransaksi.getText().toString().substring(3));
+                        //int hbpbaru = Integer.valueOf(totalHBP.getText().toString().substring(3));
 
-                        String s = (totalTransaksi.getText().toString().substring(3));
-
-                        int total = Integer.parseInt(s);
-                        //int total = Integer.parseInt(totaltrx);
-                        int net = total - hbp;
-                        totalNett.setText("Rp " + net);
-                        Log.d("totaltrx", "total " + total);
+                        Log.d("totaltrx", ""+trx);
+                        int hbpbaru = Integer.valueOf(totalhbp);
+                        Log.d("totalhbp", ""+hbpbaru);
+                        int hasil = trx - hbpbaru;
+                        int net = hasil;
+                        totalNett.setText("Rp "+net);
+//                        String s = (totalTransaksi.getText().toString().substring(3));
+//                        int hasil = Integer.valueOf(totalHBP.getText().toString().substring(3));
+//                        int total = Integer.parseInt(s);
+//                        //int total = Integer.parseInt(totaltrx);
+//                        int net = total - hasil;
+                        //int net = total - hbp;
+                        //totalNett.setText("Rp " + net);
+                        //Log.d("totaltrx", "total " + total);
                     }catch (NullPointerException e){
                         e.printStackTrace();
                         Toasty.error(LaporanPendapatanBulanan.this, "Tidak ditemukan  ", Toast.LENGTH_SHORT).show();
@@ -318,7 +381,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                     mAdapter = new TranksaksiAdapter(normalbulanList);
                     mRecyclerView.setAdapter(mAdapter);
                 }else{
-                    Toasty.error(LaporanPendapatanBulanan.this, "Gagal  ", Toast.LENGTH_SHORT).show();
+                    Toasty.error(LaporanPendapatanBulanan.this, "Tidak ada transaksi  ", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -326,7 +389,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
             @Override
             public void onFailure(Call<Postnormalbulan> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(LaporanPendapatanBulanan.this, "Gagal  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toasty.error(LaporanPendapatanBulanan.this, "Gagal memuat transaksi  " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -342,7 +405,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                     mAdapter = new TranksaksiDiskonAdapter(diskonbulans);
                     mRecyclerView.setAdapter(mAdapter);
                 }else{
-                    Toasty.error(LaporanPendapatanBulanan.this, "Gagal  ", Toast.LENGTH_SHORT).show();
+                    Toasty.error(LaporanPendapatanBulanan.this, "Tidak ada transaksi  ", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -350,7 +413,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
             @Override
             public void onFailure(Call<Postdiskonlbulan> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(LaporanPendapatanBulanan.this, "Gagal  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toasty.error(LaporanPendapatanBulanan.this, "Gagal memuat transaksi  " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -366,7 +429,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                     mAdapter = new TranksaksiRefundAdapter(refundbulans);
                     mRecyclerView.setAdapter(mAdapter);
                 }else{
-                    Toasty.error(LaporanPendapatanBulanan.this, "Gagal  ", Toast.LENGTH_SHORT).show();
+                    Toasty.error(LaporanPendapatanBulanan.this, "Tidak ada transaksi  ", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -374,7 +437,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
             @Override
             public void onFailure(Call<Postrefundbulan> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(LaporanPendapatanBulanan.this, "Gagal  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toasty.error(LaporanPendapatanBulanan.this, "Gagal memuat transaksi  " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
