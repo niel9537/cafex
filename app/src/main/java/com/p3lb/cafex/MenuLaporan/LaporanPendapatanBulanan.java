@@ -338,7 +338,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                         //int hbpbaru = Integer.valueOf(totalHBP.getText().toString().substring(3));
 
                         Log.d("totaltrx", ""+trx);
-                        int hbpbaru = Integer.valueOf(totalhbp);
+                        int hbpbaru = Integer.parseInt(totalhbp);
                         Log.d("totalhbp", ""+hbpbaru);
                         int hasil = trx - hbpbaru;
                         int net = hasil;

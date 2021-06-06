@@ -76,10 +76,15 @@ public class HistoryTransaksi extends AppCompatActivity {
             @Override
             public void onResponse(Call<Getnormalbulan> call, Response<Getnormalbulan>
                     response) {
-                List<History> historyList = response.body().getHistoryList();
-                Log.d("coba", historyList.get(0).getIdCabang());
-                mAdapter = new HistoriTranksaksiAdapter(historyList);
-                mRecyclerView.setAdapter(mAdapter);
+                if(response.isSuccessful()){
+                    List<History> historyList = response.body().getHistoryList();
+                    Log.d("coba", historyList.get(0).getIdCabang());
+                    mAdapter = new HistoriTranksaksiAdapter(historyList);
+                    mRecyclerView.setAdapter(mAdapter);
+                }else{
+                    Toasty.normal(HistoryTransaksi.this, "Gagal memuat transaksi  ", Toast.LENGTH_LONG).show();
+                }
+
 
             }
 

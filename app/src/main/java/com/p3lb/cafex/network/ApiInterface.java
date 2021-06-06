@@ -75,7 +75,8 @@ public interface ApiInterface {
                                                 @Part("tanggal_produk") RequestBody tanggal_produk,
                                                 @Part("flag") RequestBody flag);
     @FormUrlEncoded
-    @HTTP(method = "DELETE", path = "products", hasBody = true)
+    //@HTTP(method = "DELETE", path = "products", hasBody = true)
+    @POST("products/hapusproduk")
     Call<PostPutDelProducts> deleteProducts(@Field("id_produk") String id_produk);
 
     //===========================Users==================================//
