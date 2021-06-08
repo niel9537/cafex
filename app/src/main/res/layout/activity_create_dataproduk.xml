@@ -225,6 +225,13 @@
                 android:layout_gravity="center"
                 android:background="@mipmap/imgproduk_foreground"
                 android:scaleType="centerInside" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="*Pastikan nama gambar tidak mengandung spasi dan bertipe jpg|jpeg|png "
+                android:gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:textSize="8dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
