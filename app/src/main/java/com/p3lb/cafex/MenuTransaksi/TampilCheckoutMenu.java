@@ -132,7 +132,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         id_detail = mIntent.getStringExtra("id_detailtransaksi");
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         mi=this;
-        refresh();
+        showcart();
         listdiskon();
         backcart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -319,7 +319,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         //Creating an array adapter for list view
     }
 
-    public void refresh() {
+    public void showcart() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostPutDelCart> call = mApiInterface.getCart(idcabang);
         call.enqueue(new Callback<PostPutDelCart>() {

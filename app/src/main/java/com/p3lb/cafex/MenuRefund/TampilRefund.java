@@ -74,7 +74,7 @@ public class TampilRefund extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         is = this;
-        refresh();
+        tampilrefund();
         backrefund.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +90,7 @@ public class TampilRefund extends AppCompatActivity {
         });
     }
 
-    public void refresh() {
+    public void tampilrefund() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostRefund> call = mApiInterface.getrefund(idcabang, trxid);
         call.enqueue(new Callback<PostRefund>() {

@@ -107,7 +107,7 @@ public class TambahCabang extends AppCompatActivity {
 
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Sukses menambahkan owner cabang baru", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TambahCabang.this, Dashboard.class);
+                    Intent intent = new Intent(TambahCabang.this, TampilCabang.class);
                     startActivity(intent);
                 }
                 else {

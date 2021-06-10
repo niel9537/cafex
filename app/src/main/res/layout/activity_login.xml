@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linierLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1EFEF"
-    tools:context=".MenuAuth.LoginAdmin">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F1EFEF"
-        android:orientation="vertical"
-        android:paddingHorizontal="40dp"
-        android:paddingTop="50dp">
+    android:orientation="vertical"
+    android:paddingHorizontal="40dp"
+    android:paddingTop="50dp"
+    tools:context=".MenuAuth.LoginKasir">
 
     <TextView
         android:id="@+id/textView11"
@@ -33,29 +29,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/open_sans_bold"
-        android:text="admin"
+        android:text="kasir"
         android:textColor="@color/button"
         android:textSize="30sp"/>
 
-    <EditText
-        android:drawableLeft="@drawable/ic_username"
-        android:padding="10dp"
-        android:gravity="center"
-        android:id="@+id/username_login"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/view"
-        android:backgroundTint="@android:color/white"
-        android:hint="Username"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        android:textColor="@color/button"
-        android:textColorHighlight="@color/button"
-        android:textColorHint="#DADDDC"
-        android:textCursorDrawable="@color/button" />
     <EditText
         android:drawableLeft="@drawable/ic_password"
         android:padding="10dp"
@@ -74,6 +53,7 @@
         android:textColorHint="#DADDDC"
         android:textColorLink="@color/button"
         android:textCursorDrawable="@color/button"/>
+
     <EditText
         android:drawableLeft="@drawable/ic_cabangid"
         android:padding="10dp"
@@ -93,6 +73,28 @@
         android:textColorLink="@color/button"
         android:textCursorDrawable="@color/button"/>
 
+    <EditText
+        android:drawableLeft="@drawable/ic_username"
+        android:padding="10dp"
+        android:gravity="center"
+        android:id="@+id/username_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/view"
+        android:backgroundTint="@android:color/white"
+        android:hint="Username"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textColor="@color/button"
+        android:textColorHighlight="@color/button"
+        android:textColorHint="#DADDDC"
+        android:textCursorDrawable="@color/button"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
@@ -111,12 +113,12 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
         <TextView
-            android:id="@+id/klikUser"
+            android:id="@+id/klikAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_bold"
             android:gravity="left"
-            android:text="login kasir"
+            android:text="login admin"
             android:textColor="@color/button"
             android:textColorHighlight="@color/button"
             android:textColorHint="@color/button"
@@ -137,15 +139,15 @@
             app:layout_constraintTop_toTopOf="@+id/klikAdmin"
             app:layout_constraintVertical_bias="0.0" />
     </LinearLayout>
-    </LinearLayout>
 
     <LinearLayout
-        android:layout_marginHorizontal="40dp"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:paddingBottom="20dp">
+        android:layout_marginTop="10dp"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:layout_marginBottom="40dp">
         <TextView
             android:id="@+id/klikRegisterKasir"
             android:layout_width="match_parent"
@@ -172,4 +174,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

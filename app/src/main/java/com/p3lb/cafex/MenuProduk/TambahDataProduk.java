@@ -65,7 +65,7 @@ public class TambahDataProduk extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == REQUEST_WRITE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            saveImageUpload();
+            tambahproduk();
         }
     }
     @Override
@@ -136,7 +136,7 @@ public class TambahDataProduk extends AppCompatActivity {
     }
 
     //Simpan data
-    private void saveImageUpload(){
+    private void tambahproduk(){
         final String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if (mediaPath== null)
         {
@@ -152,6 +152,7 @@ public class TambahDataProduk extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
                     Log.d("RETRO", "LOG : " + response.message());
+                    Toasty.normal(getApplicationContext(), "Produk berhasil ditambah", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(TambahDataProduk.this, TampilDataProduk.class);
                     startActivity(intent);
                 }
@@ -160,7 +161,7 @@ public class TambahDataProduk extends AppCompatActivity {
                 public void onFailure(Call<PostPutDelProducts> call, Throwable t) {
                     Log.d("RETRO", "ON FAILURE : " + t.getMessage());
                     //Log.d("RETRO", "ON FAILURE : " + t.getCause());
-                    Toasty.normal(getApplicationContext(), "Error, image", Toast.LENGTH_LONG).show();
+                    Toasty.normal(getApplicationContext(), "Produk gagal ditambah", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -171,7 +172,7 @@ public class TambahDataProduk extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
         } else {
-            saveImageUpload();
+            tambahproduk();
         }
     }
 

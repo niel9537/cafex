@@ -27,6 +27,8 @@ import com.p3lb.cafex.model.user.User;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;

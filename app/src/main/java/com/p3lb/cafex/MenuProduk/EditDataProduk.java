@@ -69,7 +69,7 @@ public class EditDataProduk extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == REQUEST_WRITE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            updateImageUpload();
+            updateProduk();
         }
     }
 
@@ -125,7 +125,7 @@ public class EditDataProduk extends AppCompatActivity {
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateImageUpload();
+                updateProduk();
             }
         });
     }
@@ -153,7 +153,7 @@ public class EditDataProduk extends AppCompatActivity {
         }
     }
 
-    private void updateImageUpload() {
+    private void updateProduk() {
         final String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if (mediaPath== null)
         {
@@ -169,7 +169,8 @@ public class EditDataProduk extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
-                    TampilDataProduk.ma.refresh();
+                    Toasty.error(getApplicationContext(), "Produk berhasil diperbaharui", Toast.LENGTH_SHORT).show();
+                    TampilDataProduk.ma.tampilproduk();
                     finish();
                 }
 
@@ -177,7 +178,7 @@ public class EditDataProduk extends AppCompatActivity {
                 public void onFailure(Call<PostPutDelProducts> call, Throwable t) {
                     Log.d("RETRO", "ON FAILURE : " + t.getMessage());
                     //Log.d("RETRO", "ON FAILURE : " + t.getCause());
-                    Toasty.error(getApplicationContext(), "Error, image", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Produk gagal diperbaharui", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -187,7 +188,7 @@ public class EditDataProduk extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
         } else {
-            updateImageUpload();
+            updateProduk();
         }
     }
 
@@ -242,18 +243,18 @@ public class EditDataProduk extends AppCompatActivity {
                                 deleteProducts.enqueue(new Callback<PostPutDelProducts>() {
                                     @Override
                                     public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
-                                        Toasty.success(getApplicationContext(), "Sukses", Toast.LENGTH_LONG).show();
+                                        Toasty.success(getApplicationContext(), "Produk berhasil di hapus", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(EditDataProduk.this, TampilDataProduk.class);
                                         startActivity(intent);
                                     }
 
                                     @Override
                                     public void onFailure(Call<PostPutDelProducts> call, Throwable t) {
-                                        Toasty.error(getApplicationContext(), "gagal", Toast.LENGTH_LONG).show();
+                                        Toasty.error(getApplicationContext(), "Produk gagal di hapus", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }else{
-                                Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                                Toasty.error(getApplicationContext(), "Produk gagal di hapus", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

@@ -68,7 +68,7 @@ public class TampilCabang extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         ik=this;
-        refresh();
+        tampilcabang();
         backlistcabang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +91,7 @@ public class TampilCabang extends AppCompatActivity {
         });
     }
 
-    public void refresh() {
+    public void tampilcabang() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostCabang> call = mApiInterface.getcabang();
         call.enqueue(new Callback<PostCabang>() {

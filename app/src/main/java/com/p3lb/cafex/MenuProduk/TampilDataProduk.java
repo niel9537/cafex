@@ -59,7 +59,7 @@ public class TampilDataProduk extends AppCompatActivity {
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         ma=this;
 
-        refresh();
+        tampilproduk();
         backlistmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +70,7 @@ public class TampilDataProduk extends AppCompatActivity {
         btnsearchproduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchproduk();
+                cariproduk();
             }
         });
         btnTambahProduk.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +84,7 @@ public class TampilDataProduk extends AppCompatActivity {
 
     }
 
-    public void refresh() {
+    public void tampilproduk() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<GetProducts> call = mApiInterface.getProducts();
         call.enqueue(new Callback<GetProducts>() {
@@ -108,7 +108,7 @@ public class TampilDataProduk extends AppCompatActivity {
         });
     }
 
-    public void searchproduk() {
+    public void cariproduk() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<GetProducts> call = mApiInterface.searchproduk(searchproduk.getText().toString());
         call.enqueue(new Callback<GetProducts>() {
@@ -127,7 +127,7 @@ public class TampilDataProduk extends AppCompatActivity {
             @Override
             public void onFailure(Call<GetProducts> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(TampilDataProduk.this, "Gagal memuat menu  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(TampilDataProduk.this, "Gagal memuat produk  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

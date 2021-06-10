@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.p3lb.cafex">
 
-<!--    <uses-sdk tools:overrideLibrary="com.mazenrashed.printooth"/>-->
+    <uses-sdk tools:overrideLibrary="com.mazenrashed.printooth"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

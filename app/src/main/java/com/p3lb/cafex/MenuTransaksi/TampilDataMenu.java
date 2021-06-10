@@ -158,7 +158,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
                 startActivity(intent);
             }
         });
-        refresh();
+        tampilmenu();
     }
 
 
@@ -181,7 +181,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
         }
 
     }
-    public void refresh() {
+    public void tampilmenu() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<GetProducts> call = mApiInterface.getProducts();
         call.enqueue(new Callback<GetProducts>() {

@@ -116,7 +116,7 @@ public class EditCabang extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Sukses update cabang", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EditCabang.this, Dashboard.class);
+                    Intent intent = new Intent(EditCabang.this, TampilCabang.class);
                     startActivity(intent);
                 }
                 else {
@@ -188,7 +188,7 @@ public class EditCabang extends AppCompatActivity {
                                         if(response.isSuccessful()) {
                                             Log.d("RETRO", "ON SUCCESS : " + response.message());
                                             Toasty.success(getApplicationContext(), "Sukses hapus cabang", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(EditCabang.this, Dashboard.class);
+                                            Intent intent = new Intent(EditCabang.this, TampilCabang.class);
                                             startActivity(intent);
                                         }
                                         else {
