@@ -15,12 +15,13 @@
         tools:context=".MenuInventori.KeluarkanBahanbaku">
         <Button
             android:id="@+id/backkeluarkanbahanbaku"
-            android:padding="2dp"
+            android:padding="5dp"
             android:layout_gravity="left"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/background"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:drawableLeft="@drawable/ic_back"
             android:text="Kembali"
             android:textSize="12dp"/>
@@ -74,6 +75,8 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/view"
+            android:paddingBottom="2dp"
+            android:layout_marginBottom="2dp"
             android:backgroundTint="@android:color/white"
             android:textStyle="bold"
             android:text="Keluarkan Bahanbaku"

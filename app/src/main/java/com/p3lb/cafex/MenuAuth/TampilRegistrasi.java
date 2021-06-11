@@ -61,7 +61,7 @@ public class TampilRegistrasi extends AppCompatActivity {
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         mii=this;
 
-        refresh();
+        tampilregistrasi();
         backlistpendaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,10 +69,13 @@ public class TampilRegistrasi extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
 
     }
 
-    public void refresh() {
+    public void tampilregistrasi() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<LoginRegisterUsers> call = mApiInterface.tampilregistrasiuser(idcabang);
         call.enqueue(new Callback<LoginRegisterUsers>() {

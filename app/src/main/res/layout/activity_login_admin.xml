@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="#F1EFEF"
     tools:context=".MenuAuth.LoginAdmin">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +36,7 @@
         android:gravity="center"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/open_sans_bold"
-        android:text="admin"
+        android:text="ADMIN"
         android:textColor="@color/button"
         android:textSize="30sp"/>
 
@@ -116,7 +117,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_bold"
             android:gravity="left"
-            android:text="login kasir"
+            android:text="LOGIN KASIR"
             android:textColor="@color/button"
             android:textColorHighlight="@color/button"
             android:textColorHint="@color/button"
@@ -127,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="lupa password?  "
+            android:text="LUPA PASSWORD?  "
             android:textColor="@color/button"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/klikAdmin"
@@ -152,7 +153,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_semibold"
             android:gravity="left"
-            android:text="registrasi"
+            android:text="REGISTRASI"
             android:textColor="@color/button"
             android:textStyle="bold"
             android:layout_weight="1"/>
@@ -166,10 +167,8 @@
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/open_sans_semibold"
             android:gravity="center"
-            android:text=" list cabang "
+            android:text=" LIST CABANG "
             android:textColor="@color/button"
             android:textStyle="bold" />
-
     </LinearLayout>
-
 </RelativeLayout>

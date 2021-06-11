@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,7 +73,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TampilCheckoutMenu extends AppCompatActivity{
-    TextView totalBayar, grandTotal, Pesanan;
+    TextView totalBayar, grandTotal, Pesanan, diskoncut, teksdiskon;
     Spinner spinnerDiskon;
     EditText namaPembeli, diskon;
     Button btnBayar, btnDiskon, backcart;
@@ -88,10 +89,12 @@ public class TampilCheckoutMenu extends AppCompatActivity{
     private static final String KEY_BAYAR = "totalbayar";
     private static final String KEY_PESANAN = "pesanan";
     private static final String KEY_DISKON = "diskon";
+    private static final String KEY_BIAYAPESANAN = "biayapesanan";
 
     String totalbayaruser = "";
     String namadiskon ="";
     String pesanan = "";
+    String biayapesanan = "";
     String idcabang = "";
     String username = "";
     String id_detail = "";
@@ -117,6 +120,8 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         Pesanan = (TextView) findViewById(R.id.pesanan);
         namaPembeli = (EditText) findViewById(R.id.namaPembeli);
         btnBayar = (Button) findViewById(R.id.btnBayar);
+        teksdiskon = (TextView) findViewById(R.id.teksdiskon);
+        diskoncut = (TextView) findViewById(R.id.potongandiskon);
         //diskon = (EditText) findViewById(R.id.diskon);
         btnDiskon = (Button) findViewById(R.id.btnDiskon);
         backcart = (Button) findViewById(R.id.backcart);
@@ -134,6 +139,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         mi=this;
         showcart();
         listdiskon();
+
         backcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +151,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(totalBayar.getText().toString().equals("Rp 0") || totalBayar.getText().toString().equals("0")){
-                    Toasty.normal(TampilCheckoutMenu.this, "Keranjang masih kosong", Toast.LENGTH_LONG).show();
+                    Toasty.normal(TampilCheckoutMenu.this, "Keranjang masih kosong", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
 //                    if (namaPembeli.getText().toString().isEmpty()) {
@@ -155,7 +161,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                         //Toasty.normal(TampilCheckoutMenu.this, "Sukses", Toast.LENGTH_SHORT).show();
 //                        if(diskon.getText().toString().isEmpty()){
 //                        if(diskon.getText().toString().isEmpty() || grandTotal.getText().toString().equals("0")){
-                        if(grandTotal.getText().toString().equals("0")){
+                        if(grandTotal.getText().toString().equals("0")|| diskoncut.getText().toString().equals("")){
                             bayar();
                         }else{
                             diskonbayar();
@@ -178,6 +184,9 @@ public class TampilCheckoutMenu extends AppCompatActivity{
 
             }
         });
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
 
     }
 
@@ -222,6 +231,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                     iddiskon = response.body().getId_diskon();
                     namadiskon = response.body().getNama_diskon();
                     minbayar = response.body().getMin_bayar();
+                    Log.d("MIN BAYAR",""+minbayar);
                     maxdiskon = response.body().getMax_diskon();
                     persendiskon = response.body().getPersen_diskon();
                     hargadiskon = response.body().getHarga_diskon();
@@ -230,6 +240,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                     Log.d("Diskon 1 :", ""+ttl);
                     int ttlbayar = Integer.parseInt(ttl);
                     int mnbayar = Integer.parseInt(minbayar);
+                    Log.d("MIN BAYAR",""+mnbayar);
                     double prsndiskon = Double.parseDouble(persendiskon);
                     int mxdiskon = Integer.parseInt(maxdiskon);
                     int hrgdiskon = Integer.parseInt(hargadiskon);
@@ -241,18 +252,38 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                             int dskn = (int) (ttlbayar*prsndiskon);
                             Log.d("Diskon 3 :", ""+dskn);
                             if(dskn > mxdiskon){
-
+                                teksdiskon.setText("Diskon ");
                                 hasil = ttlbayar - mxdiskon;
+                                int result = ttlbayar-hasil;
+                                diskoncut.setText("- Rp "+result);
                                 Log.d("Diskon 5 :", ""+hasil);
                             }else{
+                                teksdiskon.setText("Diskon ");
                                 hasil = ttlbayar - dskn;
+                                int result = ttlbayar-hasil;
+                                diskoncut.setText("- Rp "+result);
                                 Log.d("Diskon 4 :", ""+hasil);
                             }
                         }else{
+                            teksdiskon.setText(" ");
+                            int result = ttlbayar-hasil;
+                            diskoncut.setText(" "+result);
+                            Toasty.normal(TampilCheckoutMenu.this, "Minimun bayar "+mnbayar, Toast.LENGTH_SHORT).show();
                             hasil = ttlbayar;
                         }
                     }else{
-                        hasil = ttlbayar - hrgdiskon;
+                        if(ttlbayar>mnbayar){
+                            teksdiskon.setText("Diskon ");
+                            hasil = ttlbayar-hrgdiskon;
+                            int result = ttlbayar-hasil;
+                            diskoncut.setText("- Rp "+result);
+                        }else{
+                            teksdiskon.setText("");
+                            diskoncut.setText("");
+                            Toasty.normal(TampilCheckoutMenu.this, "Minimun bayar "+mnbayar, Toast.LENGTH_SHORT).show();
+                            hasil = ttlbayar;
+                        }
+
                     }
                     grandTotal.setText("Rp "+hasil);
                     if(hargadiskon.equals("")){
@@ -331,8 +362,10 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 Log.d("Retrofit Get", "Jumlah item keranjang: " +
                         String.valueOf(cartList.size()));
                 for(Cart cart : cartList){
-                    pesanan += ""+cart.getNama_produk()+" x"+cart.getJumlah_item()+"\n";
-                    pesanan += "SubTotal = Rp "+cart.getHarga_subtotal()+" \n";
+                    pesanan += ""+cart.getNama_produk()+"\n";
+                    pesanan += "x"+cart.getJumlah_item()+"                   Rp "+cart.getHarga_subtotal()+"\n";
+//                    pesanan += ""+cart.getNama_produk()+" x"+cart.getJumlah_item();
+//                    pesanan += "    Rp "+cart.getHarga_subtotal()+" \n";
                 }
                 Log.d("Pesanan2", pesanan);
                 editor.putString(KEY_PESANAN, pesanan);
@@ -353,6 +386,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 Toasty.error(TampilCheckoutMenu.this, "Gagal memuat keranjang  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
     void bayar(){
@@ -484,7 +518,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 iddelete,
                 idcabang,
                 username);
-
+        Log.d("deletelog", ""+iddelete);
         postPutDelTransaksiCall.enqueue(new Callback<PostPutDelTransaksi>() {
             @Override
             public void onResponse(Call<PostPutDelTransaksi> call, Response<PostPutDelTransaksi> response) {

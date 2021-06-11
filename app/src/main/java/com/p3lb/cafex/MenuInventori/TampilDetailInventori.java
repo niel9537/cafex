@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import retrofit2.Response;
 
 public class TampilDetailInventori extends AppCompatActivity {
     EditText bahanbaku;
+    TextView keterangan;
     Button btnbahanbakumasuk, btnbahanbakukeluar, backdetailbahanbaku, deleteinventori;
     ApiInterface mApiInterface;
     private RecyclerView mRecyclerView;
@@ -61,6 +63,7 @@ public class TampilDetailInventori extends AppCompatActivity {
         btnbahanbakukeluar = (Button) findViewById(R.id.btnbahanbakukeluar);
         backdetailbahanbaku = (Button) findViewById(R.id.backdetailbahanbaku);
         deleteinventori = (Button) findViewById(R.id.deleteinventori);
+        keterangan = (TextView)findViewById(R.id.textView4);
         idcabang = sharedPreferences.getString(KEY_ID,null);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -68,12 +71,13 @@ public class TampilDetailInventori extends AppCompatActivity {
         Intent mIntent = getIntent();
         idinventori = mIntent.getStringExtra("id_inventori");
         namabahanbaku = mIntent.getStringExtra("nama_bahanbaku");
+        keterangan.setText("Riwayat "+namabahanbaku);
         qa=this;
-        refresh();
+        tampilriwayatbahanbaku();
         deleteinventori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteinventori();
+                hapusbahanbaku();
             }
         });
         backdetailbahanbaku.setOnClickListener(new View.OnClickListener() {
@@ -106,10 +110,12 @@ public class TampilDetailInventori extends AppCompatActivity {
                 startActivity(Intent);
             }
         });
-
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
-    public void refresh() {
+    public void tampilriwayatbahanbaku() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostBahanbaku> bahanbakuCall = mApiInterface.getbahanbaku(idinventori,idcabang,namabahanbaku);
         bahanbakuCall.enqueue(new Callback<PostBahanbaku>() {
@@ -133,7 +139,7 @@ public class TampilDetailInventori extends AppCompatActivity {
         });
     }
 
-    public void deleteinventori() {
+    public void hapusbahanbaku() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Log.d("Id", ""+idinventori);
         Call<PostInventori> deleteinventori = mApiInterface.deleteinventori(idcabang,idinventori);

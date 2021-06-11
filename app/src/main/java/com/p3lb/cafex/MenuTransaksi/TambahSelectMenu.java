@@ -45,7 +45,7 @@ public class TambahSelectMenu extends AppCompatActivity {
     private static final String KEY_ID = "id";
 
     ApiInterface apiInterface = ApiHelper.getClient().create(ApiInterface.class);
-    int subtotal = 0, subtotalnaik = 0, hargas = 0;
+    int subtotal = 0, subtotalnaik = 1, hargas = 0;
     String harga = "";
     String price = "";
     String nama_user = "";
@@ -112,13 +112,23 @@ public class TambahSelectMenu extends AppCompatActivity {
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addcart();
+                int jumlah = Integer.parseInt(jumlahItem.getText().toString());
+                if(jumlah<1){
+                    Toasty.normal(getApplicationContext(), "Jumlah item minimal 1", Toast.LENGTH_SHORT).show();
+                }else{
+                    addcart();
+                }
+
             }
         });
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
     private void iniSubtotal(){
-        subtotal = 0;
-        subTotalProduk.setText(subtotal + "");
+        subtotal = Integer.parseInt(harga);
+        subTotalProduk.setText("Rp "+subtotal);
+        price = String.valueOf(subtotal);
     }
     private void plusSubtotal(){
         //subtotal++;
@@ -148,6 +158,7 @@ public class TambahSelectMenu extends AppCompatActivity {
                 price,
                 ""
         );
+        Log.d("RETRO", "PARAM : "+idProduk+" "+kode_cabang+" "+nama_user+" "+jumlahItem.getText().toString()+" "+price);
 
         postAddcart.enqueue(new Callback<PostPutDelTransaksi>() {
             @Override
@@ -160,9 +171,7 @@ public class TambahSelectMenu extends AppCompatActivity {
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
-                    Toasty.error(getApplicationContext(), "Gagal ditambahkan ke keranjang", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(TambahSelectMenu.this, TampilDataMenu.class);
-                    startActivity(intent);
+                    Toasty.error(getApplicationContext(), "Gagal ditambahkan ke keranjang", Toast.LENGTH_SHORT).show();
                 }
             }
 

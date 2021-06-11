@@ -1,10 +1,12 @@
 package com.p3lb.cafex.MenuInventori;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -67,7 +69,7 @@ public class TampilInventori extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         kk=this;
-        refresh();
+        tampilbahanbaku();
 
         backlistinventori.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,14 +84,19 @@ public class TampilInventori extends AppCompatActivity {
                 if(bahanbaku.getText().toString().isEmpty()){
                     Toasty.error(TampilInventori.this, "Isi nama bahanbaku terlebih dahulu", Toast.LENGTH_LONG).show();
                 }else{
-                    addbahanbaku();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    tambahbahanbaku();
                 }
 
             }
         });
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
-    public void refresh() {
+    public void tampilbahanbaku() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostInventori> call = mApiInterface.getInventori(idcabang);
         call.enqueue(new Callback<PostInventori>() {
@@ -97,8 +104,6 @@ public class TampilInventori extends AppCompatActivity {
             public void onResponse(Call<PostInventori> call, Response<PostInventori>
                     response) {
                 List<Inventori> inventoriList = response.body().getInventoriList();
-                Log.d("Retrofit Get", "Jumlah diskon: " +
-                        String.valueOf(inventoriList.size()));
                 mAdapter = new InventoriAdapter(inventoriList);
                 mRecyclerView.setAdapter(mAdapter);
 
@@ -108,12 +113,12 @@ public class TampilInventori extends AppCompatActivity {
             @Override
             public void onFailure(Call<PostInventori> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(TampilInventori.this, "Gagal memuat diskon  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(TampilInventori.this, "Gagal memuat bahanbaku  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public void addbahanbaku() {
+    public void tambahbahanbaku() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostInventori> call = mApiInterface.addbahanbaku(idcabang, bahanbaku.getText().toString());
         call.enqueue(new Callback<PostInventori>() {
@@ -123,7 +128,7 @@ public class TampilInventori extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Sukses menambahkan bahanbaku", Toast.LENGTH_SHORT).show();
-                    refresh();
+                    tampilbahanbaku();
                 }
                 else {
                     Log.d("RETRO", "ON FAIL : " + response.message());
@@ -135,7 +140,7 @@ public class TampilInventori extends AppCompatActivity {
             @Override
             public void onFailure(Call<PostInventori> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(TampilInventori.this, "Gagal memuat diskon  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(TampilInventori.this, "Gagal memuat bahanbaku  " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

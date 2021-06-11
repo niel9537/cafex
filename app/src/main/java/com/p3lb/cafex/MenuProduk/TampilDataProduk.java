@@ -1,9 +1,11 @@
 package com.p3lb.cafex.MenuProduk;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -70,6 +72,8 @@ public class TampilDataProduk extends AppCompatActivity {
         btnsearchproduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 cariproduk();
             }
         });
@@ -81,7 +85,9 @@ public class TampilDataProduk extends AppCompatActivity {
             }
         });
 
-
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
     public void tampilproduk() {

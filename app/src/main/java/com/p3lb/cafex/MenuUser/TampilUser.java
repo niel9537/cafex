@@ -1,10 +1,12 @@
 package com.p3lb.cafex.MenuUser;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -68,7 +70,7 @@ public class TampilUser extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         ii=this;
-        refresh();
+        tampiluser();
         backlistuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +81,8 @@ public class TampilUser extends AppCompatActivity {
         btnsearchuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 searchuser();
             }
         });
@@ -89,10 +93,13 @@ public class TampilUser extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
 
     }
 
-    public void refresh() {
+    public void tampiluser() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostUser> call = mApiInterface.showuser(idcabang);
         call.enqueue(new Callback<PostUser>() {

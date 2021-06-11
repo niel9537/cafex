@@ -143,6 +143,9 @@ public class TambahDiskon extends AppCompatActivity {
                 }
             }
         });
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
     void tambahdiskonpersen(){
@@ -163,7 +166,7 @@ public class TambahDiskon extends AppCompatActivity {
                     if(response.isSuccessful()) {
                         Log.d("RETRO", "ON SUCCESS : " + response.message());
                         Toasty.success(getApplicationContext(), "Sukses menambahkan diskon", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(TambahDiskon.this, Dashboard.class);
+                        Intent intent = new Intent(TambahDiskon.this, TampilDiskon.class);
                         startActivity(intent);
                     }
                     else {
@@ -197,7 +200,7 @@ public class TambahDiskon extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Sukses menambahkan diskon", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TambahDiskon.this, Dashboard.class);
+                    Intent intent = new Intent(TambahDiskon.this, TampilDiskon.class);
                     startActivity(intent);
                 }
                 else {

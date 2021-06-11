@@ -43,7 +43,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="registrasi"
+        android:text="REGISTRASI"
         android:textAlignment="center"
         android:textColor="@color/button"
         android:textSize="30dp"

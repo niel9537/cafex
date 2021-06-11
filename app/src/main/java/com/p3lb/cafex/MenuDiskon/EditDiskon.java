@@ -185,6 +185,9 @@ public class EditDiskon extends AppCompatActivity {
 
             }
         });
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
 
@@ -207,7 +210,7 @@ public class EditDiskon extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Sukses update diskon", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EditDiskon.this, Dashboard.class);
+                    Intent intent = new Intent(EditDiskon.this, TampilDiskon.class);
                     startActivity(intent);
                 }
                 else {
@@ -241,7 +244,7 @@ public class EditDiskon extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(getApplicationContext(), "Sukses update diskon", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EditDiskon.this, Dashboard.class);
+                    Intent intent = new Intent(EditDiskon.this, TampilDiskon.class);
                     startActivity(intent);
                 }
                 else {
@@ -313,7 +316,7 @@ public class EditDiskon extends AppCompatActivity {
                                         if(response.isSuccessful()) {
                                             Log.d("RETRO", "ON SUCCESS : " + response.message());
                                             Toasty.success(getApplicationContext(), "Sukses hapus diskon", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(EditDiskon.this, Dashboard.class);
+                                            Intent intent = new Intent(EditDiskon.this, TampilDiskon.class);
                                             startActivity(intent);
                                         }
                                         else {
@@ -326,7 +329,7 @@ public class EditDiskon extends AppCompatActivity {
                                     @Override
                                     public void onFailure(Call<Diskon> call, Throwable t) {
                                         Log.d("RETRO", "ON FAILURE : " + t.getMessage());
-                                        Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                                        Toasty.error(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }else{

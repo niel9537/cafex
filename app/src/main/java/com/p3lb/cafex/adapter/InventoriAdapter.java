@@ -35,7 +35,13 @@ public class InventoriAdapter extends RecyclerView.Adapter<InventoriAdapter.MyVi
     public void onBindViewHolder (InventoriAdapter.MyViewHolder holder, final int position){
         holder.idinventori.setText("ID "+inventoriList.get(position).getId_inventori());
         holder.namabahanbaku.setText(inventoriList.get(position).getNama_bahanbaku());
-        holder.totalbahanbaku.setText(inventoriList.get(position).getTotal_bahanbaku()+" Kg");
+
+        if(inventoriList.get(position).getTotal_bahanbaku()==null){
+            holder.totalbahanbaku.setText("0 Kg");
+        }else{
+            holder.totalbahanbaku.setText(inventoriList.get(position).getTotal_bahanbaku()+" Kg");
+        }
+
         //idkuu = cabangList.get(position).getId_diskon();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

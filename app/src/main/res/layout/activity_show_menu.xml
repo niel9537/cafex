@@ -79,6 +79,39 @@
            android:text="CARI"
            android:layout_weight="3"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="180dp">
+        <Button
+            android:id="@+id/btnRefund"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:background="@drawable/view"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginBottom="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="refund"
+            android:drawableLeft="@drawable/ic_refund"/>
+        <Button
+            android:layout_weight="2"
+            android:id="@+id/btnKeranjangBelanja"
+            android:padding="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginBottom="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keranjang"
+            android:drawableLeft="@drawable/cart24"/>
+    </LinearLayout>
 
 
 
@@ -86,7 +119,7 @@
             android:id="@+id/tampil"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="230dp"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -116,30 +149,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnRefund"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:background="@drawable/custom_input"
-            android:backgroundTint="@color/background"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="2dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="refund"
-            android:drawableLeft="@drawable/ic_refund"/>
-        <Button
-            android:layout_weight="1"
-            android:id="@+id/btnKeranjangBelanja"
-            android:padding="10dp"
-            android:background="@drawable/custom_input"
-            android:backgroundTint="@color/background"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="2dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Keranjang"
-            android:drawableLeft="@drawable/cart24"/>
+
 
     </LinearLayout>
 

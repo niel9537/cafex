@@ -59,6 +59,7 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
     private static final String KEY_TOTALBAYAR = "totalbayardiskon";
     private static final String KEY_BAYAR = "totalbayar";
     private static final String KEY_PESANAN = "pesanan";
+    private static final String KEY_BIAYAPESANAN = "biayapesanan";
     private static final String KEY_DISKON = "diskon";
     String namadiskon = "";
     String idcabang = "";
@@ -66,6 +67,7 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
     String totaldiskon ="";
     String username = "";
     String pesanan = "";
+    String biayapesanan = "";
     String idtransaksi ="";
     String subtotal ="";
 
@@ -82,7 +84,10 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
         username = sharedPreferences.getString(KEY_USERNAME,null);
         refresh();
         pesanan = sharedPreferences.getString(KEY_PESANAN, null);
-
+        biayapesanan = sharedPreferences.getString(KEY_BIAYAPESANAN, null);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
     private void initView(){
         btn_print = (Button) findViewById(R.id.btn_print);
@@ -124,8 +129,8 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
 //                    editor.remove(KEY_BAYAR);
 //                    editor.commit();
 //                    editor.apply();
-                    Intent intent = new Intent(PrintoothActivity.this, TampilDataMenu.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(PrintoothActivity.this, TampilDataMenu.class);
+//                    startActivity(intent);
 
                 }
             }
@@ -167,6 +172,18 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
             btn_unpair_pair.setText("Pair");
         }
     }
+    String addSpace(String str1, String str2){
+        int spaceInit = 29; //length of maximum chars on paper
+        int strLength = str1.length() + str2.length();
+        int space = spaceInit - strLength;
+
+        String spaces = "";
+        for(int a = 0 ; a < space ; a++){
+            spaces = spaces + " ";
+        }
+        String output = str1 + spaces + str2;
+        return output;
+    }
 
     private void printText(){
         ArrayList<Printable> printables = new ArrayList<>();
@@ -176,72 +193,88 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
                 .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
                 .setAlignment(DefaultPrinter.Companion.getALIGNMENT_CENTER())
                 .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
-                .setUnderlined(DefaultPrinter.Companion.getUNDERLINED_MODE_ON())
                 .setNewLinesAfter(1)
                 .build());
         //AddText
         printables.add(new TextPrintable.Builder()
-                .setText(" Kasir : "+username+"\n POS : POS EC Cafe")
+                .setText("Kasir : "+username+"\nPOS : POS EC Cafe")
+                .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
+                .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
+                .build());
+        printables.add(new TextPrintable.Builder()
+                .setText("\n-------------------------------")
                 .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
                 .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
                 .setNewLinesAfter(1)
                 .build());
         printables.add(new TextPrintable.Builder()
-                .setText("---------------------"+"\n")
-                .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
-                .setAlignment(DefaultPrinter.Companion.getALIGNMENT_CENTER())
-                .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
-                .setUnderlined(DefaultPrinter.Companion.getUNDERLINED_MODE_ON())
-                .setNewLinesAfter(1)
-                .build());
-        printables.add(new TextPrintable.Builder()
-                .setText(""+pesanan+"\n")
+                .setText(""+pesanan)
+//                .setText(" "+pesanan+"\n"+" ------------------------------")
+                .setAlignment(DefaultPrinter.Companion.getALIGNMENT_LEFT())
                 .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
                 .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
-                .setNewLinesAfter(1)
                 .build());
         printables.add(new TextPrintable.Builder()
-                .setText("---------------------"+"\n")
+                .setText("\n-------------------------------\n")
                 .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
-                .setAlignment(DefaultPrinter.Companion.getALIGNMENT_CENTER())
-                .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
-                .setUnderlined(DefaultPrinter.Companion.getUNDERLINED_MODE_ON())
-                .setNewLinesAfter(1)
+                .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
                 .build());
         if(namadiskon!=null){
             int totals = Integer.parseInt(total);
             int subtotals = Integer.parseInt(subtotal);
             int discount = subtotals - totals;
             printables.add(new TextPrintable.Builder()
-                    .setText(" DISKON :"+namadiskon)
+                    .setText(addSpace(""+namadiskon," - Rp "+discount))
                     .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
                     .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
                     .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
                     .build());
-
             printables.add(new TextPrintable.Builder()
-                    .setText(" -"+discount+"\n")
-                    .setAlignment(DefaultPrinter.Companion.getALIGNMENT_LEFT())
+                    .setText("\n-------------------------------")
                     .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
-                    .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
                     .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
                     .setNewLinesAfter(1)
                     .build());
+//            printables.add(new TextPrintable.Builder()
+//                    .setText("       -"+"Rp "+discount+"\n")
+//                    .setAlignment(DefaultPrinter.Companion.getALIGNMENT_LEFT())
+//                    .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
+//                    .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
+//                    .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
+//                    .setNewLinesAfter(1)
+//                    .build());
             printables.add(new TextPrintable.Builder()
-                    .setText(" TOTAL Rp"+total+"\n")
+                    .setText(addSpace("TOTAL "," Rp "+total))
+                    .setEmphasizedMode(DefaultPrinter.Companion.getFONT_SIZE_LARGE())
+                    .setNewLinesAfter(1)
                     .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
                     .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
                     .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
-                    .setNewLinesAfter(1)
                     .build());
+//            printables.add(new TextPrintable.Builder()
+//                    .setText("       Rp "+total+"\n")
+//                    .setAlignment(DefaultPrinter.Companion.getALIGNMENT_LEFT())
+//                    .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
+//                    .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
+//                    .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
+//                    .setNewLinesAfter(1)
+//                    .build());
         }else {
             printables.add(new TextPrintable.Builder()
-                    .setText(" TOTAL Rp" + total + "\n")
+                    .setText(addSpace("TOTAL "," Rp "+total))
+                    .setEmphasizedMode(DefaultPrinter.Companion.getFONT_SIZE_LARGE())
+                    .setNewLinesAfter(1)
                     .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
                     .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
                     .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
-                    .setNewLinesAfter(1)
                     .build());
+//            printables.add(new TextPrintable.Builder()
+//                    .setText(" TOTAL       Rp" + total + "\n")
+//                    .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
+//                    .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
+//                    .setCharacterCode(DefaultPrinter.Companion.getCHARCODE_PC1252())
+//                    .setNewLinesAfter(1)
+//                    .build());
         }
 //        printables.add(new TextPrintable.Builder()
 //                .setText(""+pesanan)
@@ -249,12 +282,17 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
 //                .setNewLinesAfter(1)
 //                .build());
         printables.add(new TextPrintable.Builder()
-                .setText("WiFI: EC_Cafe Pass: eccafe29 \n Thanks for Coming ! \n "+currentDate+"\n"+"#"+idcabang+"-"+idtransaksi)
+                .setText("WiFI: EC_Cafe Pass: eccafe29 \n Thanks for Coming !\n")
                 .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
                 .setAlignment(DefaultPrinter.Companion.getALIGNMENT_CENTER())
                 .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
-                .setUnderlined(DefaultPrinter.Companion.getUNDERLINED_MODE_ON())
                 .setNewLinesAfter(1)
+                .build());
+        printables.add(new TextPrintable.Builder()
+                .setText(addSpace(currentDate,"#"+idcabang+"-"+idtransaksi))
+                .setLineSpacing(DefaultPrinter.Companion.getLINE_SPACING_30())
+                .setNewLinesAfter(1)
+                .setEmphasizedMode(DefaultPrinter.Companion.getEMPHASIZED_MODE_BOLD())
                 .build());
         Log.d("printables", ""+printables);
         Printooth.INSTANCE.printer().print(printables);

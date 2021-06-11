@@ -1,10 +1,12 @@
 package com.p3lb.cafex.MenuDiskon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -69,7 +71,7 @@ public class TampilDiskon extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         dd=this;
-        refresh();
+        tampildiskon();
         backlistdiskon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +82,8 @@ public class TampilDiskon extends AppCompatActivity {
         btnsearchdiskon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 searchdiskon();
             }
         });
@@ -90,9 +94,12 @@ public class TampilDiskon extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
-    public void refresh() {
+    public void tampildiskon() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostDiskon> call = mApiInterface.getdiskon();
         call.enqueue(new Callback<PostDiskon>() {
