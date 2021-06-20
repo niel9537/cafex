@@ -92,6 +92,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
     private static final String KEY_BIAYAPESANAN = "biayapesanan";
 
     String totalbayaruser = "";
+    String iddetailtransaksi = "0";
     String namadiskon ="";
     String pesanan = "";
     String biayapesanan = "";
@@ -135,11 +136,18 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         mRecyclerView.setLayoutManager(mLayoutManager);
         Intent mIntent = getIntent();
         id_detail = mIntent.getStringExtra("id_detailtransaksi");
+        iddetailtransaksi = mIntent.getStringExtra("iddetailtransaksi");
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         mi=this;
         showcart();
         listdiskon();
-
+        Log.d("ID DETAIL",""+iddetailtransaksi);
+//        if(iddetailtransaksi==null){
+//            iddetailtransaksi = "0";
+//        }
+        if(iddetailtransaksi!=null){
+            deletecart(iddetailtransaksi);
+        }
         backcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,20 +198,20 @@ public class TampilCheckoutMenu extends AppCompatActivity{
 
     }
 
-    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            //Toasty.success(TampilCheckoutMenu.this, ""+ CartsAdapter.idkuu, Toast.LENGTH_SHORT).show();
-            id_detail = CartsAdapter.idkuu;
-            deletecart(id_detail);
-            mAdapter.notifyDataSetChanged();
-        }
-    };
+//    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+//        @Override
+//        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+//            return false;
+//        }
+//
+//        @Override
+//        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//            //Toasty.success(TampilCheckoutMenu.this, ""+ CartsAdapter.idkuu, Toast.LENGTH_SHORT).show();
+//            id_detail = CartsAdapter.idkuu;
+//           // deletecart(id_detail);
+//            mAdapter.notifyDataSetChanged();
+//        }
+//    };
 
     private int totalbayar(List<Cart> cartList) {
 
@@ -268,7 +276,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                             teksdiskon.setText(" ");
                             int result = ttlbayar-hasil;
                             diskoncut.setText(" "+result);
-                            Toasty.normal(TampilCheckoutMenu.this, "Minimun bayar "+mnbayar, Toast.LENGTH_SHORT).show();
+                            Toasty.normal(TampilCheckoutMenu.this, "Minimun pembelian Rp "+mnbayar, Toast.LENGTH_SHORT).show();
                             hasil = ttlbayar;
                         }
                     }else{
@@ -280,7 +288,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                         }else{
                             teksdiskon.setText("");
                             diskoncut.setText("");
-                            Toasty.normal(TampilCheckoutMenu.this, "Minimun bayar "+mnbayar, Toast.LENGTH_SHORT).show();
+                            Toasty.normal(TampilCheckoutMenu.this, "Minimun pembelian Rp "+mnbayar, Toast.LENGTH_SHORT).show();
                             hasil = ttlbayar;
                         }
 
@@ -375,7 +383,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 Log.d("Bayar2","Bayar "+totalbyr);
                 editor.apply();
                 mAdapter = new CartsAdapter(cartList);
-                new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
+                //new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
                 mRecyclerView.setAdapter(mAdapter);
 
             }
@@ -513,7 +521,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         });
     }
 
-    void deletecart(String iddelete){
+    public void deletecart(String iddelete){
         Call<PostPutDelTransaksi> postPutDelTransaksiCall = mApiInterface.deletecart(
                 iddelete,
                 idcabang,

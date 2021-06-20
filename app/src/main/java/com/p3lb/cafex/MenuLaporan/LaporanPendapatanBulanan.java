@@ -226,14 +226,14 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                     gethbpbulan();
                 }else{
                     initdate();
-                    Toasty.normal(LaporanPendapatanBulanan.this, "Bulan tidak tersedia  ", Toast.LENGTH_SHORT).show();
+                    Toasty.normal(LaporanPendapatanBulanan.this, "Laporan untuk bulan tersebut masih belum ada", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<cek> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(LaporanPendapatanBulanan.this, "Bulan tidak tersedia  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toasty.error(LaporanPendapatanBulanan.this, "Laporan untuk bulan tersebut masih belum ada" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

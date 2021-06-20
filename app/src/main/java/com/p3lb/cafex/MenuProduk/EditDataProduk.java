@@ -172,7 +172,7 @@ public class EditDataProduk extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
-                    Toasty.error(getApplicationContext(), "Produk berhasil diperbaharui", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getApplicationContext(), "Produk berhasil diperbaharui", Toast.LENGTH_SHORT).show();
                     TampilDataProduk.ma.tampilproduk();
                     finish();
                 }

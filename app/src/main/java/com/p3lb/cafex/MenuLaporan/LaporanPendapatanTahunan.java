@@ -199,14 +199,14 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                         tampilnettbulanan();
                     }else{
                         initdate();
-                        Toasty.normal(LaporanPendapatanTahunan.this, "Tahun tidak tersedia  ", Toast.LENGTH_SHORT).show();
+                        Toasty.normal(LaporanPendapatanTahunan.this, "Laporan untuk tahun tersebut masih belum ada", Toast.LENGTH_SHORT).show();
                     }
             }
 
             @Override
             public void onFailure(Call<cek> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(LaporanPendapatanTahunan.this, "Tahun tidak tersedia  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toasty.error(LaporanPendapatanTahunan.this, "Laporan untuk tahun tersebut masih belum ada" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

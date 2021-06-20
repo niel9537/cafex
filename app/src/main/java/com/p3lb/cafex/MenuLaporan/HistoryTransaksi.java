@@ -58,7 +58,7 @@ public class HistoryTransaksi extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Log.d("coba1", idcabang);
-        refresh();
+        riwayattransaksi();
         backhistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +72,7 @@ public class HistoryTransaksi extends AppCompatActivity {
 
     }
 
-    public void refresh() {
+    public void riwayattransaksi() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<Getnormalbulan> call = mApiInterface.historitransaksi(idcabang);
         call.enqueue(new Callback<Getnormalbulan>() {
@@ -85,7 +85,7 @@ public class HistoryTransaksi extends AppCompatActivity {
                     mAdapter = new HistoriTranksaksiAdapter(historyList);
                     mRecyclerView.setAdapter(mAdapter);
                 }else{
-                    Toasty.normal(HistoryTransaksi.this, "Gagal memuat transaksi  ", Toast.LENGTH_LONG).show();
+                    Toasty.normal(HistoryTransaksi.this, "Gagal memuat riwayat transaksi  ", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -94,7 +94,7 @@ public class HistoryTransaksi extends AppCompatActivity {
             @Override
             public void onFailure(Call<Getnormalbulan> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(HistoryTransaksi.this, "Gagal memuat transaksi  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(HistoryTransaksi.this, "Gagal memuat riwayat transaksi  " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

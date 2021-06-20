@@ -85,11 +85,11 @@ public class ProfileUser extends AppCompatActivity {
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         //zzz=this;
 
-        refresh();
+        tampilprofil();
         btnprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                refresh();
+                tampilprofil();
             }
         });
         btnupdateprofileuser.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +134,7 @@ public class ProfileUser extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
     }
 
-    public void refresh() {
+    public void tampilprofil() {
         ApiInterface mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         Call<PostUser> call = mApiInterface.profileuser(idcabang,namauser);
         call.enqueue(new Callback<PostUser>() {
@@ -210,7 +210,7 @@ public class ProfileUser extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginRegisterUsers> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
-                Toasty.error(ProfileUser.this, "Gagal memuat cabang  " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toasty.error(ProfileUser.this, "Gagal" + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

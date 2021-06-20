@@ -155,7 +155,7 @@ public class TambahDataProduk extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<PostPutDelProducts> call, Response<PostPutDelProducts> response) {
                     Log.d("RETRO", "LOG : " + response.message());
-                    Toasty.normal(getApplicationContext(), "Produk berhasil ditambah", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getApplicationContext(), "Produk berhasil ditambah", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(TambahDataProduk.this, TampilDataProduk.class);
                     startActivity(intent);
                 }

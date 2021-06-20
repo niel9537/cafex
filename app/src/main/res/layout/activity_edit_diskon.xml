@@ -304,7 +304,7 @@
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/view"
             android:backgroundTint="@android:color/white"
-            android:text="Tambah Diskon"
+            android:text="Update Diskon"
             android:textStyle="bold"
             android:textColor="@color/button"/>
 
