@@ -63,11 +63,12 @@
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
             android:layout_marginHorizontal="40dp"
-            android:background="@drawable/bg_placeholder"
-            android:backgroundTint="@color/button"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
             android:text="KONFIRMASI"
-            android:textColor="@color/background"/>
+            android:textColor="@color/button"/>
 
     </LinearLayout>
 </ScrollView>

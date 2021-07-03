@@ -43,6 +43,7 @@ public class DetailRegistrasi extends AppCompatActivity {
     Button btnKonfirmasi, btnHapus, backuserdetail;
     String idcabang = "";
     String username = "";
+    String jabatan = "";
     String iduser = "";
     ApiInterface mApiInterface;
     SharedPreferences sharedPreferences;
@@ -72,7 +73,13 @@ public class DetailRegistrasi extends AppCompatActivity {
         iduser = mIntent.getStringExtra("id_user");
         txtNamauser.setText(mIntent.getStringExtra("nama_user"));
         txtNoktpuser.setText(mIntent.getStringExtra("noktp_user"));
-        txtJabatanuser.setText(mIntent.getStringExtra("jabatan_user"));
+        jabatan = mIntent.getStringExtra("jabatan_user");
+        if(jabatan.equals("2")){
+            txtJabatanuser.setText("Admin");
+        }
+        if(jabatan.equals("3")){
+            txtJabatanuser.setText("Kasir");
+        }
         txtEmailuser.setText(mIntent.getStringExtra("email_user"));
         txtNohpuser.setText(mIntent.getStringExtra("nohp_user"));
         di=this;

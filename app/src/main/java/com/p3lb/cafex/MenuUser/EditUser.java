@@ -157,7 +157,7 @@ public class EditUser extends AppCompatActivity {
             dialogMessage = "Apakah anda ingin membatalkan perubahan user?";
         } else {
             dialogMessage = "Apakah anda yakin ingin menghapus user ini?";
-            dialogTitle = "Hapus Diskon";
+            dialogTitle = "Hapus User";
         }
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

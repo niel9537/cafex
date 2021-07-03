@@ -1,6 +1,8 @@
 package com.p3lb.cafex.network;
 
 import com.p3lb.cafex.model.Struk.PostStruk;
+import com.p3lb.cafex.model.auth.Login;
+import com.p3lb.cafex.model.auth.LoginUsers;
 import com.p3lb.cafex.model.bahanbaku.PostBahanbaku;
 import com.p3lb.cafex.model.check.cek;
 import com.p3lb.cafex.model.inventori.PostInventori;
@@ -80,6 +82,10 @@ public interface ApiInterface {
     Call<PostPutDelProducts> deleteProducts(@Field("id_produk") String id_produk);
 
     //===========================Users==================================//
+    @POST("users/listcabang")
+    @FormUrlEncoded
+    Call<PostCabang> daftarcabang(@Field("status") String status);
+
     @GET("users")
     Call<GetUsers> getUsers();
 
@@ -102,8 +108,7 @@ public interface ApiInterface {
 
     @POST("users/forgotpass")
     @FormUrlEncoded
-    Call<LoginRegisterUsers> forgotpass(@Field("nama_user") String nama_user,
-                                        @Field("id_cabang") String id_cabang);
+    Call<LoginRegisterUsers> forgotpass(@Field("nama_user") String nama_user);
     @POST("users/resetpassword")
     @FormUrlEncoded
     Call<LoginRegisterUsers> resetpass(@Field("nama_user") String nama_user,
@@ -118,15 +123,13 @@ public interface ApiInterface {
 
     @POST("users/login")
     @FormUrlEncoded
-    Call<LoginRegisterUsers> loginUsers(@Field("id_cabang") String id_cabang,
-                                        @Field("nama_user") String nama_user,
-                                        @Field("password_user") String password_user,
-                                        @Field("jabatan_user") int jabatan_user);
+    Call<Login> loginUsers(@Field("nama_user") String nama_user,
+                           @Field("password_user") String password_user);
 
 
     @POST("users/register")
     @FormUrlEncoded
-    Call<LoginRegisterUsers> regisUser(@Field("id_cabang") String id_cabang,
+    Call<LoginRegisterUsers> regisUser(@Field("nama_cabang") String nama_cabang,
                                        @Field("nama_user") String nama_user,
                                        @Field("nohp_user") String nohp_user,
                                        @Field("noktp_user") String noktp_user,
@@ -274,6 +277,7 @@ public interface ApiInterface {
     Call<Diskon> deletediskon(@Field("id_diskon") String id_diskon);
 
     //==========================Cabang======================================//
+
     @POST("cabang/listcabang")
     @FormUrlEncoded
     Call<GetCabang> listcabang(@Field("status") String status);

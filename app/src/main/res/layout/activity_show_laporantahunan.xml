@@ -31,6 +31,13 @@
             android:textStyle="bold"
             android:textSize="25dp"
             android:gravity="center"/>
+        <TextView
+            android:id="@+id/txtTanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/background"
+            android:textSize="1dp"
+            android:gravity="center"/>
         <LinearLayout
             android:paddingVertical="5dp"
             android:layout_width="match_parent"
@@ -45,9 +52,10 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:id="@+id/txtTanggal"
+                android:id="@+id/txtTahun"
                 android:background="@drawable/custom_input"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

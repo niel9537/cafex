@@ -63,7 +63,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LaporanPendapatanBulanan extends AppCompatActivity {
-    TextView txtTanggal,totalTransaksi, jumlahTransaksi, totalHBP, jumlahDiskon, totalRefund, jumlahRefund, totalGross, totalNett,dekskripsilaporan;
+    TextView txtTanggal,txtBulan,totalTransaksi, jumlahTransaksi, totalHBP, jumlahDiskon, totalRefund, jumlahRefund, totalGross, totalNett,dekskripsilaporan;
     Button btnTanggal, tampilBulanan, backlaporanbulanan;
     Spinner spinnerLaporanBulanan;
     SharedPreferences sharedPreferences;
@@ -91,6 +91,7 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.rvlaporanbulanan);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         txtTanggal = (TextView) findViewById(R.id.txtTanggal);
+        txtBulan = (TextView) findViewById(R.id.txtBulan);
         totalTransaksi = (TextView) findViewById(R.id.totalTransaksi);
         jumlahTransaksi = (TextView) findViewById(R.id.jumlahTransaksi);
         totalHBP = (TextView) findViewById(R.id.totalHBP);
@@ -127,6 +128,31 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                             @Override
                             public void onDateSet(int selectedMonth, int selectedYear) {
                                 int month = selectedMonth + 1;
+                                if(month==1){
+                                    txtBulan.setText("Januari");
+                                }else if(month==2){
+                                    txtBulan.setText("Februari");
+                                }else if(month==3){
+                                    txtBulan.setText("Maret");
+                                }else if(month==4){
+                                    txtBulan.setText("April");
+                                }else if(month==5){
+                                    txtBulan.setText("Mei");
+                                }else if(month==6){
+                                    txtBulan.setText("Juni");
+                                }else if(month==7){
+                                    txtBulan.setText("Juli");
+                                }else if(month==8){
+                                    txtBulan.setText("Agustus");
+                                }else if(month==9){
+                                    txtBulan.setText("September");
+                                }else if(month==10){
+                                    txtBulan.setText("Oktober");
+                                }else if(month==11){
+                                    txtBulan.setText("November");
+                                }else if(month==12){
+                                    txtBulan.setText("Desember");
+                                }
                                 txtTanggal.setText(selectedYear+"-"+month+"-"+"1");
                                 cekbulan();
 //                                gettransaksinormal();

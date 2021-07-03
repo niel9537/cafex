@@ -169,7 +169,7 @@ public class EditCabang extends AppCompatActivity {
             dialogMessage = "Apakah anda ingin membatalkan perubahan cabang?";
         } else {
             dialogMessage = "Apakah anda yakin ingin menghapus cabang ini?";
-            dialogTitle = "Hapus Diskon";
+            dialogTitle = "Hapus Cabang";
         }
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

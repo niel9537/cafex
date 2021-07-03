@@ -35,7 +35,31 @@ public class NettAdapter extends RecyclerView.Adapter<NettAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder (NettAdapter.MyViewHolder holder, final int position){
-        holder.bulan.setText(resultList.get(position).getBulan());
+        if(resultList.get(position).getBulan().equals("1")){
+            holder.bulan.setText("Januari");
+        }else if(resultList.get(position).getBulan().equals("2")){
+            holder.bulan.setText("Februari");
+        }else if(resultList.get(position).getBulan().equals("3")){
+            holder.bulan.setText("Maret");
+        }else if(resultList.get(position).getBulan().equals("4")){
+            holder.bulan.setText("April");
+        }else if(resultList.get(position).getBulan().equals("5")){
+            holder.bulan.setText("Mei");
+        }else if(resultList.get(position).getBulan().equals("6")){
+            holder.bulan.setText("Juni");
+        }else if(resultList.get(position).getBulan().equals("7")){
+            holder.bulan.setText("Juli");
+        }else if(resultList.get(position).getBulan().equals("8")){
+            holder.bulan.setText("Agustus");
+        }else if(resultList.get(position).getBulan().equals("9")){
+            holder.bulan.setText("September");
+        }else if(resultList.get(position).getBulan().equals("10")){
+            holder.bulan.setText("Oktober");
+        }else if(resultList.get(position).getBulan().equals("11")){
+            holder.bulan.setText("November");
+        }else if(resultList.get(position).getBulan().equals("12")){
+            holder.bulan.setText("Desember");
+        }
         int total = Integer.parseInt(reportList.get(position).getTotalTransaksi());
         int hbp = Integer.parseInt(resultList.get(position).getTotalBiayaproduk());
         int hasil = total-hbp;

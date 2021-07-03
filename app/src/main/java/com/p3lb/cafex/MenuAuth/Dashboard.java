@@ -87,7 +87,7 @@ public class Dashboard extends AppCompatActivity {
                 editor.apply();
                 Toasty.success(Dashboard.this, "Berhasil Logout", Toast.LENGTH_SHORT).show();
                 finish();
-                Intent intent = new Intent(Dashboard.this, LoginAdmin.class);
+                Intent intent = new Intent(Dashboard.this, LoginKasir.class);
                 startActivity(intent);
                 Log.d("Session", ""+jabatan);
             }

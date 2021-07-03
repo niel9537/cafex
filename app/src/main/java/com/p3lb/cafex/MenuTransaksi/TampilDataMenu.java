@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.p3lb.cafex.ExampleDialog;
 import com.p3lb.cafex.MenuAuth.Dashboard;
-import com.p3lb.cafex.MenuAuth.LoginAdmin;
+
 import com.p3lb.cafex.MenuAuth.LoginKasir;
 import com.p3lb.cafex.MenuRefund.TampilRefund;
 import com.p3lb.cafex.R;
@@ -62,12 +62,13 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
     private static final String KEY_JABATAN = "jabatan";
     private static final String KEY_TOTALBAYAR = "totalbayardiskon";
     private static final String KEY_BAYAR = "totalbayar";
+    private static final String KEY_NAMACABANG = "namacabang";
     private static final String KEY_PESANAN = "pesanan";
     private static final String KEY_DISKON = "diskon";
     String keybayar = "";
     String keytotalbayar = "";
     String diskon = "";
-
+    String namacabang = "";
     String nama_user = "";
     String id_username = "";
     String role = "";
@@ -92,6 +93,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
         nama_user = sharedPreferences.getString(KEY_USERNAME,null);
         id_username = sharedPreferences.getString(KEY_ID,null);
         role = sharedPreferences.getString(KEY_JABATAN,null);
+        namacabang = sharedPreferences.getString(KEY_NAMACABANG, null);
         keybayar = sharedPreferences.getString(KEY_BAYAR,null);
         keytotalbayar = sharedPreferences.getString(KEY_TOTALBAYAR,null);
         diskon = sharedPreferences.getString(KEY_DISKON,null);
@@ -99,7 +101,7 @@ public class TampilDataMenu extends AppCompatActivity implements ExampleDialog.E
         searchmenu = (EditText) findViewById(R.id.edtsearchmenu);
         btnsearhcmenu = (Button) findViewById(R.id.btnsearchmenu);
         backlistmenu = (Button) findViewById(R.id.backlistmenu);
-        placeholderUsername.setText(""+nama_user+" | "+id_username);
+        placeholderUsername.setText(""+nama_user+" | "+namacabang);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mApiInterface = ApiHelper.getClient().create(ApiInterface.class);
         //me=this;

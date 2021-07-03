@@ -253,7 +253,9 @@ public class EditDataProduk extends AppCompatActivity {
 
                                     @Override
                                     public void onFailure(Call<PostPutDelProducts> call, Throwable t) {
-                                        Toasty.error(getApplicationContext(), "Produk gagal di hapus", Toast.LENGTH_SHORT).show();
+                                       // Toasty.error(getApplicationContext(), "Produk gagal di hapus", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(EditDataProduk.this, TampilDataProduk.class);
+                                        startActivity(intent);
                                     }
                                 });
                             }else{

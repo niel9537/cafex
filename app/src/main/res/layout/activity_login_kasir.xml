@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:layout_marginBottom="120dp"
             android:fontFamily="@font/open_sans_semibold"
             android:text="cafex."
             android:textAlignment="center"
@@ -29,21 +30,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/open_sans_bold"
-            android:text="KASIR"
-            android:textColor="@color/button"
-            android:textSize="30sp"/>
-
         <EditText
             android:drawableLeft="@drawable/ic_username"
             android:padding="10dp"
             android:gravity="center"
+            android:layout_marginHorizontal="0dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/username_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -65,28 +57,11 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/view"
             android:backgroundTint="@android:color/white"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textAlignment="center"
-            android:textColor="@color/button"
-            android:textColorHighlight="@color/button"
-            android:textColorHint="#DADDDC"
-            android:textColorLink="@color/button"
-            android:textCursorDrawable="@color/button"/>
-        <EditText
-            android:drawableLeft="@drawable/ic_cabangid"
-            android:padding="10dp"
-            android:gravity="center"
-            android:id="@+id/cabang_login"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/view"
-            android:backgroundTint="@android:color/white"
-            android:hint="ID Cabang"
-            android:inputType="number"
             android:textAlignment="center"
             android:textColor="@color/button"
             android:textColorHighlight="@color/button"
@@ -99,6 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/view"
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/open_sans_bold"
@@ -111,24 +87,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
-            <TextView
-                android:id="@+id/klikAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_bold"
-                android:gravity="left"
-                android:text="LOGIN ADMIN"
-                android:textColor="@color/button"
-                android:textColorHighlight="@color/button"
-                android:textColorHint="@color/button"
-                android:textColorLink="#E33030"/>
 
             <TextView
                 android:id="@+id/lupapassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="LUPA PASSWORD?  "
+                android:gravity="center"
+                android:text="LUPA PASSWORD  "
                 android:textColor="@color/button"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/klikAdmin"
@@ -152,24 +117,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_semibold"
-            android:gravity="left"
+            android:gravity="center"
             android:text="REGISTRASI"
             android:textColor="@color/button"
             android:textStyle="bold"
             android:layout_weight="1"/>
-
-        <TextView
-            android:layout_weight="2"
-            android:id="@+id/listcabang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/view"
-            android:backgroundTint="@android:color/white"
-            android:fontFamily="@font/open_sans_semibold"
-            android:gravity="center"
-            android:text=" LIST CABANG "
-            android:textColor="@color/button"
-            android:textStyle="bold" />
 
     </LinearLayout>
 

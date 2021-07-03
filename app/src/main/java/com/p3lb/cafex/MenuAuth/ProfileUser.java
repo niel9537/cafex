@@ -199,7 +199,7 @@ public class ProfileUser extends AppCompatActivity {
                     editor.apply();
                     finish();
                     Toasty.success(ProfileUser.this, "Silahkan login kembali", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ProfileUser.this, LoginAdmin.class);
+                    Intent intent = new Intent(ProfileUser.this, LoginKasir.class);
                     startActivity(intent);
                 }else{
                     Toasty.error(ProfileUser.this, "Gagal update profile user  ", Toast.LENGTH_SHORT).show();

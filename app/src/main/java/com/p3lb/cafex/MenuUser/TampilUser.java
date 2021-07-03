@@ -106,11 +106,13 @@ public class TampilUser extends AppCompatActivity {
             @Override
             public void onResponse(Call<PostUser> call, Response<PostUser>
                     response) {
-                List<User> userList = response.body().getUserList();
-                Log.d("Retrofit Get", "Jumlah user: " +
-                        String.valueOf(userList.size()));
-                mAdapter = new UserAdapter(userList);
-                mRecyclerView.setAdapter(mAdapter);
+                if(response.isSuccessful()){
+                    userList = response.body().getUserList();
+                    Log.d("Retrofit Get", "Jumlah user: " +
+                            String.valueOf(userList.size()));
+                    mAdapter = new UserAdapter(userList);
+                    mRecyclerView.setAdapter(mAdapter);
+                }
             }
 
             @Override

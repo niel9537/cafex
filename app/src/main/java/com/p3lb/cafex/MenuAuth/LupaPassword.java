@@ -24,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LupaPassword extends AppCompatActivity {
-    EditText forgetusername, forgetidcabang;
+    EditText forgetusername;
     Button btnkirimemail, backloginforgetpassword;
 
     SharedPreferences sharedPreferences;
@@ -38,7 +38,6 @@ public class LupaPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
         forgetusername = (EditText) findViewById(R.id.forgetusername);
-        forgetidcabang = (EditText) findViewById(R.id.forgetidcabang);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         btnkirimemail = (Button) findViewById(R.id.btnkirimemail);
         backloginforgetpassword = (Button) findViewById(R.id.backloginforgetpassword);
@@ -61,15 +60,16 @@ public class LupaPassword extends AppCompatActivity {
     }
 
     private void lupapassword(){
-        Call<LoginRegisterUsers> postUsersCall = apiInterface.forgotpass(forgetusername.getText().toString(), forgetidcabang.getText().toString());
+        Call<LoginRegisterUsers> postUsersCall = apiInterface.forgotpass(forgetusername.getText().toString());
         postUsersCall.enqueue(new Callback<LoginRegisterUsers>() {
             @Override
             public void onResponse(Call<LoginRegisterUsers> call, Response<LoginRegisterUsers> response) {
                 Log.d("response", " "+response.body().getStatus());
                 if(response.body().getStatus().equals("berhasil")) {
+                    String idcabang = response.body().getMessage();
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(KEY_USERNAME,forgetusername.getText().toString());
-                    editor.putString(KEY_ID,forgetidcabang.getText().toString());
+                    editor.putString(KEY_ID,idcabang);
                     editor.apply();
                     Log.d("RETRO", "ON SUCCESS : " + response.message());
                     Toasty.success(LupaPassword.this, "Email verifikasi berhasil dikirim", Toast.LENGTH_SHORT).show();

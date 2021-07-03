@@ -64,7 +64,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LaporanPendapatanTahunan extends AppCompatActivity {
-    TextView txtTanggal,totalTransaksi, jumlahTransaksi, totalHBP, jumlahDiskon, totalRefund, jumlahRefund, totalGross, totalNett,dekskripsilaporan;
+    TextView txtTanggal,txtTahun,totalTransaksi, jumlahTransaksi, totalHBP, jumlahDiskon, totalRefund, jumlahRefund, totalGross, totalNett,dekskripsilaporan;
     Button btnTanggal, tampilBulanan, backlaporantahunan;
     SharedPreferences sharedPreferences;
     private RecyclerView mRecyclerView;
@@ -90,6 +90,7 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.rvlaporanbulanan);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         txtTanggal = (TextView) findViewById(R.id.txtTanggal);
+        txtTahun = (TextView) findViewById(R.id.txtTahun);
         totalTransaksi = (TextView) findViewById(R.id.totalTransaksi);
         jumlahTransaksi = (TextView) findViewById(R.id.jumlahTransaksi);
         totalHBP = (TextView) findViewById(R.id.totalHBP);
@@ -122,6 +123,7 @@ public class LaporanPendapatanTahunan extends AppCompatActivity {
                             @Override
                             public void onDateSet(int selectedMonth, int selectedYear) {
                                 int year = selectedYear;
+                                txtTahun.setText(String.valueOf(year));
                                 txtTanggal.setText(year+"-"+"01"+"-"+"01");
                                 initdate();
                                 cektahun();

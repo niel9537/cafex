@@ -47,13 +47,27 @@
         android:textAlignment="center"
         android:textColor="@color/button"
         android:textSize="30dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:textStyle="bold" />
 
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/button"
+            android:layout_weight="3"/>
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="0dp"
             android:gravity="center"
             android:id="@+id/nama_user"
             android:layout_width="match_parent"
@@ -64,10 +78,25 @@
             android:hint="  Username"
             android:inputType="textPersonName"
             android:textColor="@color/button" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="0dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/button"
+            android:layout_weight="3"/>
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="0dp"
             android:gravity="center"
             android:id="@+id/email_user"
             android:layout_width="match_parent"
@@ -78,11 +107,25 @@
             android:layout_marginBottom="4dp"
             android:inputType="textEmailAddress"
             android:textColor="@color/button" />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="0dp">
 
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/button"
+            android:layout_weight="3"/>
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="0dp"
             android:gravity="center"
             android:id="@+id/password_user"
             android:layout_width="match_parent"
@@ -93,11 +136,26 @@
             android:hint="  Password"
             android:inputType="textPassword"
             android:textColor="@color/button" />
+     </LinearLayout>
 
+     <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="0dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No HP"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/button"
+            android:layout_weight="3"/>
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="0dp"
             android:gravity="center"
             android:id="@+id/nohp_user"
             android:layout_width="match_parent"
@@ -108,10 +166,25 @@
             android:layout_marginBottom="4dp"
             android:inputType="number"
             android:textColor="@color/button" />
+     </LinearLayout>
+     <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="0dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No KTP"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/button"
+            android:layout_weight="3"/>
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="0dp"
             android:gravity="center"
             android:id="@+id/noktp_user"
             android:layout_width="match_parent"
@@ -122,52 +195,68 @@
             android:layout_marginBottom="4dp"
             android:inputType="number"
             android:textColor="@color/button" />
-
-        <EditText
-            android:gravity="center"
-            android:id="@+id/id_cabang"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="20dp"
-            android:background="@drawable/view"
-            android:backgroundTint="@android:color/white"
-            android:hint="  Id Cabang  "
-            android:layout_marginBottom="4dp"
-            android:inputType="number"
-            android:textColor="@color/button" />
-
-    <com.google.android.material.textfield.TextInputLayout
+     </LinearLayout>
+     <LinearLayout
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/custom_input"
-        android:textColorHint="@color/button"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        app:boxBackgroundColor="@color/background"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="0dp">
 
-        <Spinner
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:outlineSpotShadowColor="@color/background"
-            android:id="@+id/spinnerJabatanUser"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:popupBackground="@color/background"
-            android:spinnerMode="dropdown" />
+            android:layout_marginTop="20dp"
+            android:text="Cabang"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/button"
+            android:layout_weight="3"/>
+         <Spinner
+             android:id="@+id/spinnerCabang"
+             android:background="@drawable/gradient_spinner"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginRight="0dp"
+             android:layout_gravity="center"
+             android:layout_marginVertical="5dp"
+             android:layout_weight="1"
+             android:gravity="center"/>
+     </LinearLayout>
+     <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="0dp">
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jabatan"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/button"
+            android:layout_weight="3"/>
+         <Spinner
+             android:id="@+id/spinnerJabatanUser"
+             android:background="@drawable/gradient_spinner"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginRight="0dp"
+             android:layout_gravity="center"
+             android:layout_marginVertical="5dp"
+             android:layout_weight="1"
+             android:gravity="center"/>
+     </LinearLayout>
 
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/view"
