@@ -21,6 +21,7 @@ import com.p3lb.cafex.model.produk.Products;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.MyViewHolder> {
     List<Products> mmenuslist;
@@ -41,7 +42,9 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.MyViewHolder
     @Override
     public void onBindViewHolder (MenusAdapter.MyViewHolder holder, final int position){
         holder.nama_produk.setText(mmenuslist.get(position).getNama_produk());
-        holder.harga_produk.setText("Rp "+mmenuslist.get(position).getHarga_produk());
+        int number = Integer.parseInt(mmenuslist.get(position).getHarga_produk());
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        holder.harga_produk.setText("Rp "+str);
         holder.kategori_produk.setText(mmenuslist.get(position).getKategori_produk());
         Glide.with(holder.itemView.getContext())
                 .load(Config.IMAGES_URL + mmenuslist.get(position).getFoto_produk())

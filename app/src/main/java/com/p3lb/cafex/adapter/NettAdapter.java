@@ -14,6 +14,7 @@ import com.p3lb.cafex.model.trxtahunan.Report;
 import com.p3lb.cafex.model.trxtahunan.Result;
 
 import java.util.List;
+import java.util.Locale;
 
 public class NettAdapter extends RecyclerView.Adapter<NettAdapter.MyViewHolder> {
     List<Result> resultList;
@@ -63,7 +64,9 @@ public class NettAdapter extends RecyclerView.Adapter<NettAdapter.MyViewHolder> 
         int total = Integer.parseInt(reportList.get(position).getTotalTransaksi());
         int hbp = Integer.parseInt(resultList.get(position).getTotalBiayaproduk());
         int hasil = total-hbp;
-        holder.nett.setText("Rp "+hasil);
+        int number = hasil;
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        holder.nett.setText("Rp "+str);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.p3lb.cafex.adapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +9,14 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.p3lb.cafex.MenuTransaksi.TambahSelectMenu;
+import com.p3lb.cafex.MenuTransaksi.TampilRiwayat;
 import com.p3lb.cafex.R;
 import com.p3lb.cafex.model.trxbulanan.History;
 import com.p3lb.cafex.model.trxbulanan.Normalbulan;
 
 import java.util.List;
+import java.util.Locale;
 
 public class HistoriTranksaksiAdapter extends RecyclerView.Adapter<HistoriTranksaksiAdapter.MyViewHolder> {
     List<History> historyList;
@@ -34,7 +38,17 @@ public class HistoriTranksaksiAdapter extends RecyclerView.Adapter<HistoriTranks
     public void onBindViewHolder (HistoriTranksaksiAdapter.MyViewHolder holder, final int position){
         holder.idtransaksi.setText(historyList.get(position).getIdTransaksi());
         holder.namapembeli.setText(historyList.get(position).getNamaPembeli());
-        holder.totalbayar.setText("Rp "+historyList.get(position).getTotalBayar());
+        int number = Integer.parseInt(historyList.get(position).getTotalBayar());
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        holder.totalbayar.setText("Rp "+str);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(view.getContext(), TampilRiwayat.class);
+                mIntent.putExtra("id_transaksi", historyList.get(position).getIdTransaksi());
+                view.getContext().startActivity(mIntent);
+            }
+        });
 
     }
 

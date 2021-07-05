@@ -69,8 +69,6 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.RegistrasiUser"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MenuAuth.LoginAdmin"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.LoginKasir"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.VerifikasiPassword"
@@ -79,7 +77,6 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuAuth.ResetPassword"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ApplicationClass"/>
         <activity android:name=".PrintoothActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuLaporan.LaporanPendapatanBulanan"
@@ -87,6 +84,8 @@
         <activity android:name=".MenuLaporan.LaporanPendapatanTahunan"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuLaporan.HistoryTransaksi"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MenuTransaksi.TampilRiwayat"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuLaporan.LaporanActivity"
             android:theme="@style/AppTheme.NoActionBar"/>

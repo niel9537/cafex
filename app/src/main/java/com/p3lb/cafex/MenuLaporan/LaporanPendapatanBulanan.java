@@ -56,6 +56,7 @@ import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 
 import java.util.List;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -274,15 +275,17 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                 List<Trxnormalbulan> trxnormalbulanList = response.body().getTrxnormalbulanList();
                 totaltrx = trxnormalbulanList.get(0).getTotal_transaksi();
                 trx =Integer.valueOf(totaltrx);
+                int number = Integer.parseInt(totaltrx);
+                String str = String.format(Locale.US, "%,d", number).replace(',', '.');
                 jumlahtrx = trxnormalbulanList.get(0).getJumlah_transaksi();
                 Log.d("trxtotal ", ""+totaltrx);
-                totalTransaksi.setText("Rp "+totaltrx);
+                totalTransaksi.setText("Rp "+str);
                 if(totalTransaksi.getText().toString().equals("Rp null")){
                     totalTransaksi.setText("Rp 0");
                     totalGross.setText("Rp 0");
                 }
                 jumlahTransaksi.setText(jumlahtrx);
-                totalGross.setText("Rp "+totaltrx);
+                totalGross.setText("Rp "+str);
             }
 
             @Override
@@ -322,17 +325,21 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
             @Override
             public void onResponse(Call<Posttrxrefundbulan> call, Response<Posttrxrefundbulan>
                     response) {
-                List<Trxrefundbulan> trxrefundbulanList = response.body().getTrxrefundbulanList();
-                totalrefund = trxrefundbulanList.get(0).getTotal_refund();
-                jumlahrefund = trxrefundbulanList.get(0).getJumlah_transaksirefund();
-                if(totalrefund == null){
-                    totalrefund = "0";
+                if(response.isSuccessful()) {
+                    List<Trxrefundbulan> trxrefundbulanList = response.body().getTrxrefundbulanList();
+                    totalrefund = trxrefundbulanList.get(0).getTotal_refund();
+                    jumlahrefund = trxrefundbulanList.get(0).getJumlah_transaksirefund();
+                    if (totalrefund == null) {
+                        totalrefund = "0";
+                    }
+                    if (jumlahrefund == null) {
+                        jumlahrefund = "0";
+                    }
+                    int number = Integer.parseInt(totalrefund);
+                    String refund = String.format(Locale.US, "%,d", number).replace(',', '.');
+                    totalRefund.setText("Rp " + refund);
+                    jumlahRefund.setText(jumlahrefund);
                 }
-                if(jumlahrefund == null){
-                    jumlahrefund = "0";
-                }
-                totalRefund.setText("Rp "+totalrefund);
-                jumlahRefund.setText(jumlahrefund);
             }
 
             @Override
@@ -354,14 +361,15 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                     try {
                         List<Trxhbpbulan> trxhbpbulanList = response.body().getTrxhbpbulanList();
                         totalhbp = trxhbpbulanList.get(0).getTotal_biayaproduk();
-
+                        int number = Integer.parseInt(totalhbp);
+                        String hbp = String.format(Locale.US, "%,d", number).replace(',', '.');
 //                        int hbp = 0;
 //                        if(totalhbp.equals("null")){
 //                            hbp = 0;
 //                        }else{
 //                            hbp = Integer.parseInt(totalhbp);
 //                        }
-                        totalHBP.setText("Rp " + totalhbp);
+                        totalHBP.setText("Rp " + hbp);
                         //int trx = Integer.valueOf(totalTransaksi.getText().toString().substring(3));
                         //int hbpbaru = Integer.valueOf(totalHBP.getText().toString().substring(3));
 
@@ -370,7 +378,9 @@ public class LaporanPendapatanBulanan extends AppCompatActivity {
                         Log.d("totalhbp", ""+hbpbaru);
                         int hasil = trx - hbpbaru;
                         int net = hasil;
-                        totalNett.setText("Rp "+net);
+                        int net2 = net;
+                        String net3 = String.format(Locale.US, "%,d", net2).replace(',', '.');
+                        totalNett.setText("Rp "+net3);
 //                        String s = (totalTransaksi.getText().toString().substring(3));
 //                        int hasil = Integer.valueOf(totalHBP.getText().toString().substring(3));
 //                        int total = Integer.parseInt(s);

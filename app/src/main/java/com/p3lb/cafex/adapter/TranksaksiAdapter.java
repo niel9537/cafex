@@ -15,6 +15,7 @@ import com.p3lb.cafex.model.diskon.Diskon;
 import com.p3lb.cafex.model.trxbulanan.Normalbulan;
 
 import java.util.List;
+import java.util.Locale;
 
 public class TranksaksiAdapter extends RecyclerView.Adapter<TranksaksiAdapter.MyViewHolder> {
     List<Normalbulan> normalbulanList;
@@ -36,7 +37,9 @@ public class TranksaksiAdapter extends RecyclerView.Adapter<TranksaksiAdapter.My
     public void onBindViewHolder (TranksaksiAdapter.MyViewHolder holder, final int position){
         holder.idtransaksi.setText(normalbulanList.get(position).getId_transaksi());
         holder.namapembeli.setText(normalbulanList.get(position).getNama_pembeli());
-        holder.totalbayar.setText("Rp "+normalbulanList.get(position).getTotal_bayar());
+        int number = Integer.parseInt(normalbulanList.get(position).getTotal_bayar());
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        holder.totalbayar.setText("Rp "+str);
 
     }
 

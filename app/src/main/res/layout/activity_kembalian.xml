@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        tools:context=".MenuAuth.LupaPassword">
+
+        <Button
+            android:layout_marginHorizontal="40dp"
+            android:id="@+id/backloginforgetpassword"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@drawable/ic_back"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="200dp"
+            android:gravity="center"
+            android:text="Forget Password"
+            android:textColor="@color/button"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/forgetusername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_input"
+            android:hint="Username"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/button"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/btnkirimemail"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/view"
+            android:backgroundTint="@android:color/white"
+            android:textStyle="bold"
+            android:text="KIRIM EMAIL"
+            android:textColor="@color/button"/>
+
+    </LinearLayout>
+</ScrollView>

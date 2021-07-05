@@ -13,6 +13,7 @@ import com.p3lb.cafex.model.trxdiskonbulanan.Diskonbulan;
 import com.p3lb.cafex.model.trxrefundbulanan.Refundbulan;
 
 import java.util.List;
+import java.util.Locale;
 
 public class TranksaksiRefundAdapter extends RecyclerView.Adapter<TranksaksiRefundAdapter.MyViewHolder> {
     List<Refundbulan> refundbulanList;
@@ -34,7 +35,9 @@ public class TranksaksiRefundAdapter extends RecyclerView.Adapter<TranksaksiRefu
     public void onBindViewHolder (TranksaksiRefundAdapter.MyViewHolder holder, final int position){
         holder.idtransaksi.setText(refundbulanList.get(position).getId_transaksi());
         holder.namapembeli.setText(refundbulanList.get(position).getNama_pembeli());
-        holder.totalbayar.setText("Rp "+refundbulanList.get(position).getTotal_bayar());
+        int number = Integer.parseInt(refundbulanList.get(position).getTotal_bayar());
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        holder.totalbayar.setText("Rp "+str);
 
     }
 

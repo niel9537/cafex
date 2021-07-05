@@ -191,6 +191,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<PostRefund> getrefund(@Field("id_cabang") String id_cabang,
                                @Field("id_transaksi") String id_transaksi);
+    @POST("transaksi/caririwayat")
+    @FormUrlEncoded
+    Call<PostRefund> getriwayat(@Field("id_cabang") String id_cabang,
+                               @Field("id_transaksi") String id_transaksi);
     @POST("transaksi/updaterefund")
     @FormUrlEncoded
     Call<PostRefund> updaterefund(@Field("id_cabang") String id_cabang,

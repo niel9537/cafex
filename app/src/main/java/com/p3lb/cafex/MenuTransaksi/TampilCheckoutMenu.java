@@ -73,7 +73,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TampilCheckoutMenu extends AppCompatActivity{
-    TextView totalBayar, grandTotal, Pesanan, diskoncut, teksdiskon;
+    TextView totalBayar,totalBayarBayang, grandTotal, grandTotalBayang, Pesanan, diskoncut, teksdiskon;
     Spinner spinnerDiskon;
     EditText namaPembeli, diskon;
     Button btnBayar, btnDiskon, backcart;
@@ -118,6 +118,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_datacart);
         totalBayar = (TextView) findViewById(R.id.totalBayar);
+        totalBayarBayang = (TextView) findViewById(R.id.totalBayarBayang);
         Pesanan = (TextView) findViewById(R.id.pesanan);
         namaPembeli = (EditText) findViewById(R.id.namaPembeli);
         btnBayar = (Button) findViewById(R.id.btnBayar);
@@ -127,6 +128,7 @@ public class TampilCheckoutMenu extends AppCompatActivity{
         btnDiskon = (Button) findViewById(R.id.btnDiskon);
         backcart = (Button) findViewById(R.id.backcart);
         grandTotal = (TextView) findViewById(R.id.grandTotal);
+        grandTotalBayang = (TextView) findViewById(R.id.grandTotalBayang);
         spinnerDiskon = (Spinner) findViewById(R.id.spinnerDiskon);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         idcabang = sharedPreferences.getString(KEY_ID,null);
@@ -293,6 +295,9 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                         }
 
                     }
+                    int number = hasil;
+                    String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+                    grandTotalBayang.setText("Rp "+str);
                     grandTotal.setText("Rp "+hasil);
                     if(hargadiskon.equals("")){
                         int per = (int) (prsndiskon*100);
@@ -378,6 +383,9 @@ public class TampilCheckoutMenu extends AppCompatActivity{
                 Log.d("Pesanan2", pesanan);
                 editor.putString(KEY_PESANAN, pesanan);
                 totalbyr = totalbayar(cartList);
+                int number = totalbyr;
+                String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+                totalBayarBayang.setText("Rp "+str);
                 totalBayar.setText(String.valueOf(totalbyr));
                 editor.putString(KEY_BAYAR,String.valueOf(totalbyr));
                 Log.d("Bayar2","Bayar "+totalbyr);

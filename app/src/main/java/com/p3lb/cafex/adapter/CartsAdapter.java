@@ -25,6 +25,7 @@ import com.p3lb.cafex.model.transaksi.Cart;
 import com.p3lb.cafex.model.transaksi.DetailTransaksi;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CartsAdapter extends RecyclerView.Adapter<CartsAdapter.MyViewHolder> {
     List<Cart> cartList;
@@ -46,7 +47,9 @@ public class CartsAdapter extends RecyclerView.Adapter<CartsAdapter.MyViewHolder
     @Override
     public void onBindViewHolder (CartsAdapter.MyViewHolder holder, final int position){
         holder.id_item.setText(cartList.get(position).getId_detailtransaksi());
-        holder.harga_item.setText(cartList.get(position).getHarga_subtotal());
+        int number = Integer.parseInt(cartList.get(position).getHarga_subtotal());
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        holder.harga_item.setText(""+str);
         holder.jumlah_item.setText("x "+cartList.get(position).getJumlah_item());
         holder.kategori_item.setText(cartList.get(position).getKategori_produk());
         holder.nama_item.setText(cartList.get(position).getNama_produk());

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -49,15 +51,19 @@ import retrofit2.Response;
 
 public class PrintoothActivity extends AppCompatActivity implements PrintingCallback {
     Printing printing;
-    Button btn_unpair_pair, btn_print, btnbackprintooth;
+    Button btn_unpair_pair, btn_print, btnbackprintooth, btnKembalian;
+    TextView txtKembalian, txtBiaya;
+    EditText edtKembalian;
     String currentDate;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
+
     private static final String KEY_TOTALBAYAR = "totalbayardiskon";
     private static final String KEY_BAYAR = "totalbayar";
+    private static final String TOTAL_KEY = "total";
     private static final String KEY_PESANAN = "pesanan";
     private static final String KEY_BIAYAPESANAN = "biayapesanan";
     private static final String KEY_DISKON = "diskon";
@@ -70,6 +76,7 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
     String biayapesanan = "";
     String idtransaksi ="";
     String subtotal ="";
+    String ttl = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,18 +88,30 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
         initView();
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         idcabang = sharedPreferences.getString(KEY_ID,null);
+        ttl = sharedPreferences.getString(TOTAL_KEY, null);
+        Log.d("d", ""+ttl);
         username = sharedPreferences.getString(KEY_USERNAME,null);
         refresh();
         pesanan = sharedPreferences.getString(KEY_PESANAN, null);
         biayapesanan = sharedPreferences.getString(KEY_BIAYAPESANAN, null);
+
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOptions);
+
     }
     private void initView(){
+        SharedPreferences preferences =getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(TOTAL_KEY);
+        editor.commit();
         btn_print = (Button) findViewById(R.id.btn_print);
         btn_unpair_pair = (Button) findViewById(R.id.btn_unpair_pair);
         btnbackprintooth = (Button) findViewById(R.id.btnbackprintooth);
+        txtBiaya = (TextView) findViewById(R.id.txtBiaya);
+        txtKembalian = (TextView) findViewById(R.id.txtKembalian);
+        edtKembalian = (EditText) findViewById(R.id.edtKembalian);
+        btnKembalian = (Button) findViewById(R.id.btnKembalian);
         btnbackprintooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,8 +171,37 @@ public class PrintoothActivity extends AppCompatActivity implements PrintingCall
                 List<Struk> strukList = response.body().getStrukList();
                 idtransaksi = strukList.get(0).getId_transaksi();
                 total = strukList.get(0).getTotal_bayar();
+                Log.d("d", ""+total);
                 namadiskon = strukList.get(0).getNama_diskon();
                 subtotal = strukList.get(0).getSubtotal();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(TOTAL_KEY,total);
+                editor.apply();
+                //kembalian
+
+                btnKembalian.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(edtKembalian.getText().toString().isEmpty()){
+                            Toasty.normal(PrintoothActivity.this, "Masukan jumlah uang pembeli dahulu", Toast.LENGTH_SHORT).show();
+                        }else {
+                            int kembalian = Integer.parseInt(edtKembalian.getText().toString());
+                            int ttl2 = Integer.parseInt(total);
+                            if(kembalian<ttl2){
+                                Toasty.normal(PrintoothActivity.this, "Uang pembeli kurang", Toast.LENGTH_SHORT).show();
+                            }else{
+                                int hasil = kembalian - ttl2;
+                                int num = hasil;
+                                String strkembalian = String.format(Locale.US, "%,d", num).replace(',', '.');
+                                txtKembalian.setText("Rp " + strkembalian);
+                            }
+
+                        }
+                    }
+                });
+                int number = Integer.parseInt(total);
+                String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+                txtBiaya.setText("Rp " + str);
 
             }
 

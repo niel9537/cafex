@@ -26,6 +26,8 @@ import com.p3lb.cafex.model.transaksi.PostPutDelTransaksi;
 import com.p3lb.cafex.network.ApiHelper;
 import com.p3lb.cafex.network.ApiInterface;
 
+import java.util.Locale;
+
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,7 +92,9 @@ public class TambahSelectMenu extends AppCompatActivity {
         harga = mIntent.getStringExtra("harga_produk");
         idProduk = mIntent.getStringExtra("id_produk");
         namaProduk.setText(mIntent.getStringExtra("nama_produk"));
-        hargaProduk.setText("Rp "+mIntent.getStringExtra("harga_produk"));
+        int number = Integer.parseInt(mIntent.getStringExtra("harga_produk"));
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        hargaProduk.setText("Rp "+str);
         kategoriProduk.setText(mIntent.getStringExtra("kategori_produk"));
         //Input gambar ke imgview
         Glide.with(TambahSelectMenu.this)
@@ -127,7 +131,8 @@ public class TambahSelectMenu extends AppCompatActivity {
     }
     private void iniSubtotal(){
         subtotal = Integer.parseInt(harga);
-        subTotalProduk.setText("Rp "+subtotal);
+        String str = String.format(Locale.US, "%,d", subtotal).replace(',', '.');
+        subTotalProduk.setText("Rp "+ str);
         price = String.valueOf(subtotal);
     }
     private void plusSubtotal(){
@@ -137,7 +142,9 @@ public class TambahSelectMenu extends AppCompatActivity {
         subtotal = subtotalnaik * hargas;
         jumlahItem.setText(subtotalnaik+"");
         price = String.valueOf(subtotal);
-        subTotalProduk.setText("Rp "+ price);
+        int number = Integer.parseInt(price);
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        subTotalProduk.setText("Rp "+ str);
     }
     private void minusSubtotal(){
         //subtotal--;
@@ -146,7 +153,9 @@ public class TambahSelectMenu extends AppCompatActivity {
         subtotal = subtotalnaik * hargas;
         jumlahItem.setText(subtotalnaik+"");
         price = String.valueOf(subtotal);
-        subTotalProduk.setText("Rp "+ price);
+        int number = Integer.parseInt(price);
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        subTotalProduk.setText("Rp "+ str);
     }
 
     private void addcart(){

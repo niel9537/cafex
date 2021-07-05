@@ -20,6 +20,7 @@ import com.p3lb.cafex.model.produk.Products;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 //import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
@@ -42,7 +43,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
     @Override
     public void onBindViewHolder (MyViewHolder holder,final int position){
         holder.nama_produk.setText(mproductsList.get(position).getNama_produk());
-        holder.harga_produk.setText(mproductsList.get(position).getHarga_produk());
+        int number = Integer.parseInt(mproductsList.get(position).getHarga_produk());
+        String str = String.format(Locale.US, "%,d", number).replace(',', '.');
+        holder.harga_produk.setText("Rp "+str);
         holder.kategori_produk.setText(mproductsList.get(position).getKategori_produk());
         Glide.with(holder.itemView.getContext())
                 .load(Config.IMAGES_URL + mproductsList.get(position).getFoto_produk())
